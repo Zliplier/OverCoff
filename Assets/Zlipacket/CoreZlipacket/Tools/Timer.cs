@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 namespace Zlipacket.CoreZlipacket.Tools
 {
-    public class Timer : MonoBehaviour
+    public class Timer
     {
         private MonoBehaviour owner;
         private Coroutine co_Timing = null;

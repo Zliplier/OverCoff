@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Zlipacket.CoreZlipacket.System.Command.Database
 {
-    public class CMD_CoreCommand : CMD_DatabaseExtension
+    public class CoreCommand : DatabaseExtension
     {
         public new static void Extend(CommandDatabase database)
         {
@@ -14,6 +14,5 @@ namespace Zlipacket.CoreZlipacket.System.Command.Database
         {
             Debug.Log(data);
         }
-        
     }
 }

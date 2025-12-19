@@ -8,7 +8,7 @@ namespace Zlipacket.CoreZlipacket.Audio
     {
         [SerializeField] private AudioMixer audioMixer;
         
-        [Header("Initial Volume")]
+        [Header("Config")]
         [SerializeField] private float MasterVolume = 0.7f;
         [SerializeField] private float MusicVolume = 0.7f;
         [SerializeField] private float SoundFXVolume = 0.7f;

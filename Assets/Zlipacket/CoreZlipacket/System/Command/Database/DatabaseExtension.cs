@@ -2,7 +2,7 @@
 {
     //=CAUTION=
     //All Extension Command MUST be static!
-    public abstract class CMD_DatabaseExtension
+    public abstract class DatabaseExtension
     {
         protected static CommandManager commandManager => CommandManager.Instance;
         

@@ -27,7 +27,7 @@ namespace Zlipacket.CoreZlipacket.System.Command
             subDatabases = new Dictionary<string, CommandDatabase>();
             
             Assembly assembly = Assembly.GetExecutingAssembly();
-            Type[] extensionTypes = assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(CMD_DatabaseExtension))).ToArray();
+            Type[] extensionTypes = assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(DatabaseExtension))).ToArray();
 
             foreach (Type type in extensionTypes)
             {
