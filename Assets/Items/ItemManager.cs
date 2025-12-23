@@ -11,7 +11,7 @@ namespace Items
     {
         public List<SO_ItemDataList> ItemDatabase;
 
-        public SO_ItemData GetItemData(string nameID, string listID = "")
+        public SO_Item GetItemData(string nameID, string listID = "")
         {
             //If specify Item List.
             if (!string.IsNullOrEmpty(listID))

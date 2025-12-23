@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Items.ItemData
 {
-    [CreateAssetMenu(fileName = "Item Data List", menuName = "Items/ItemDataList")]
+    [CreateAssetMenu(fileName = "Item Data List", menuName = "Items/Item Data List")]
     public class SO_ItemDataList : ScriptableObject
     {
         public string listID;
-        public List<SO_ItemData> Items;
+        public List<SO_Item> Items;
     }
 }

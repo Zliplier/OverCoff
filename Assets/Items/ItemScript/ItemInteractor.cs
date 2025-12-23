@@ -5,10 +5,8 @@ using UnityEngine.Events;
 namespace Items.ItemScript
 {
     [RequireComponent(typeof(Item))]
-    public class ItemInteractor : MonoBehaviour
+    public class ItemInteractor : Interactor
     {
-        public UnityEvent onInteract;
         
-        public void Interact() => onInteract.Invoke();
     }
 }

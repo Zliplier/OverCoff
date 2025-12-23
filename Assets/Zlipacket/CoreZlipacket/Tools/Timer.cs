@@ -7,9 +7,8 @@ using UnityEngine.Events;
 
 namespace Zlipacket.CoreZlipacket.Tools
 {
-    public class Timer
+    public class Timer : MonoBehaviour
     {
-        private MonoBehaviour owner;
         private Coroutine co_Timing = null;
         public float duration { get; private set; } = 0f;
         public float elapsedTime { get; private set; } = 0f;
@@ -20,9 +19,17 @@ namespace Zlipacket.CoreZlipacket.Tools
         public bool isRunning => co_Timing != null;
         public bool isPause = false;
         
-        public Timer(MonoBehaviour owner)
+        public static Timer CreateTimer(GameObject owner, float duration = 1f, string timerName = "Timer")
         {
-            this.owner = owner;
+            GameObject timerObject = new GameObject(timerName);
+            Timer timer =  timerObject.AddComponent<Timer>();
+            
+            timerObject.transform.SetParent(owner.transform);
+            timerObject.transform.localPosition = Vector3.zero;
+            
+            timer.SetDuration(duration);
+            
+            return timer;
         }
 
         public void SetDuration(float duration)
@@ -34,14 +41,14 @@ namespace Zlipacket.CoreZlipacket.Tools
         {
             if (isRunning)
             {
-                owner.StopCoroutine(co_Timing);
+                StopCoroutine(co_Timing);
                 StopTimer();
             }
             
             this.duration = duration;
             
             onStart?.Invoke();
-            co_Timing = owner.StartCoroutine(TimerRunning());
+            co_Timing = StartCoroutine(TimerRunning());
             return co_Timing;
         }
         
@@ -49,14 +56,14 @@ namespace Zlipacket.CoreZlipacket.Tools
         {
             if (isRunning)
             {
-                owner.StopCoroutine(co_Timing);
+                StopCoroutine(co_Timing);
             }
             
             elapsedTime = 0f;
             ResetEvents();
             
             onReset?.Invoke();
-            co_Timing = owner.StartCoroutine(TimerRunning());
+            co_Timing = StartCoroutine(TimerRunning());
             return co_Timing;
         }
         
@@ -128,7 +135,7 @@ namespace Zlipacket.CoreZlipacket.Tools
         public void StopTimer()
         {
             if (isRunning)
-                owner.StopCoroutine(co_Timing);
+                StopCoroutine(co_Timing);
             
             ResetEvents();
             onStop?.Invoke();

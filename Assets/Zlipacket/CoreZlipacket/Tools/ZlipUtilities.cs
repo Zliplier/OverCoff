@@ -5,17 +5,17 @@ namespace Zlipacket.CoreZlipacket.Tools
 {
     public static class ZlipUtilities
     {
-        public static bool CastMouseCickRaycast( PlayerInputController playerInputController, out RaycastHit raycastHit)
+        public static bool CastMouseCickRaycast( Vector2 mousePosition, out RaycastHit raycastHit)
         {
             raycastHit = new RaycastHit();
             
             Vector3 sceneMousePositionNear = new Vector3(
-                playerInputController.MousePosition.x,
-                playerInputController.MousePosition.y,
+                mousePosition.x,
+                mousePosition.y,
                 Camera.main.nearClipPlane);
             Vector3 sceneMousePositionFar = new Vector3(
-                playerInputController.MousePosition.x,
-                playerInputController.MousePosition.y,
+                mousePosition.x,
+                mousePosition.y,
                 Camera.main.farClipPlane);
             
             Vector3 worldMousePositionNear = Camera.main.ScreenToWorldPoint(sceneMousePositionNear);

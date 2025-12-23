@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: Milk
   m_EditorClassIdentifier: Assembly-CSharp::Items.ItemData.SO_ItemData
   nameID: Milk
+  itemData:
+    serializedId: 
+    itemTag: 
+    cost: 10
+    stack: 0
+    maxStack: 5
+    icon: {fileID: 21300000, guid: 5f7cfcec57c194e4d83e22c2e20a91d8, type: 3}
+    prefab: {fileID: 0}
   displayData:
     displayName: Milk
     textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     textColor: {r: 0, g: 0, b: 0, a: 0}
-  itemTag: 00000000
-  cost: 10
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  outlineConfig: {fileID: 11400000, guid: fb7df7dfbc5523c45a9060894dd010ba, type: 2}

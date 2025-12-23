@@ -27,12 +27,12 @@ namespace Zlipacket.CoreZlipacket.Audio
             music.volume = volume;
             music.Play();
             
-            musicPlaylist.Add(callbackName, music);
+            musicPlaylist.Add(callbackName.ToLower(), music);
         }
 
         public void StopMusicByCallback(string callbackName)
         {
-            if (musicPlaylist.TryGetValue(callbackName, out AudioSource music))
+            if (musicPlaylist.TryGetValue(callbackName.ToLower(), out AudioSource music))
             {
                 Destroy(music.gameObject);
             }

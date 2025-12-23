@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Zlipacket.CoreZlipacket.System.IO
 {
-    public class FileManager
+    public class TextFileManager
     {
         public static List<string> ReadTextFile(string filepath, bool includeBlanklines = true)
         {
