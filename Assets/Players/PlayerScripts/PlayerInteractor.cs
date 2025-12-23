@@ -11,9 +11,10 @@ namespace Players.PlayerScripts
     public class PlayerInteractor : PlayerScript
     {
         private RaycastHit raycastHit;
-        public GameObject selectedObject => raycastHit.collider.gameObject;
+        public GameObject selectedObject => raycastHit.collider.gameObject != null ? raycastHit.collider.gameObject : null;
         private Interactor interactor => selectedObject != null ? selectedObject.TryGetComponent(
             out Interactor interactor) ? interactor : null : null;
+        
         public Vector3 hitPosition => raycastHit.point;
         
         public bool allowChangeTarget = true;
@@ -39,6 +40,8 @@ namespace Players.PlayerScripts
 
         private void Update()
         {
+            //TODO: Fix this later man...
+            
             if (!allowChangeTarget)
                 return;
             
@@ -66,6 +69,9 @@ namespace Players.PlayerScripts
 
         public void Hover()
         {
+            if (selectedObject == null)
+                return;
+            
             if (!isHovering)
             {
                 isHovering = true;
@@ -77,6 +83,9 @@ namespace Players.PlayerScripts
 
         public void UnHover()
         {
+            if (selectedObject == null)
+                return;
+            
             if (isHovering)
             {
                 isHovering = false;

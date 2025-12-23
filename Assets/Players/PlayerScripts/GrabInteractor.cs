@@ -25,6 +25,7 @@ namespace Players.PlayerScripts
         [HideInInspector] public bool isGrabbing = false;
         
         [Header("Config")]
+        public LayerMask interactionLayer;
         public float minDistance = 1.5f;
         public float maxDistance = 3.5f;
         
@@ -60,7 +61,7 @@ namespace Players.PlayerScripts
         private bool TryGrab()
         {
             if (Physics.Raycast(cam.transform.position + (cam.transform.forward * minDistance),
-                    cam.transform.forward, out hit, maxDistance))
+                    cam.transform.forward, out hit, maxDistance, interactionLayer))
             {
                 if (itemGrab != null)
                 {

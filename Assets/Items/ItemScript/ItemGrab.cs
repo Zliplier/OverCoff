@@ -26,6 +26,7 @@ namespace Items.ItemScript
         
         public void Grab(GrabInteractor holder)
         {
+            Debug.Log($"Start Grab");
             if (isGrabbing)
                 StopCoroutine(co_Grabbing);
 

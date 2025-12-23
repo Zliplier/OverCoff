@@ -66,7 +66,7 @@ namespace Players.PlayerScripts
             
             if (isSprinting && stamina > 0)
             {
-                //Debug.Log($"Stamina: {stamina}");
+                Debug.Log($"Stamina: {stamina}");
                 stamina -= staminaConsumeRate;
                 speed *= runSpeed;
             }
@@ -133,7 +133,7 @@ namespace Players.PlayerScripts
             
             while (stamina < maxStamina)
             {
-                //Debug.Log("Stamina: " + stamina);
+                Debug.Log("Stamina: " + stamina);
                 stamina += staminaRegenRate;
                 yield return null;
             }
