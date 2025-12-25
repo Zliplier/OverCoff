@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace Items.ItemData
+namespace Items.Data
 {
     [Serializable]
     public class ItemDisplayData

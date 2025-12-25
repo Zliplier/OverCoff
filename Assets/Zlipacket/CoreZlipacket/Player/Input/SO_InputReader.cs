@@ -26,6 +26,10 @@ namespace Zlipacket.CoreZlipacket.Player.Input
         public event UnityAction<bool> crouchEvent;
         public event UnityAction<bool> returnEvent;
         
+        public event UnityAction<bool> slot1;
+        public event UnityAction<bool> slot2;
+        public event UnityAction<bool> slot3;
+        
         public event UnityAction<bool> escapeEvent;
         
         public event UnityAction<Vector2> mouseMoveEvent;
@@ -48,6 +52,10 @@ namespace Zlipacket.CoreZlipacket.Player.Input
             inputSystem.Player.Interact.started += OnInteract;
             inputSystem.Player.LeftMouse.started += OnLeftMouse;
             inputSystem.Player.LeftMouse.canceled += OnLeftMouse;
+            
+            inputSystem.Player.Slot1.started += OnSlot1;
+            inputSystem.Player.Slot2.started += OnSlot2;
+            inputSystem.Player.Slot3.started += OnSlot3;
         }
 
         private void OnDisable()
@@ -66,6 +74,10 @@ namespace Zlipacket.CoreZlipacket.Player.Input
             inputSystem.Player.Interact.started -= OnInteract;
             inputSystem.Player.LeftMouse.started -= OnLeftMouse;
             inputSystem.Player.LeftMouse.canceled -= OnLeftMouse;
+            
+            inputSystem.Player.Slot1.started -= OnSlot1;
+            inputSystem.Player.Slot2.started -= OnSlot2;
+            inputSystem.Player.Slot3.started -= OnSlot3;
         }
 
         #region Player Actions
@@ -164,6 +176,25 @@ namespace Zlipacket.CoreZlipacket.Player.Input
             if (context.phase == InputActionPhase.Started)
                 returnEvent?.Invoke(context.ReadValueAsButton());
         }
+
+        public void OnSlot1(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+                slot1?.Invoke(context.ReadValueAsButton());
+        }
+
+        public void OnSlot2(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+                slot2?.Invoke(context.ReadValueAsButton());
+        }
+
+        public void OnSlot3(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+                slot3?.Invoke(context.ReadValueAsButton());
+        }
+
         #endregion
         
         #region UI Actions

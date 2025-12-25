@@ -1,5 +1,5 @@
 using System;
-using Items.ItemData;
+using Items.Data;
 using UnityEngine;
 
 namespace Items
@@ -8,7 +8,7 @@ namespace Items
     public class Item : MonoBehaviour
     {
         public SO_Item item;
-        public ItemData.ItemData itemData => item.itemData; //TODO: Fix later when save/load.
+        public ItemData itemData => item.itemData; //TODO: Fix later when save/load.
         
         public Rigidbody rb;
 

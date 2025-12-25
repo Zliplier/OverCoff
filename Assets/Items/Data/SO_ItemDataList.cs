@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Items.ItemData
+namespace Items.Data
 {
     [CreateAssetMenu(fileName = "Item Data List", menuName = "Items/Item Data List")]
     public class SO_ItemDataList : ScriptableObject

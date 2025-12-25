@@ -1,16 +1,14 @@
 using System.Collections.Generic;
-using QuickOutline;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Items.ItemData
+namespace Items.Data
 {
     [CreateAssetMenu(fileName = "Item", menuName = "Items/Default Item")]
     public class SO_Item : ScriptableObject
     {
-        public string nameID;
+        public string nameID => itemData.nameId;
         public ItemData itemData;
-        public SO_OutlineConfig outlineConfig;
         
         public List<ItemTag> itemTag => itemData.itemTag;
         public int cost => itemData.cost;

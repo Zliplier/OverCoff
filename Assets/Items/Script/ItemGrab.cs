@@ -57,7 +57,7 @@ namespace Items.Script
         {
             while (holdArea != null)
             {
-                yield return new WaitForFixedUpdate();
+                yield return null;
                 
                 UpdatePosition();
                 UpdateRotation();
