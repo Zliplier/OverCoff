@@ -9,7 +9,7 @@ namespace Players
     public class PlayerScript : MonoBehaviour
     { 
         [HideInInspector] public Player player;
-        public PlayerData data => player.data.playerData;
+        public PlayerData data => player.playerData;
         protected Rigidbody rb => player.rb;
         protected SO_InputReader inputReader => player.data.inputReader;
         protected CinemachineCamera cam => player.cam;

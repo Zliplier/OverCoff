@@ -1,6 +1,6 @@
 using System;
 using Items;
-using Items.ItemScript;
+using Items.Script;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,19 +10,19 @@ namespace Players.PlayerScripts
 {
     public class PlayerInteractor : PlayerScript
     {
-        private RaycastHit raycastHit;
-        public GameObject selectedObject => raycastHit.collider.gameObject != null ? raycastHit.collider.gameObject : null;
+        private RaycastHit hit;
+        private GameObject selectedObject;
         private Interactor interactor => selectedObject != null ? selectedObject.TryGetComponent(
             out Interactor interactor) ? interactor : null : null;
         
-        public Vector3 hitPosition => raycastHit.point;
+        public Vector3 hitPosition => hit.point;
         
         public bool allowChangeTarget = true;
         public bool isHovering;
         
         [Header("Config")]
         public LayerMask interactionLayer;
-        public float minDistance = 1.5f;
+        public float minDistance = 0.1f;
         public float maxDistance = 3.5f;
         
         [Header("Event")]
@@ -40,13 +40,10 @@ namespace Players.PlayerScripts
 
         private void Update()
         {
-            //TODO: Fix this later man...
-            
             if (!allowChangeTarget)
                 return;
             
-            if (Physics.Raycast(cam.transform.position + (cam.transform.forward * minDistance),
-                    cam.transform.forward, out raycastHit, maxDistance, interactionLayer))
+            if (TrySelect())
             {
                 Hover();
             }
@@ -58,41 +55,47 @@ namespace Players.PlayerScripts
         
         public void Interact()
         {
-            if (selectedObject == null)
-                return;
-            
-            if (selectedObject.TryGetComponent(out ItemInteractor itemInteractor))
+            if (interactor != null)
+                interactor.Interact();
+        }
+
+        private bool TrySelect()
+        {
+            if (Physics.Raycast(cam.transform.position + (cam.transform.forward * minDistance),
+                    cam.transform.forward, out hit, maxDistance, interactionLayer))
             {
-                itemInteractor.Interact();
+                if (hit.collider.gameObject.TryGetComponent<ItemGrab>(out var _))
+                {
+                    selectedObject = hit.collider.gameObject;
+                    return true;
+                }
             }
+            
+            return false;
         }
 
         public void Hover()
         {
-            if (selectedObject == null)
+            if (isHovering)
                 return;
             
-            if (!isHovering)
-            {
-                isHovering = true;
-                
-                interactor?.onHover?.Invoke();
-                onHover?.Invoke();
-            }
+            isHovering = true;
+            
+            selectedObject = hit.collider.gameObject;
+            interactor?.onHover?.Invoke();
+            onHover?.Invoke();
         }
 
         public void UnHover()
         {
-            if (selectedObject == null)
+            if (!isHovering)
                 return;
+
+            isHovering = false;
             
-            if (isHovering)
-            {
-                isHovering = false;
-                
-                interactor?.onUnHover?.Invoke();
-                onUnHover?.Invoke();
-            }
+            interactor?.onUnHover?.Invoke();
+            onUnHover?.Invoke();
+            selectedObject = null;
         }
     }
 }

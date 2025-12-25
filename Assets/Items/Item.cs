@@ -8,10 +8,11 @@ namespace Items
     public class Item : MonoBehaviour
     {
         public SO_Item item;
-
+        public ItemData.ItemData itemData => item.itemData; //TODO: Fix later when save/load.
+        
         public Rigidbody rb;
 
-        private void Start()
+        private void Awake()
         {
             rb = GetComponent<Rigidbody>();
         }

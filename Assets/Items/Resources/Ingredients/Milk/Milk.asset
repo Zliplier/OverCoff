@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ec8fd275d134a029a9078e3d9fea0be, type: 3}
   m_Name: Milk
-  m_EditorClassIdentifier: Assembly-CSharp::Items.ItemData.SO_ItemData
+  m_EditorClassIdentifier: Assembly-CSharp::Items.ItemData.SO_ItemIngredients
   nameID: Milk
   itemData:
     serializedId: 
-    itemTag: 
+    itemTag: 0000000001000000
     cost: 10
-    stack: 0
+    stack: 5
     maxStack: 5
     icon: {fileID: 21300000, guid: 5f7cfcec57c194e4d83e22c2e20a91d8, type: 3}
     prefab: {fileID: 0}
-  displayData:
-    displayName: Milk
-    textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    textColor: {r: 0, g: 0, b: 0, a: 0}
+    displayData:
+      displayName: Milk
+      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      textColor: {r: 0, g: 0, b: 0, a: 0}
   outlineConfig: {fileID: 11400000, guid: fb7df7dfbc5523c45a9060894dd010ba, type: 2}

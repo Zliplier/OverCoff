@@ -10,6 +10,8 @@ namespace Players
     public class Player : MonoBehaviour
     {
         public SO_PlayerData data;
+        public PlayerData playerData => data.playerData; //TODO: Change later when Save/Load.
+        
         public Rigidbody rb;
         public CinemachineCamera cam;
 

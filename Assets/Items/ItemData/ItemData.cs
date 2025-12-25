@@ -14,5 +14,7 @@ namespace Items.ItemData
         public int maxStack;
         public Sprite icon;
         public GameObject prefab;
+        
+        public ItemDisplayData displayData;
     }
 }

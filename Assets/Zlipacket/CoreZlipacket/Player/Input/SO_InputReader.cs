@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 namespace Zlipacket.CoreZlipacket.Player.Input
 {
     [CreateAssetMenu(menuName = "Zlipacket/Player/Input Reader", fileName = "Input Reader")]
-    public class SO_InputReader : ScriptableObject, InputSystem_Actions.IPlayerActions
+    public class SO_InputReader : ScriptableObject, InputSystem_Actions.IPlayerActions, InputSystem_Actions.IUIActions
     {
         private InputSystem_Actions inputSystem;
 
@@ -37,7 +37,7 @@ namespace Zlipacket.CoreZlipacket.Player.Input
                 inputSystem = new InputSystem_Actions();
             }
             
-            inputSystem.Player.Enable();
+            SetPlayerInputEnable(true);
             
             inputSystem.Player.Move.performed += OnMove;
             inputSystem.Player.Move.canceled += OnMove;
@@ -55,7 +55,7 @@ namespace Zlipacket.CoreZlipacket.Player.Input
             if (inputSystem == null)
                 return;
             
-            inputSystem.Player.Disable();
+            SetPlayerInputEnable(false);
             
             inputSystem.Player.Move.performed -= OnMove;
             inputSystem.Player.Move.canceled -= OnMove;
@@ -66,6 +66,23 @@ namespace Zlipacket.CoreZlipacket.Player.Input
             inputSystem.Player.Interact.started -= OnInteract;
             inputSystem.Player.LeftMouse.started -= OnLeftMouse;
             inputSystem.Player.LeftMouse.canceled -= OnLeftMouse;
+        }
+
+        #region Player Actions
+        public void SetPlayerInputEnable(bool enable)
+        {
+            if (enable)
+                inputSystem.Player.Enable();
+            else
+                inputSystem.Player.Disable();
+        }
+
+        public void SetUiInputEnable(bool enable)
+        {
+            if (enable)
+                inputSystem.UI.Enable();
+            else
+                inputSystem.UI.Disable();
         }
         
         public void OnMove(InputAction.CallbackContext context)
@@ -80,23 +97,24 @@ namespace Zlipacket.CoreZlipacket.Player.Input
 
         public void OnLeftMouse(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (context.phase == InputActionPhase.Started)
                 leftMouseDownEvent?.Invoke();
-            if (context.canceled)
+            if (context.phase == InputActionPhase.Canceled)
                 leftMouseUpEvent?.Invoke();
         }
         
         public void OnRightMouse(InputAction.CallbackContext context)
         {
-            if (context.started)
+            if (context.phase == InputActionPhase.Started)
                 rightMouseDownEvent?.Invoke();
-            if (context.canceled)
+            if (context.phase == InputActionPhase.Canceled)
                 rightMouseUpEvent?.Invoke();
         }
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            interactEvent?.Invoke();
+            if (context.phase == InputActionPhase.Started)
+                interactEvent?.Invoke();
         }
 
         public void OnCrouch(InputAction.CallbackContext context)
@@ -106,7 +124,8 @@ namespace Zlipacket.CoreZlipacket.Player.Input
 
         public void OnJump(InputAction.CallbackContext context)
         {
-            jumpEvent?.Invoke();
+            if (context.phase == InputActionPhase.Started)
+                jumpEvent?.Invoke();
         }
 
         public void OnPrevious(InputAction.CallbackContext context)
@@ -126,7 +145,8 @@ namespace Zlipacket.CoreZlipacket.Player.Input
 
         public void OnMouseWheel(InputAction.CallbackContext context)
         {
-            mouseScrollEvent?.Invoke(context.ReadValue<float>());
+            if (context.phase == InputActionPhase.Performed)
+                mouseScrollEvent?.Invoke(context.ReadValue<float>());
         }
 
         public void OnThrow(InputAction.CallbackContext context)
@@ -141,7 +161,61 @@ namespace Zlipacket.CoreZlipacket.Player.Input
 
         public void OnReturn(InputAction.CallbackContext context)
         {
-            returnEvent?.Invoke(context.ReadValueAsButton());
+            if (context.phase == InputActionPhase.Started)
+                returnEvent?.Invoke(context.ReadValueAsButton());
         }
+        #endregion
+        
+        #region UI Actions
+        public void OnNavigate(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnSubmit(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnPoint(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnRightClick(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnMiddleClick(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnScrollWheel(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnTrackedDevicePosition(InputAction.CallbackContext context)
+        {
+            
+        }
+
+        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
+        {
+            
+        }
+        #endregion
     }
 }
