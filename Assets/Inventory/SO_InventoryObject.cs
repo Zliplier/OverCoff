@@ -16,6 +16,14 @@ namespace Inventory
             
         }
     }
+
+    [Serializable]
+    public class Inventory
+    {
+        public List<InventorySlot> inventory = new List<InventorySlot>();
+        
+        
+    }
     
     [Serializable]
     public class InventorySlot
