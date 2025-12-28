@@ -50,8 +50,10 @@ namespace Zlipacket.CoreZlipacket.Player.Input
             inputSystem.Player.Jump.started += OnJump;
             inputSystem.Player.Look.performed += OnLook;
             inputSystem.Player.Interact.started += OnInteract;
+            
             inputSystem.Player.LeftMouse.started += OnLeftMouse;
             inputSystem.Player.LeftMouse.canceled += OnLeftMouse;
+            inputSystem.Player.MouseWheel.performed += OnMouseWheel;
             
             inputSystem.Player.Slot1.started += OnSlot1;
             inputSystem.Player.Slot2.started += OnSlot2;
@@ -72,14 +74,16 @@ namespace Zlipacket.CoreZlipacket.Player.Input
             inputSystem.Player.Jump.started -= OnJump;
             inputSystem.Player.Look.performed -= OnLook;
             inputSystem.Player.Interact.started -= OnInteract;
+            
             inputSystem.Player.LeftMouse.started -= OnLeftMouse;
             inputSystem.Player.LeftMouse.canceled -= OnLeftMouse;
+            inputSystem.Player.MouseWheel.performed -= OnMouseWheel;
             
             inputSystem.Player.Slot1.started -= OnSlot1;
             inputSystem.Player.Slot2.started -= OnSlot2;
             inputSystem.Player.Slot3.started -= OnSlot3;
         }
-
+        
         #region Player Actions
         public void SetPlayerInputEnable(bool enable)
         {
@@ -193,6 +197,12 @@ namespace Zlipacket.CoreZlipacket.Player.Input
         {
             if (context.phase == InputActionPhase.Started)
                 slot3?.Invoke(context.ReadValueAsButton());
+        }
+
+        public void OnEscape(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+                escapeEvent?.Invoke(context.ReadValueAsButton());
         }
 
         #endregion

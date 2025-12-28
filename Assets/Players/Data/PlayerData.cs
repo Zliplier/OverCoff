@@ -15,5 +15,7 @@ namespace Players.Data
         
         public float stamina;
         public float maxStamina = 100f;
+
+        public int money;
     }
 }

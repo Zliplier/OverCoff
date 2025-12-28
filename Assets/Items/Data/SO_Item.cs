@@ -9,16 +9,16 @@ namespace Items.Data
     {
         public string nameID => itemData.nameId;
         public ItemData itemData;
+
+        public GameObject worldPrefab;
+        //public GameObject inventoryPrefab;
         
         public List<ItemTag> itemTag => itemData.itemTag;
         public int cost => itemData.cost;
         public Sprite icon => itemData.icon;
-        public GameObject prefab => itemData.prefab;
+        
         public ItemDisplayData displayData => itemData.displayData;
-
-        public bool CheckTag(ItemTag tag)
-        {
-            return itemTag.Contains(tag);
-        }
+        
+        public bool ignoreInRecipeCheck => itemData.ignoreInRecipeCheck;
     }
 }

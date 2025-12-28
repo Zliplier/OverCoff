@@ -64,9 +64,9 @@ namespace Players.PlayerScripts
             
             float speed = 1 + Time.deltaTime;
             
-            if (isSprinting && stamina > 0)
+            if (isSprinting && player.stamina > 0)
             {
-                stamina -= staminaConsumeRate;
+                player.stamina -= staminaConsumeRate;
                 speed *= runSpeed;
             }
             else
@@ -130,9 +130,9 @@ namespace Players.PlayerScripts
         {
             yield return new WaitForSeconds(staminaCooldown);
             
-            while (stamina < maxStamina)
+            while (player.stamina < player.maxStamina)
             {
-                stamina += staminaRegenRate;
+                player.stamina += staminaRegenRate;
                 yield return null;
             }
             

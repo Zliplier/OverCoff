@@ -9,5 +9,6 @@ namespace Players.Data
     {
         public SO_InputReader inputReader;
         public PlayerData playerData;
+        public GameObject playerPrefab;
     }
 }

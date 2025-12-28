@@ -9,7 +9,7 @@ namespace Items
 {
     public class ItemManager : Singleton<ItemManager>
     {
-        public List<SO_ItemDataList> ItemDatabase;
+        public List<SO_ItemList> ItemDatabase;
 
         public SO_Item GetItemData(string nameID, string listID = "")
         {
@@ -33,6 +33,6 @@ namespace Items
             return null;
         }
 
-        public SO_ItemDataList GetItemDataList(string listID) => ItemDatabase.Find(x => string.Equals(x.listID, listID, StringComparison.InvariantCultureIgnoreCase));
+        public SO_ItemList GetItemDataList(string listID) => ItemDatabase.Find(x => string.Equals(x.listID, listID, StringComparison.InvariantCultureIgnoreCase));
     }
 }

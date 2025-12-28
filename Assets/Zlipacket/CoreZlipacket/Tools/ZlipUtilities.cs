@@ -5,18 +5,18 @@ namespace Zlipacket.CoreZlipacket.Tools
 {
     public static class ZlipUtilities
     {
-        public static bool CastMouseCickRaycast( Vector2 mousePosition, out RaycastHit raycastHit)
+        public static bool CastMouseCickRaycast(Camera cam, Vector2 mousePosition, out RaycastHit raycastHit)
         {
             raycastHit = new RaycastHit();
             
             Vector3 sceneMousePositionNear = new Vector3(
                 mousePosition.x,
                 mousePosition.y,
-                Camera.main.nearClipPlane);
+                cam.nearClipPlane);
             Vector3 sceneMousePositionFar = new Vector3(
                 mousePosition.x,
                 mousePosition.y,
-                Camera.main.farClipPlane);
+                cam.farClipPlane);
             
             Vector3 worldMousePositionNear = Camera.main.ScreenToWorldPoint(sceneMousePositionNear);
             Vector3 worldMousePositionFar = Camera.main.ScreenToWorldPoint(sceneMousePositionFar);
@@ -34,6 +34,18 @@ namespace Zlipacket.CoreZlipacket.Tools
         public static bool ApproximatelyWithMargin(float a, float b, float margin)
         {
             return Mathf.Abs(a - b) < margin;
+        }
+        
+        /// <summary>
+        /// Remap Distance of a vector3 between 2 vectors, then return interpolation between 0-1.
+        /// </summary>
+        /// <param name="inputPos"></param>
+        /// <param name="near"></param>
+        /// <param name="far"></param>
+        /// <returns></returns>
+        public static float RemapVector3Distance(Vector3 inputPos, Vector3 near, Vector3 far)
+        {
+            return Vector3.Dot(inputPos - near, far - near) / Vector3.Dot(far - near, far - near);
         }
     }
 }

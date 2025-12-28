@@ -1,10 +1,10 @@
-using System;
 using Items;
 using Items.Script;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
-using Zlipacket.CoreZlipacket.Player.Input;
+using DG.Tweening;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 namespace Players.PlayerScripts
 {
@@ -19,8 +19,9 @@ namespace Players.PlayerScripts
         
         public bool allowChangeTarget = true;
         public bool isHovering;
-        
+
         [Header("Config")]
+        public Image crosshair;
         public LayerMask interactionLayer;
         public float minDistance = 0.1f;
         public float maxDistance = 3.5f;
@@ -80,6 +81,7 @@ namespace Players.PlayerScripts
                 return;
             
             isHovering = true;
+            CrosshairAnimation();
             
             selectedObject = hit.collider.gameObject;
             interactor?.onHover?.Invoke();
@@ -92,10 +94,31 @@ namespace Players.PlayerScripts
                 return;
 
             isHovering = false;
+            CrosshairAnimation(true);
             
             interactor?.onUnHover?.Invoke();
             onUnHover?.Invoke();
             selectedObject = null;
+        }
+
+        public void ResetInteractor()
+        {
+            allowChangeTarget = true;
+            isHovering = false;
+            selectedObject = null;
+            CrosshairAnimation(true);
+        }
+        
+        public void CrosshairAnimation(bool isReverse = false)
+        {
+            if (crosshair == null)
+                return;
+            
+            float duration = 0.2f;
+            if (!isReverse)
+                crosshair.transform.DOScale(1.5f, duration);
+            else
+                crosshair.transform.DOScale(1f, duration);
         }
     }
 }

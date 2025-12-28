@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Items
 {
+    [RequireComponent(typeof(Item))]
     public class ItemScript : MonoBehaviour
     {
         [HideInInspector] public Item item;

@@ -22,6 +22,9 @@ namespace Items.Data
         [Space]
         [TextArea(15, 20)]
         public string description;
+
+        [Space]
+        public bool ignoreInRecipeCheck;
         
         public ItemData(ItemData data)
         {
@@ -36,5 +39,16 @@ namespace Items.Data
             displayData = data.displayData;
             description = data.description;
         }
+    }
+    
+    public enum ItemTag
+    {
+        Grabable, 
+        Ingredient, 
+        RecipeResult, 
+        Furniture, 
+        Fryable, 
+        Cuttable, 
+        Condiment
     }
 }

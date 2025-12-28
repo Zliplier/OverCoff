@@ -7,6 +7,9 @@ namespace Items
 {
     public class Interactor : MonoBehaviour
     {
+        public bool showInteractPrompt;
+        
+        [Header("Events")]
         public UnityEvent onInteract;
         public UnityEvent onHover, onUnHover;
         

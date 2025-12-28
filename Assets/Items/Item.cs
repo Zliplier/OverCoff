@@ -17,14 +17,4 @@ namespace Items
             rb = GetComponent<Rigidbody>();
         }
     }
-
-    public enum ItemTag
-    {
-        Grabable, 
-        Ingredient, 
-        RecipeResult, 
-        Furniture, 
-        Fryable, 
-        Cuttable,
-    }
 }
