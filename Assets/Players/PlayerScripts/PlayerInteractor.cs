@@ -11,8 +11,8 @@ namespace Players.PlayerScripts
     public class PlayerInteractor : PlayerScript
     {
         private RaycastHit hit;
-        private GameObject selectedObject;
-        private Interactor interactor => selectedObject != null ? selectedObject.TryGetComponent(
+        public GameObject selectedObject { get; private set; }
+        public Interactor interactor => selectedObject != null ? selectedObject.TryGetComponent(
             out Interactor interactor) ? interactor : null : null;
         
         public Vector3 hitPosition => hit.point;
@@ -31,12 +31,12 @@ namespace Players.PlayerScripts
         
         private void OnEnable()
         {
-            inputReader.interactEvent += Interact;
+            playerInputMap.interactEvent += Interact;
         }
 
         private void OnDisable()
         {
-            inputReader.interactEvent -= Interact;
+            playerInputMap.interactEvent -= Interact;
         }
 
         private void Update()

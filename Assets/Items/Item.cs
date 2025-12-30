@@ -8,13 +8,22 @@ namespace Items
     public class Item : MonoBehaviour
     {
         public SO_Item item;
-        public ItemData itemData => item.itemData; //TODO: Fix later when save/load.
+        public ItemData itemData;
         
         public Rigidbody rb;
 
         private void Awake()
         {
+            itemData ??= new ItemData(item.itemData);
+
             rb = GetComponent<Rigidbody>();
+        }
+
+        public void Initialize(ItemData itemData)
+        {
+            this.itemData = new ItemData(itemData);
+            
+            //TODO: Logic Update when creating this.
         }
     }
 }

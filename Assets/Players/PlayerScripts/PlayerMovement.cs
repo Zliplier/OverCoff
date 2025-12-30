@@ -34,16 +34,16 @@ namespace Players.PlayerScripts
         
         private void OnEnable()
         {
-            inputReader.movementEvent += Move;
-            inputReader.sprintEvent += Sprint;
-            inputReader.jumpEvent += Jump;
+            playerInputMap.movementEvent += Move;
+            playerInputMap.sprintEvent += Sprint;
+            playerInputMap.jumpEvent += Jump;
         }
 
         private void OnDisable()
         {
-            inputReader.movementEvent -= Move;
-            inputReader.sprintEvent -= Sprint;
-            inputReader.jumpEvent -= Jump;
+            playerInputMap.movementEvent -= Move;
+            playerInputMap.sprintEvent -= Sprint;
+            playerInputMap.jumpEvent -= Jump;
         }
 
         private void Update()

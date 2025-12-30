@@ -17,5 +17,18 @@ namespace Players.Data
         public float maxStamina = 100f;
 
         public int money;
+
+        public PlayerData(PlayerData playerData)
+        {
+            playerID = playerData.playerID;
+            playerTransform = playerData.playerTransform;
+            cameraTransform = playerData.cameraTransform;
+            health = playerData.health;
+            maxHealth = playerData.maxHealth;
+            stamina = playerData.stamina;
+            maxStamina = playerData.maxStamina;
+            
+            money = playerData.money;
+        }
     }
 }

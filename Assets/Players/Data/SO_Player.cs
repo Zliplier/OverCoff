@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using Players.UI;
+using UnityEngine;
 using Zlipacket.CoreZlipacket.Audio;
 using Zlipacket.CoreZlipacket.Player.Input;
 
 namespace Players.Data
 {
-    [CreateAssetMenu(menuName = "Player Data", fileName = "PlayerData")]
-    public class SO_PlayerData : ScriptableObject
+    [CreateAssetMenu(menuName = "Player", fileName = "Player/Data")]
+    public class SO_Player : ScriptableObject
     {
         public SO_InputReader inputReader;
         public PlayerData playerData;

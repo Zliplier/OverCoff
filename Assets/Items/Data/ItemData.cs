@@ -14,7 +14,7 @@ namespace Items.Data
         public int stack;
         public int maxStack;
         public Sprite icon;
-        public GameObject prefab;
+        public SO_Item scriptableObject;
         
         [Space]
         public ItemDisplayData displayData;
@@ -35,9 +35,12 @@ namespace Items.Data
             stack = data.stack;
             maxStack = data.maxStack;
             icon = data.icon;
-            prefab = data.prefab;
+            scriptableObject = data.scriptableObject;
+            
             displayData = data.displayData;
             description = data.description;
+            
+            ignoreInRecipeCheck = data.ignoreInRecipeCheck;
         }
     }
     

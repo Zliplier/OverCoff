@@ -18,8 +18,8 @@ namespace Zlipacket.CoreZlipacket.Tools
                 mousePosition.y,
                 cam.farClipPlane);
             
-            Vector3 worldMousePositionNear = Camera.main.ScreenToWorldPoint(sceneMousePositionNear);
-            Vector3 worldMousePositionFar = Camera.main.ScreenToWorldPoint(sceneMousePositionFar);
+            Vector3 worldMousePositionNear = cam.ScreenToWorldPoint(sceneMousePositionNear);
+            Vector3 worldMousePositionFar = cam.ScreenToWorldPoint(sceneMousePositionFar);
 
             //Debug.DrawRay(worldMousePositionNear, worldMousePositionFar - worldMousePositionNear, Color.green, 1f);
             if (Physics.Raycast(worldMousePositionNear, worldMousePositionFar - worldMousePositionNear, out RaycastHit hit, float.PositiveInfinity))
@@ -45,6 +45,7 @@ namespace Zlipacket.CoreZlipacket.Tools
         /// <returns></returns>
         public static float RemapVector3Distance(Vector3 inputPos, Vector3 near, Vector3 far)
         {
+            //No idea how dot product of these vectors work, but it works, so just leave it.
             return Vector3.Dot(inputPos - near, far - near) / Vector3.Dot(far - near, far - near);
         }
     }

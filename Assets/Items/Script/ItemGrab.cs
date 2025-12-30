@@ -11,7 +11,7 @@ namespace Items.Script
     [RequireComponent(typeof(Rigidbody))]
     public class ItemGrab : ItemScript
     {
-        private GrabInteractor holder = null;
+        public GrabInteractor holder { get; private set; } = null;
         
         [Header("Config")]
         public bool grabPositionOverride;

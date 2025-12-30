@@ -8,9 +8,8 @@ namespace Items.Data
     public class SO_Item : ScriptableObject
     {
         public string nameID => itemData.nameId;
+        public GameObject itemPrefab;
         public ItemData itemData;
-
-        public GameObject worldPrefab;
         //public GameObject inventoryPrefab;
         
         public List<ItemTag> itemTag => itemData.itemTag;

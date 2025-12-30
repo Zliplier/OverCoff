@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Items.Data;
+﻿using Items.Data;
 
-namespace Items.Script
+namespace Items.Script.Ingredients
 {
     public class Cuttable : ItemScript
     {

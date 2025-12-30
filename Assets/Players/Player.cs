@@ -1,5 +1,6 @@
 using System;
 using Players.Data;
+using Players.PlayerScripts;
 using Players.UI;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -11,13 +12,17 @@ namespace Players
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public class Player : MonoBehaviour
     {
-        public SO_PlayerData data;
-        public PlayerData playerData => data.playerData; //TODO: Change later when Save/Load.
+        public SO_Player player;
+        public PlayerData playerData => player.playerData; //TODO: Change later when Save/Load.
         
         public Rigidbody rb;
         public CinemachineCamera cam;
-        public UIManager uiManager;
+        public CinemachineInputAxisController camInputAxis => cam.GetComponent<CinemachineInputAxisController>();
         
+        public UIManager uiManager;
+        public PlayerBook playerBook;
+        
+        [Header("Stat Events")]
         #region Health
         public UnityEvent<float, float> onHealthChanged;
         public float health 
@@ -32,7 +37,7 @@ namespace Players
         public float maxHealth
         { get { return playerData.maxHealth; } set { playerData.maxHealth = value; } }
         #endregion
-
+        
         #region Stamina
         public UnityEvent<float, float> onStaminaChanged;
         public float stamina
@@ -47,7 +52,7 @@ namespace Players
         public float maxStamina
         { get { return playerData.maxStamina; } set { playerData.maxStamina = value; } }
         #endregion
-
+        
         #region Money
         public UnityEvent<float> onMoneyChanged;
         public int money
@@ -65,11 +70,26 @@ namespace Players
         {
             rb = GetComponent<Rigidbody>();
         }
-
+        
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            SetCursorLockState(true);
+        }
+        
+        public void SetCursorLockState(bool enabled)
+        {
+            if (enabled)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                camInputAxis.enabled = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                camInputAxis.enabled = false;
+            }
         }
     }
 }

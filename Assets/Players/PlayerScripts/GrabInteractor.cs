@@ -19,8 +19,8 @@ namespace Players.PlayerScripts
         private RaycastHit hit;
         private Vector3 hitPosition => hit.point;
         
-        private GameObject grabObject;
-        private ItemGrab itemGrab;
+        public GameObject grabObject { get; private set; }
+        public ItemGrab itemGrab { get; private set; }
         private Rigidbody rbGrab;
         
         public bool isGrabbing => grabObject != null;
@@ -44,16 +44,16 @@ namespace Players.PlayerScripts
         
         private void OnEnable()
         {
-            inputReader.leftMouseDownEvent += Grab;
-            inputReader.leftMouseUpEvent += Drop;
-            inputReader.mouseScrollEvent += MouseScroll;
+            playerInputMap.leftMouseDownEvent += Grab;
+            playerInputMap.leftMouseUpEvent += Drop;
+            playerInputMap.mouseScrollEvent += MouseScroll;
         }
 
         private void OnDisable()
         {
-            inputReader.leftMouseDownEvent -= Grab;
-            inputReader.leftMouseUpEvent -= Drop;
-            inputReader.mouseScrollEvent -= MouseScroll;
+            playerInputMap.leftMouseDownEvent -= Grab;
+            playerInputMap.leftMouseUpEvent -= Drop;
+            playerInputMap.mouseScrollEvent -= MouseScroll;
 
             itemGrab?.Reset();
         }
@@ -219,10 +219,10 @@ namespace Players.PlayerScripts
             if (itemGrab.grabPositionOverride)
             {
                 nearPosition += cam.transform.rotation * itemGrab.overridePosition;
-                farPosition += cam.transform.rotation * itemGrab.overridePosition;
+                //farPosition += cam.transform.rotation * itemGrab.overridePosition;
             }
-            Vector3 holdAreaDirection = cam.transform.forward;
-            //Vector3.Normalize(holdAreaDirection);
+            Vector3 holdAreaDirection = farPosition - nearPosition;
+            holdAreaDirection = Vector3.Normalize(holdAreaDirection);
             
             //Get the Extrapolation of the holdArea if it is within range of near and far.
             float remap = ZlipUtilities.RemapVector3Distance(

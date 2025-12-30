@@ -12,7 +12,7 @@ namespace Players
         
         public Player GetPlayer(string playerID)
         {
-            return Players.Find(x => string.Equals(x.data.playerData.playerID, playerID, StringComparison.InvariantCultureIgnoreCase));
+            return Players.Find(x => string.Equals(x.player.playerData.playerID, playerID, StringComparison.InvariantCultureIgnoreCase));
         }
     }
 }
