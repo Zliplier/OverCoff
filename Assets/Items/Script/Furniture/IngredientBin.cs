@@ -9,8 +9,10 @@ namespace Items.Script.Furniture
         {
             if (other.gameObject.TryGetComponent(out Item item))
             {
-                if (item.item is SO_ItemIngredients)
+                if (item.itemData.itemTag.Contains(ItemTag.Cuttable))
+                {
                     Destroy(item.gameObject);
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Inventory.Data;
 using Items;
 using Items.Data;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Inventory
         public const string INVENTORY_ITEM_PREFAB_PATH = "Inventory/Item";
         
         public Transform root;
+        
+        [HideInInspector] public InventoryData data;
         
         public InventorySlot[] inventorySlots;
         [HideInInspector] public InventoryItem pointerItem;
@@ -62,6 +65,13 @@ namespace Inventory
                 return;
             
             slot.AddItem(item);
+        }
+
+        public void SyncInventory(InventoryManager manager)
+        {
+            
+            
+            
         }
     }
 }

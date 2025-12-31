@@ -37,7 +37,7 @@ namespace Zlipacket.CoreZlipacket.Tools
         }
         
         /// <summary>
-        /// Remap Distance of a vector3 between 2 vectors, then return interpolation between 0-1.
+        /// Remap Distance of a vector3 between 2 vectors, then return interpolation/extrapolation.
         /// </summary>
         /// <param name="inputPos"></param>
         /// <param name="near"></param>

@@ -13,6 +13,8 @@ namespace Items.Data
         public int cost;
         public int stack;
         public int maxStack;
+        public bool ignoreInRecipeCheck;
+        
         public Sprite icon;
         public SO_Item scriptableObject;
         
@@ -22,9 +24,6 @@ namespace Items.Data
         [Space]
         [TextArea(15, 20)]
         public string description;
-
-        [Space]
-        public bool ignoreInRecipeCheck;
         
         public ItemData(ItemData data)
         {
@@ -48,6 +47,7 @@ namespace Items.Data
     {
         Grabable, 
         Ingredient, 
+        Tool, 
         RecipeResult, 
         Furniture, 
         Fryable, 

@@ -6,16 +6,18 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zlipacket.CoreZlipacket.Tools;
 
 namespace Inventory
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        private InventoryManager manager;
+        public InventoryManager manager { get; private set; }
         public InventoryItem slotItem => (transform.childCount != 0)? transform.GetChild(0).GetComponent<InventoryItem>() : null;
 
         public Image image;
-        public List<InventorySlot> syncSlots;
+        public bool enableSlotSync;
+        [DrawIf("enableSlotSync")] public List<InventorySlot> syncSlots;
         
         public bool isEmpty => transform.childCount == 0;
 
@@ -28,7 +30,8 @@ namespace Inventory
 
         private void Awake()
         {
-            onItemChange.AddListener(SyncSlot);
+            if (enableSlotSync)
+                onItemChange.AddListener(SyncSlot);
         }
 
         public void Initialize(InventoryManager manager)
@@ -36,7 +39,7 @@ namespace Inventory
             this.manager = manager;
 
             if (!isEmpty)
-                slotItem.Initialize(null);
+                slotItem.Initialize(null, this);
         }
 
         private void OnEnable()
@@ -76,11 +79,9 @@ namespace Inventory
                 }
                 
                 //If slot not empty check if we can stack the item.
-                if (TryStackItem())
+                if (InventoryItem.TryStackItem(manager.pointerItem.data, slotItem.data))
                 {
-                    
-                    
-                    
+                    StackItemToStack(manager.pointerItem, slotItem);
                 }
                 //If Item cannot be stacked, we swap it.
                 else
@@ -97,7 +98,34 @@ namespace Inventory
 
         private void RightClick()
         {
-            
+            //Check if cursor hold something.
+            if (manager.pointerItem != null)
+            {
+                //Check if this slot is empty to put 1 stack down.
+                if (isEmpty)
+                {
+                    //TODO: Add 1 stack.
+                    return;
+                }
+                
+                //If slot not empty check if we can stack the item by 1 stack.
+                if (InventoryItem.TryStackItem(manager.pointerItem.data, slotItem.data))
+                {
+                    //TODO: Stack Items by 1.
+                    
+                    
+                }
+                //If Item cannot be stacked, we swap it.
+                else
+                {
+                    SwapItem();
+                }
+            }
+            //The cursor is empty, therefore check if this slot has item to drag.
+            else if (!isEmpty)
+            {
+                //TODO: Drag half the stack out (Round Up).
+            }
         }
         
         private void DragItem()
@@ -139,14 +167,19 @@ namespace Inventory
             
             onItemChange?.Invoke(slotItem);
         }
-
-        private bool TryStackItem()
+        
+        public void StackItemToStack(InventoryItem fromStack, InventoryItem toStack)
         {
-            //TODO: Stacking things.
-            
-            return false;
+            InventoryItem.StackItemToStack(fromStack, toStack);
+            onItemChange?.Invoke(slotItem);
         }
-
+        
+        public void StackItemToStack(InventoryItem fromStack, InventoryItem toStack, int amount)
+        {
+            InventoryItem.StackItemToStack(fromStack, toStack, amount);
+            onItemChange?.Invoke(slotItem);
+        }
+        
         public void OnPointerEnter(PointerEventData eventData)
         {
             image.color = selectedColor;
@@ -156,37 +189,56 @@ namespace Inventory
         {
             image.color = deSelectedColor;
         }
+
+        public void AddItem(int amount, bool callItemChanged = true)
+        {
+            if (isEmpty)
+                return;
+            
+            slotItem.AddStack(amount);
+            
+            if (callItemChanged)
+                onItemChange?.Invoke(slotItem);
+        }
         
-        public void AddItem(ItemData item, bool isOverride = false)
+        public void AddItem(ItemData item, bool isOverride = false, bool callItemChanged = true)
         {
             if (!isOverride && !isEmpty)
                 return;
             
-            if (!isEmpty)
-                RemoveItem(-1);
+            if (isOverride && !isEmpty)
+                RemoveItem(-1, false);
             
             InventoryItem newItem = Instantiate(
                 //Get prefab by loading from Resources.
                 Resources.Load(InventoryManager.INVENTORY_ITEM_PREFAB_PATH), transform).GetComponent<InventoryItem>();
             newItem.name = "Item";
-            newItem.Initialize(item);
+            newItem.Initialize(item, this);
+            
+            if (callItemChanged)
+                onItemChange?.Invoke(newItem);
         }
         
-        public void RemoveItem(int count)
+        public void RemoveItem(int count, bool callItemChanged = true)
         {
             if (isEmpty)
                 return;
             
             //If -1, we remove all item regardless of stack. Just trash it completely.
             if (count < 0)
+            {
                 Destroy(slotItem.gameObject);
+            }
             //If not remove by the amount of stack.
             else
             {
-                //TODO: Remove item by stack.
+                slotItem.RemoveStack(count);
             }
+            
+            if (callItemChanged)
+                onItemChange?.Invoke(slotItem);
         }
-
+        
         public void SyncSlot(InventoryItem item)
         {
             if (syncSlots == null)
@@ -196,11 +248,16 @@ namespace Inventory
             {
                 if (slot == null)
                     continue;
-                
+
                 if (item != null)
-                    slot.AddItem(item.item, true);
+                {
+                    if (item.stack >= 1)
+                        slot.AddItem(item.data, true, false);
+                    else
+                        slot.RemoveItem(-1, false);
+                }
                 else
-                    slot.RemoveItem(-1);
+                    slot.RemoveItem(-1, false);
             }
         }
     }

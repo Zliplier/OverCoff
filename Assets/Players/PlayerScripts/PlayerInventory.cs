@@ -4,6 +4,8 @@ using Items;
 using Items.Data;
 using Players.UI;
 using UnityEngine;
+using Zlipacket.CoreZlipacket.Misc;
+using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
 
 namespace Players.PlayerScripts
 {
@@ -15,7 +17,7 @@ namespace Players.PlayerScripts
         public InventoryManager playerInventory;
 
         [Header("Config")]
-        public float defaultSpawningDistance = 0.5f;
+        public float defaultSpawningDistance = 1f;
         
         private void OnEnable()
         {
@@ -42,28 +44,49 @@ namespace Players.PlayerScripts
         private void Slot2(bool isHolding) => HandSlotHandle(1);
         private void Slot3(bool isHolding) => HandSlotHandle(2);
 
+        //Might have some bugs, idk. Too tired to test this shit.
         private void HandSlotHandle(int slotNumber)
         {
             InventorySlot slot = handSlot[slotNumber];
             
-            //Check if slot is empty.
-            if (slot.isEmpty)
+            //Check if we hold anything.
+            if (grabInteractor.grabObject != null)
             {
-                //Check if we hold anything.
-                if (grabInteractor.grabObject != null)
+                //Check if slot is empty.
+                if (slot.isEmpty)
                 {
                     //Put it in corresponding hand slot.
                     slot.AddItem(grabInteractor.itemGrab.data);
                     Destroy(grabInteractor.grabObject);
                 }
+                //Slot is not empty so we check if we can stack it.
+                else if (InventoryItem.TryStackItem(grabInteractor.itemGrab.data, slot.slotItem.data))
+                {
+                    slot.AddItem(1);
+                    Destroy(grabInteractor.grabObject);
+                }
+                //Try put it in slot but the slot is full so we try to swap it if its unstackable or have 1 stack.
+                else if (slot.slotItem.maxStack == 1 || slot.slotItem.stack == 1)
+                {
+                    //Swap the item with the item slot.
+                    SpawnItem(slot.slotItem.data);
+                    slot.RemoveItem(-1);
+                    slot.AddItem(grabInteractor.itemGrab.data);
+                    Destroy(grabInteractor.grabObject);
+                }
+                //If we are here, it means: 
+                //We hold something, and we can't put it in the slot nor swap it.
+                else
+                    return;
             }
-            //If not empty, bring the item out by 1.
+            //We did not grab anything means trying to bring item out.
             else
             {
-                InventoryItem slotItem = slot.slotItem;
+                if (slot.isEmpty)
+                    return;
                 
-                SpawnItem(slotItem.item);
-                
+                //Slot not empty so we spawn things.
+                SpawnItem(slot.slotItem.data);
                 slot.RemoveItem(1);
             }
         }
@@ -78,8 +101,10 @@ namespace Players.PlayerScripts
                 spawnPosition = hit.point;
             
             //Spawning Object Item.
-            GameObject newItem = Instantiate(itemData.scriptableObject.itemPrefab, spawnPosition, Quaternion.identity);
-            newItem.GetComponent<Item>().Initialize(itemData);
+            Item newItem = Instantiate(itemData.scriptableObject.itemPrefab, spawnPosition, Quaternion.identity).GetComponent<Item>();
+            newItem.transform.SetParent(Environment.Instance.gameObject.transform);
+            newItem.Initialize(itemData);
+            newItem.itemData.stack = 1; //Spawn only 1 item of the stack.
         }
     }
 }

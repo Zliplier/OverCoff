@@ -9,22 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b21a06b7ef4b1ea0c2ebac461be602, type: 3}
+  m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_ItemTools
+  itemPrefab: {fileID: 6811191757878927487, guid: d88025cad8b648d4d80962ef9d61394f, type: 3}
   itemData:
-    nameId: 
+    nameId: Knife
     serializedId: 
-    itemTag: 
-    cost: 0
-    stack: 0
-    maxStack: 0
+    itemTag: 0000000002000000
+    cost: 20
+    stack: 1
+    maxStack: 1
+    ignoreInRecipeCheck: 0
     icon: {fileID: 0}
-    prefab: {fileID: 0}
+    scriptableObject: {fileID: 11400000}
     displayData:
-      displayName: 
-      textFont: {fileID: 0}
+      displayName: Knife
+      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
       textColor: {r: 0, g: 0, b: 0, a: 0}
-    description: 
-  worldPrefab: {fileID: 0}
-  inventoryPrefab: {fileID: 0}
+    description: The sharpest knife in the world. Be able to cut with just a touch.

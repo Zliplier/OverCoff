@@ -14,8 +14,9 @@ namespace Items
 
         private void Awake()
         {
-            itemData ??= new ItemData(item.itemData);
-
+            if (string.IsNullOrWhiteSpace(itemData.nameId))
+                itemData = new ItemData(item.itemData);
+            
             rb = GetComponent<Rigidbody>();
         }
 
