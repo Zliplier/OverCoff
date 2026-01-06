@@ -2,7 +2,7 @@
 
 namespace Recipe.Data
 {
-    [CreateAssetMenu(fileName = "Recipe", menuName = "Recipe")]
+    [CreateAssetMenu(fileName = "Recipe", menuName = "Recipe/Recipe")]
     public class SO_Recipe : ScriptableObject
     {
         public RecipeData recipeData;

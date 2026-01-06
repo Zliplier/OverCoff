@@ -9,18 +9,23 @@ namespace Items
 {
     public class ItemManager : Singleton<ItemManager>
     {
-        public List<SO_ItemList> ItemDatabase;
+        public const string INGREDIENTS_LIST_ID = "Ingredients";
+        public const string TOOLS_LIST_ID = "Tools";
+        public const string BASE_CUPS_LIST_ID = "BaseCups";
+        
+        public SO_ItemDatabase ItemDatabase;
 
         public SO_Item GetItemData(string nameID, string listID = "")
         {
             //If specify Item List.
             if (!string.IsNullOrEmpty(listID))
             {
-                return GetItemDataList(listID).Items.Find(x => string.Equals(x.nameID, nameID, StringComparison.InvariantCultureIgnoreCase));
+                return GetItemDataList(listID).Items.Find(x => 
+                    string.Equals(x.nameID, nameID, StringComparison.InvariantCultureIgnoreCase));
             }
             
             //Find match for Item from all list.
-            foreach (var itemList in ItemDatabase)
+            foreach (var itemList in ItemDatabase.database)
             {
                 if (itemList.Items.Any(x => string.Equals(x.nameID, nameID, StringComparison.InvariantCultureIgnoreCase)))
                 {
@@ -33,6 +38,6 @@ namespace Items
             return null;
         }
 
-        public SO_ItemList GetItemDataList(string listID) => ItemDatabase.Find(x => string.Equals(x.listID, listID, StringComparison.InvariantCultureIgnoreCase));
+        public SO_ItemList GetItemDataList(string listID) => ItemDatabase.database.Find(x => string.Equals(x.listID, listID, StringComparison.InvariantCultureIgnoreCase));
     }
 }

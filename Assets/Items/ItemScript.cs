@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Items.Data;
 using Players;
 using UnityEngine;
@@ -6,14 +7,14 @@ using UnityEngine;
 namespace Items
 {
     [RequireComponent(typeof(Item))]
-    public class ItemScript : MonoBehaviour
+    public abstract class ItemScript : MonoBehaviour
     {
         [HideInInspector] public Item item;
         public ItemData data => item.itemData;
         
         public Rigidbody rb => item.rb;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             item = GetComponent<Item>();
         }

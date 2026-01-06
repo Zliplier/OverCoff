@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using Items.Data;
 using UnityEngine;
 
 namespace Items
 {
-    [RequireComponent(typeof(Rigidbody), typeof(Collider))]
+    [RequireComponent(typeof(Collider))]
     public class Item : MonoBehaviour
     {
         public SO_Item item;
@@ -24,7 +25,21 @@ namespace Items
         {
             this.itemData = new ItemData(itemData);
             
-            //TODO: Logic Update when creating this.
+            //TODO: Logic Update when creating this for some reason.
+        }
+        
+        public static bool CheckFilterTags(List<ItemTag> inputFilter, Item item, bool checkAll = false)
+        {
+            foreach (var filter in inputFilter)
+            {
+                //Might have some bugs man.
+                if (item.item.itemTag.Contains(filter))
+                    return true;
+                if (checkAll)
+                    return false;
+            }
+            
+            return false;
         }
     }
 }

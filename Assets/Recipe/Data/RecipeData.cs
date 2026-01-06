@@ -10,7 +10,7 @@ namespace Recipe.Data
     {
         public string recipeName;
         public List<SO_Item> recipeIngredients;
-        public SO_ItemRecipeResult recipeResult;
+        public SO_Item recipeResult;
         public List<RecipeTag> recipeTags;
         
         [Space]

@@ -16,11 +16,12 @@ MonoBehaviour:
   itemData:
     nameId: Milk
     serializedId: 
-    itemTag: 0000000001000000
+    itemTag: 000000000100000005000000
     cost: 5
     stack: 1
     maxStack: 5
     ignoreInRecipeCheck: 0
+    containItems: []
     icon: {fileID: 21300000, guid: 5f7cfcec57c194e4d83e22c2e20a91d8, type: 3}
     scriptableObject: {fileID: 11400000}
     displayData:

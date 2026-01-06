@@ -21,7 +21,7 @@ namespace Players.PlayerScripts
         [Header("Stamina")]
         public float staminaConsumeRate = 0.4f;
         public float staminaRegenRate = 0.4f;
-        public float staminaCooldown = 2f;
+        public float staminaCooldown = 1.4f;
 
         private Coroutine co_StaminaRegen = null;
         private bool isStaminaRegening => co_StaminaRegen != null;

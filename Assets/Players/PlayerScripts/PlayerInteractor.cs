@@ -57,7 +57,7 @@ namespace Players.PlayerScripts
         public void Interact()
         {
             if (interactor != null)
-                interactor.Interact();
+                interactor.Interact(gameObject);
         }
 
         private bool TrySelect()
@@ -65,7 +65,7 @@ namespace Players.PlayerScripts
             if (Physics.Raycast(cam.transform.position + (cam.transform.forward * minDistance),
                     cam.transform.forward, out hit, maxDistance, interactionLayer))
             {
-                if (hit.collider.gameObject.TryGetComponent<ItemGrab>(out var _))
+                if (hit.collider.gameObject.TryGetComponent<Interactor>(out var _))
                 {
                     selectedObject = hit.collider.gameObject;
                     return true;
@@ -84,7 +84,7 @@ namespace Players.PlayerScripts
             CrosshairAnimation();
             
             selectedObject = hit.collider.gameObject;
-            interactor?.onHover?.Invoke();
+            interactor?.onHover?.Invoke(gameObject);
             onHover?.Invoke();
         }
 
@@ -96,7 +96,7 @@ namespace Players.PlayerScripts
             isHovering = false;
             CrosshairAnimation(true);
             
-            interactor?.onUnHover?.Invoke();
+            interactor?.onUnHover?.Invoke(gameObject);
             onUnHover?.Invoke();
             selectedObject = null;
         }

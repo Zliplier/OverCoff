@@ -1,4 +1,6 @@
 using System;
+using Items;
+using Items.Data;
 using Players.Data;
 using Players.PlayerScripts;
 using Players.UI;
@@ -6,6 +8,9 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Zlipacket.CoreZlipacket.Player.Input;
+using Zlipacket.CoreZlipacket.Player.Input.InputMap;
+using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
 
 namespace Players
 {
@@ -19,8 +24,12 @@ namespace Players
         public CinemachineCamera cam;
         public CinemachineInputAxisController camInputAxis => cam.GetComponent<CinemachineInputAxisController>();
         
-        public UIManager uiManager;
+        public PlayerUIManager playerUIManager;
         public PlayerBook playerBook;
+
+        public SO_InputReader inputReader => player.inputReader;
+        public PlayerInputMap playerInputMap => inputReader.playerInputMap;
+        public UIInputMap uiInputMap => inputReader.uiInputMap;
         
         [Header("Stat Events")]
         #region Health
@@ -74,6 +83,9 @@ namespace Players
         private void Start()
         {
             SetCursorLockState(true);
+            
+            playerInputMap.SetMapEnable(true);
+            uiInputMap.SetMapEnable(false);
         }
         
         public void SetCursorLockState(bool enabled)
@@ -90,6 +102,24 @@ namespace Players
                 Cursor.visible = true;
                 camInputAxis.enabled = false;
             }
+        }
+        
+        public float defaultSpawningDistance => playerData.defaultSpawningDistance;
+        
+        public void SpawnItem(ItemData itemData)
+        {
+            Vector3 spawnPosition = cam.transform.position + (cam.transform.forward * defaultSpawningDistance);
+            
+            //Check for obstruction.
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, 
+                    out RaycastHit hit, defaultSpawningDistance))
+                spawnPosition = hit.point;
+            
+            //Spawning Object Item.
+            Item newItem = Instantiate(itemData.scriptableObject.itemPrefab, spawnPosition, Quaternion.identity).GetComponent<Item>();
+            newItem.transform.SetParent(Environment.Instance.root);
+            newItem.Initialize(itemData);
+            newItem.itemData.stack = 1; //Spawn only 1 item of the stack.
         }
     }
 }

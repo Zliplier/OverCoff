@@ -17,11 +17,12 @@ MonoBehaviour:
     nameId: Knife
     serializedId: 
     itemTag: 0000000002000000
-    cost: 20
+    cost: 50
     stack: 1
     maxStack: 1
     ignoreInRecipeCheck: 0
-    icon: {fileID: 0}
+    containItems: []
+    icon: {fileID: 21300000, guid: 5f125dbe3618dae4f950f87a576d6c1d, type: 3}
     scriptableObject: {fileID: 11400000}
     displayData:
       displayName: Knife

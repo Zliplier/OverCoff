@@ -5,7 +5,7 @@ namespace Players.PlayerScripts
 {
     public class PlayerBook : PlayerScript
     {
-        public UISection bookSection => uiManager.GetUISection("Book");
+        public UISection bookSection => playerUIManager.GetUISection("Book");
         
         public bool isBookOpen => bookSection.sectionRoot.activeInHierarchy;
 

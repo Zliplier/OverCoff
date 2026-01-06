@@ -1,4 +1,6 @@
-﻿using Players.Data;
+﻿using System.Collections;
+using Items.Data;
+using Players.Data;
 using Players.UI;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -8,21 +10,25 @@ using Zlipacket.CoreZlipacket.Player.Input.InputMap;
 namespace Players
 {
     [RequireComponent(typeof(Player))]
-    public class PlayerScript : MonoBehaviour
+    public abstract class PlayerScript : MonoBehaviour
     { 
         [HideInInspector] public Player player;
         public PlayerData data => player.playerData;
         protected Rigidbody rb => player.rb;
-        protected SO_InputReader inputReader => player.player.inputReader;
-        protected PlayerInputMap playerInputMap => inputReader.playerInputMap;
-        protected UIInputMap uiInputMap => inputReader.uiInputMap;
+        protected SO_InputReader inputReader => player.inputReader;
+        protected PlayerInputMap playerInputMap => player.playerInputMap;
+        protected UIInputMap uiInputMap => player.uiInputMap;
         
         protected CinemachineCamera cam => player.cam;
-        protected UIManager uiManager => player.uiManager;
+        protected PlayerUIManager playerUIManager => player.playerUIManager;
+
+        protected float defaultSpawningDistance => data.defaultSpawningDistance;
         
         protected virtual void Awake()
         {
             player = GetComponent<Player>();
         }
+        
+        protected void SpawnItem(ItemData itemData) => player.SpawnItem(itemData);
     }
 }

@@ -15,6 +15,7 @@ namespace Zlipacket.CoreZlipacket.Tools
 
         private List<TimeEvent> events = new();
         public UnityEvent onFinished, onStart, onStop, onReset, onPaused, onUnPaused;
+        public UnityEvent<float> onTimerUpdate;
         
         public bool isRunning => co_Timing != null;
         public bool isPause = false;
@@ -89,6 +90,7 @@ namespace Zlipacket.CoreZlipacket.Tools
                 }
                 
                 elapsedTime += Time.deltaTime;
+                onTimerUpdate?.Invoke(GetPercentage());
             }
             elapsedTime = duration;
             

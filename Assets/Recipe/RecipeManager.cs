@@ -13,7 +13,14 @@ namespace Recipe
         public SO_RecipeList recipeDatabase;
         
         public SO_Recipe GetRecipe(string name) => recipeDatabase.GetRecipe(name);
-
+        
+        public SO_Recipe CheckRecipe(List<SO_Item> inputIngredients)
+        {
+            List<ItemData> ingredientsData = inputIngredients.Select(x => x.itemData).ToList();
+            
+            return CheckRecipe(ingredientsData);
+        }
+        
         public SO_Recipe CheckRecipe(List<ItemData> inputIngredients)
         {
             //Make a copy of list so we can check by removing item inside tempRecipe.

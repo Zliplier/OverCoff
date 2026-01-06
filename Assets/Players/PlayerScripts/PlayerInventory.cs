@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Inventory;
 using Items;
 using Items.Data;
@@ -15,9 +16,6 @@ namespace Players.PlayerScripts
         
         public InventorySlot[] handSlot;
         public InventoryManager playerInventory;
-
-        [Header("Config")]
-        public float defaultSpawningDistance = 1f;
         
         private void OnEnable()
         {
@@ -69,10 +67,9 @@ namespace Players.PlayerScripts
                 else if (slot.slotItem.maxStack == 1 || slot.slotItem.stack == 1)
                 {
                     //Swap the item with the item slot.
-                    SpawnItem(slot.slotItem.data);
-                    slot.RemoveItem(-1);
-                    slot.AddItem(grabInteractor.itemGrab.data);
-                    Destroy(grabInteractor.grabObject);
+                    //Bug when swapping item to hand.
+                    //Fixed by using Coroutine to separate destroy command.
+                    StartCoroutine(SwappingItem(slot));
                 }
                 //If we are here, it means: 
                 //We hold something, and we can't put it in the slot nor swap it.
@@ -91,20 +88,13 @@ namespace Players.PlayerScripts
             }
         }
 
-        private void SpawnItem(ItemData itemData)
+        private IEnumerator SwappingItem(InventorySlot slot)
         {
-            Vector3 spawnPosition = cam.transform.position + (cam.transform.forward * defaultSpawningDistance);
-            
-            //Check for obstruction.
-            if (Physics.Raycast(cam.transform.position, cam.transform.forward, 
-                    out RaycastHit hit, defaultSpawningDistance))
-                spawnPosition = hit.point;
-            
-            //Spawning Object Item.
-            Item newItem = Instantiate(itemData.scriptableObject.itemPrefab, spawnPosition, Quaternion.identity).GetComponent<Item>();
-            newItem.transform.SetParent(Environment.Instance.gameObject.transform);
-            newItem.Initialize(itemData);
-            newItem.itemData.stack = 1; //Spawn only 1 item of the stack.
+            SpawnItem(slot.slotItem.data);
+            slot.RemoveItem(-1);
+            yield return null;
+            slot.AddItem(grabInteractor.itemGrab.data);
+            Destroy(grabInteractor.grabObject);
         }
     }
 }

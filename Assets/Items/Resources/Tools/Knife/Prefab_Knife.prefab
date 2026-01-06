@@ -140,6 +140,7 @@ MonoBehaviour:
   overrideMinScroll: -0.3
   maxScrollOverride: 0
   overrideMaxScroll: 0
+  blockInteractor: 0
   onGrab:
     m_PersistentCalls:
       m_Calls: []

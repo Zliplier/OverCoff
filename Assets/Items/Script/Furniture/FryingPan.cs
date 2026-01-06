@@ -1,5 +1,4 @@
-﻿using System;
-using Items.Script.Ingredients;
+﻿using Items.Script.Ingredients;
 using UnityEngine;
 
 namespace Items.Script.Furniture

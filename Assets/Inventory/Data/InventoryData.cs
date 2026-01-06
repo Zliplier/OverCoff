@@ -7,6 +7,6 @@ namespace Inventory.Data
     [Serializable]
     public class InventoryData
     {
-        public List<ItemData> items;
+       
     }
 }

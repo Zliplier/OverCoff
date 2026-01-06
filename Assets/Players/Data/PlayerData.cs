@@ -18,6 +18,8 @@ namespace Players.Data
 
         public int money;
 
+        public float defaultSpawningDistance = 1.5f;
+
         public PlayerData(PlayerData playerData)
         {
             playerID = playerData.playerID;
@@ -29,6 +31,8 @@ namespace Players.Data
             maxStamina = playerData.maxStamina;
             
             money = playerData.money;
+            
+            defaultSpawningDistance = playerData.defaultSpawningDistance;
         }
     }
 }

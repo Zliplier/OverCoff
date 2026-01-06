@@ -8,12 +8,13 @@ namespace Items.Data
     public class ItemData
     {
         public string nameId;
-        public string serializedId; //TODO: Change to Guid Id later when serialized.
+        public string serializedId; //TODO: Change to Guid later when serialized.
         public List<ItemTag> itemTag;
         public int cost;
         public int stack;
         public int maxStack;
         public bool ignoreInRecipeCheck;
+        public List<SO_Item> containItems;
         
         public Sprite icon;
         public SO_Item scriptableObject;
@@ -29,17 +30,21 @@ namespace Items.Data
         {
             nameId = data.nameId;
             serializedId = data.serializedId;
-            itemTag = new List<ItemTag>();
+            itemTag = new List<ItemTag>(data.itemTag);
             cost = data.cost;
             stack = data.stack;
             maxStack = data.maxStack;
+            ignoreInRecipeCheck = data.ignoreInRecipeCheck;
+            
+            containItems = data.containItems;
+            
             icon = data.icon;
             scriptableObject = data.scriptableObject;
             
             displayData = data.displayData;
             description = data.description;
             
-            ignoreInRecipeCheck = data.ignoreInRecipeCheck;
+            
         }
     }
     
@@ -49,9 +54,13 @@ namespace Items.Data
         Ingredient, 
         Tool, 
         RecipeResult, 
+        Cup, 
+        CupMixable, 
+        Prop, 
         Furniture, 
         Fryable, 
         Cuttable, 
-        Condiment
+        Condiment, 
+        CoffeeMachineInput
     }
 }

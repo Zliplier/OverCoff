@@ -26,6 +26,8 @@ namespace Items.Script
         [DrawIf("minScrollOverride")] public float overrideMinScroll;
         public bool maxScrollOverride;
         [DrawIf("maxScrollOverride")] public float overrideMaxScroll;
+
+        public bool blockInteractor = true;
         
         [Header("Event")]
         public UnityEvent onGrab, onDrop;
