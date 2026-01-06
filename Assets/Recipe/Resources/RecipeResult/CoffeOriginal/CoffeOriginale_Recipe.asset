@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Recipe.Data.SO_Recipe
   recipeData:
     recipeName: CoffeOriginale
-    recipeIngredients: []
+    recipeIngredients:
+    - {fileID: 11400000, guid: bd343e24d217cd84ebeae7e3c8545274, type: 2}
+    - {fileID: 11400000, guid: 6bc87129aa3b1aa459b7cb60f95b7825, type: 2}
     recipeResult: {fileID: 11400000, guid: bda0620b4343a6a4a951d0b0c5e813dc, type: 2}
     recipeTags: 00000000
     recipeDisplayData:

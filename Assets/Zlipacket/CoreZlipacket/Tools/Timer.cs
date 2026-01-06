@@ -38,7 +38,20 @@ namespace Zlipacket.CoreZlipacket.Tools
             this.duration = duration;
         }
         
-        public Coroutine StartTimer(float duration = 0f)
+        public Coroutine StartTimer()
+        {
+            if (isRunning)
+            {
+                StopCoroutine(co_Timing);
+                StopTimer();
+            }
+            
+            onStart?.Invoke();
+            co_Timing = StartCoroutine(TimerRunning());
+            return co_Timing;
+        }
+        
+        public Coroutine StartTimer(float duration)
         {
             if (isRunning)
             {

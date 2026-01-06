@@ -36,7 +36,7 @@ namespace Items.Data
             maxStack = data.maxStack;
             ignoreInRecipeCheck = data.ignoreInRecipeCheck;
             
-            containItems = data.containItems;
+            containItems = new List<SO_Item>(data.containItems);
             
             icon = data.icon;
             scriptableObject = data.scriptableObject;

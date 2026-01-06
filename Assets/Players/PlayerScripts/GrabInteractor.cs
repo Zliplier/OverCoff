@@ -44,15 +44,15 @@ namespace Players.PlayerScripts
         
         private void OnEnable()
         {
-            playerInputMap.leftMouseDownEvent += Grab;
-            playerInputMap.leftMouseUpEvent += Drop;
+            playerInputMap.rightMouseDownEvent += Grab;
+            playerInputMap.rightMouseUpEvent += Drop;
             playerInputMap.mouseScrollEvent += MouseScroll;
         }
 
         private void OnDisable()
         {
-            playerInputMap.leftMouseDownEvent -= Grab;
-            playerInputMap.leftMouseUpEvent -= Drop;
+            playerInputMap.rightMouseDownEvent -= Grab;
+            playerInputMap.rightMouseUpEvent -= Drop;
             playerInputMap.mouseScrollEvent -= MouseScroll;
 
             itemGrab?.Reset();

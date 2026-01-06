@@ -3311,7 +3311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Recipe.RecipeManager
   initialized: 0
-  recipeDatabase: {fileID: 0}
+  recipeDatabase: {fileID: 11400000, guid: ab37332f5f4320440bc8bc452e319a1d, type: 2}
 --- !u!224 &921377825 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3057671147541452992, guid: c75051be227497e42a50ec706279b28c, type: 3}
@@ -7906,7 +7906,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1510745870523171858, guid: 5ad6e2abc700b3e4fb8cb6ae5f01b7e2, type: 3}
       propertyPath: overridePosition.y
-      value: -0.3
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1510745870523171858, guid: 5ad6e2abc700b3e4fb8cb6ae5f01b7e2, type: 3}
       propertyPath: grabPositionOverride

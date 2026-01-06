@@ -11,7 +11,7 @@ namespace Items.Script.Furniture
             {
                 if (item.itemData.itemTag.Contains(ItemTag.Cuttable))
                 {
-                    Destroy(item.gameObject);
+                    item.DestroyItem();
                 }
             }
         }

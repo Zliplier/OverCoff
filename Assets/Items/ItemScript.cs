@@ -13,10 +13,12 @@ namespace Items
         public ItemData data => item.itemData;
         
         public Rigidbody rb => item.rb;
-
+        
         protected virtual void Awake()
         {
             item = GetComponent<Item>();
         }
+        
+        public void DestroyItem(float time = 0.1f) => item.DestroyItem(time);
     }
 }

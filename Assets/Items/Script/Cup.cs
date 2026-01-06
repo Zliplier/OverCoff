@@ -33,7 +33,7 @@ namespace Items.Script
             containIngredients.Add(item.item);
             OnCombineIngredients();
             
-            Destroy(item.gameObject);
+           item.DestroyItem();
         }
 
         private void OnCombineIngredients()
@@ -67,11 +67,11 @@ namespace Items.Script
             //Transfer contain item to that.
             newCup.itemData.containItems = containIngredients;
             
-            //New Cup Juice.
-            
+            //New Cup Animation.
+            newCup.PlaySpawnAnimation();
             
             //Destroy this old cup.
-            Destroy(gameObject);
+            DestroyItem();
         }
 
         private SO_Item FindBaseCup()

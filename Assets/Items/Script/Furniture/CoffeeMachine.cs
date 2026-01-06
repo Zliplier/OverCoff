@@ -9,6 +9,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Zlipacket.CoreZlipacket.Tools;
+using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
 
 namespace Items.Script.Furniture
 {
@@ -28,7 +29,7 @@ namespace Items.Script.Furniture
         public SO_Item coffeePowder => data.containItems.FirstOrDefault();
         public bool isPowderEmpty => coffeePowder == null;
 
-        public Item cup => cupHolder.isEmpty ? cupHolder.containItem : null;
+        public Item cup => !cupHolder.isEmpty ? cupHolder.containItem : null;
         public bool hasCup => cup != null;
 
         public bool isMakingCoffee => coffeeTimer.isRunning;
@@ -63,7 +64,7 @@ namespace Items.Script.Furniture
                 return;
             
             data.containItems.Add(item.item);
-            Destroy(item.gameObject);
+            item.DestroyItem();
             powderDisplay.SetActive(true);
             
             StartMakingCoffee();
@@ -73,12 +74,12 @@ namespace Items.Script.Furniture
         
         private void StartMakingCoffee()
         {
-            
             if (!TryStartCoffee())
                 return;
-            Debug.Log("Coffee started");
+            
             if (isMakingCoffee)
                 StopMakingCoffee();
+            Debug.Log("Coffee started");
             
             coffeeTimer.StartTimer();
         }
@@ -92,9 +93,10 @@ namespace Items.Script.Furniture
         private void OnCoffeeFinish()
         {
             Debug.Log("Coffee finished");
-            Instantiate(coffeeResult.itemPrefab, cup.transform.position, cup.transform.rotation);
+            Instantiate(coffeeResult.itemPrefab, cup.transform.position, cup.transform.rotation).transform.SetParent(Environment.Instance.root);
             
             powderDisplay.SetActive(false);
+            data.containItems.RemoveAt(0);
             
             coffeeTimer.StopTimer();
         }

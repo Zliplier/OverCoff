@@ -55,13 +55,13 @@ namespace Players.PlayerScripts
                 {
                     //Put it in corresponding hand slot.
                     slot.AddItem(grabInteractor.itemGrab.data);
-                    Destroy(grabInteractor.grabObject);
+                    grabInteractor.itemGrab.DestroyItem();
                 }
                 //Slot is not empty so we check if we can stack it.
                 else if (InventoryItem.TryStackItem(grabInteractor.itemGrab.data, slot.slotItem.data))
                 {
                     slot.AddItem(1);
-                    Destroy(grabInteractor.grabObject);
+                    grabInteractor.itemGrab.DestroyItem();
                 }
                 //Try put it in slot but the slot is full so we try to swap it if its unstackable or have 1 stack.
                 else if (slot.slotItem.maxStack == 1 || slot.slotItem.stack == 1)
@@ -94,7 +94,7 @@ namespace Players.PlayerScripts
             slot.RemoveItem(-1);
             yield return null;
             slot.AddItem(grabInteractor.itemGrab.data);
-            Destroy(grabInteractor.grabObject);
+            grabInteractor.itemGrab.DestroyItem();
         }
     }
 }

@@ -49,9 +49,13 @@ namespace Zlipacket.CoreZlipacket.Player.Input.InputMap
             inputSystem.Player.Look.performed += OnLook;
             inputSystem.Player.Interact.started += OnInteract;
             
+            inputSystem.Player.MouseWheel.performed += OnMouseWheel;
+            
             inputSystem.Player.LeftMouse.started += OnLeftMouse;
             inputSystem.Player.LeftMouse.canceled += OnLeftMouse;
-            inputSystem.Player.MouseWheel.performed += OnMouseWheel;
+            
+            inputSystem.Player.RightMouse.started += OnRightMouse;
+            inputSystem.Player.RightMouse.canceled += OnRightMouse;
             
             inputSystem.Player.Slot1.started += OnSlot1;
             inputSystem.Player.Slot2.started += OnSlot2;

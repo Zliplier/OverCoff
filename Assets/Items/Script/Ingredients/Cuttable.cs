@@ -23,7 +23,7 @@ namespace Items.Script.Ingredients
                 result.name = cutResult.nameID;
             }
             
-            Destroy(gameObject);
+            DestroyItem();
         }
     }
 }

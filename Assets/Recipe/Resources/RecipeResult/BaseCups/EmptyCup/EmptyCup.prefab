@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Items.Script.Cup
   item: {fileID: 0}
-  inputFilter: 04000000
+  inputFilter: 05000000
   onCombine:
     m_PersistentCalls:
       m_Calls: []
