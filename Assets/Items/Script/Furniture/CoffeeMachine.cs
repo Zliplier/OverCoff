@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Items.Data;
 using Players;
 using Players.UI;
@@ -20,12 +21,12 @@ namespace Items.Script.Furniture
         public GameObject powderDisplay;
 
         [Header("Configs")]
-        public List<ItemTag> inputFilterTag; //SO_Item because it is for ingredients.
+        public List<ItemTag> inputFilterTag;
 
         public float duration = 10f;
         
-        public SO_Item coffeePowder => data.containItems.Count > 0 ? data.containItems[0] : null;
-        public bool isPowderEmpty => coffeePowder != null;
+        public SO_Item coffeePowder => data.containItems.FirstOrDefault();
+        public bool isPowderEmpty => coffeePowder == null;
 
         public Item cup => cupHolder.isEmpty ? cupHolder.containItem : null;
         public bool hasCup => cup != null;
@@ -72,9 +73,10 @@ namespace Items.Script.Furniture
         
         private void StartMakingCoffee()
         {
+            
             if (!TryStartCoffee())
                 return;
-            
+            Debug.Log("Coffee started");
             if (isMakingCoffee)
                 StopMakingCoffee();
             
@@ -84,10 +86,12 @@ namespace Items.Script.Furniture
         private void StopMakingCoffee()
         {
             coffeeTimer.StopTimer();
+            Debug.Log("Coffee stopped");
         }
         
         private void OnCoffeeFinish()
         {
+            Debug.Log("Coffee finished");
             Instantiate(coffeeResult.itemPrefab, cup.transform.position, cup.transform.rotation);
             
             powderDisplay.SetActive(false);

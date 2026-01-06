@@ -17,9 +17,9 @@ MonoBehaviour:
     nameId: CoffeeMaker
     serializedId: 
     itemTag: 07000000
-    cost: 0
-    stack: 0
-    maxStack: 0
+    cost: 200
+    stack: 1
+    maxStack: 1
     ignoreInRecipeCheck: 0
     containItems: []
     icon: {fileID: 0}

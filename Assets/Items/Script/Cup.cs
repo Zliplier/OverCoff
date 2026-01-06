@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Items.Data;
 using Players;
 using Recipe;
@@ -65,6 +66,9 @@ namespace Items.Script
             
             //Transfer contain item to that.
             newCup.itemData.containItems = containIngredients;
+            
+            //New Cup Juice.
+            
             
             //Destroy this old cup.
             Destroy(gameObject);

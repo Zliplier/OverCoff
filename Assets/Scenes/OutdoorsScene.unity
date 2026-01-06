@@ -7904,6 +7904,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 330057308}
     m_Modifications:
+    - target: {fileID: 1510745870523171858, guid: 5ad6e2abc700b3e4fb8cb6ae5f01b7e2, type: 3}
+      propertyPath: overridePosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510745870523171858, guid: 5ad6e2abc700b3e4fb8cb6ae5f01b7e2, type: 3}
+      propertyPath: grabPositionOverride
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2519337117388260132, guid: 5ad6e2abc700b3e4fb8cb6ae5f01b7e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3913445
