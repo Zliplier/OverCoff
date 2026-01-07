@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Items.Data;
 using UnityEngine;
@@ -14,6 +15,12 @@ namespace Items.Script
         
         [HideInInspector] public Item containItem;
         public bool isEmpty => containItem == null;
+
+        private Coroutine co_Cooldown = null;
+        public bool cooldown => co_Cooldown != null;
+
+        [Header("Configs")]
+        public float containCoolDown = 1f;
         
         [Header("Events")]
         public UnityEvent onContain;
@@ -21,9 +28,10 @@ namespace Items.Script
         
         private void OnTriggerEnter(Collider other)
         {
+            if (cooldown)
+                return;
             if (!other.gameObject.TryGetComponent(out Item item))
                 return;
-            
             if (!Item.CheckFilterTags(inputFilterTag, item))
                 return;
             
@@ -34,6 +42,7 @@ namespace Items.Script
             else
                 SwapItem(item);
             
+            co_Cooldown = StartCoroutine(Cooldown());
             onContain?.Invoke();
         }
 
@@ -41,17 +50,16 @@ namespace Items.Script
         {
             if (isEmpty)
                 return;
-            
             if (!other.gameObject.TryGetComponent(out Item item))
                 return;
-            
             if (!Item.CheckFilterTags(inputFilterTag, item))
                 return;
-            
+
             if (item == containItem)
+            {
                 containItem = null;
-            
-            onUnContain?.Invoke();
+                onUnContain?.Invoke();
+            }
         }
         
         private void ContainItem(Item item)
@@ -63,8 +71,8 @@ namespace Items.Script
             //Set transform
             item.transform.position = holdArea.position;
             item.transform.rotation = holdArea.rotation;
-            
-            item.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+
+            item.ResetVelocity();
             
             containItem = item;
         }
@@ -75,16 +83,22 @@ namespace Items.Script
             if (item.TryGetComponent(out ItemGrab grab))
                 grab.Reset();
             
-            //Set transform of contain Item.
+            //Get Contain Item out.
             containItem.transform.position = item.transform.position;
             containItem.transform.rotation = item.transform.rotation;
-            //Set transform of new Item
+            
+            //Get new Item in.
             item.transform.position = holdArea.position;
             item.transform.rotation = holdArea.rotation;
-            
-            item.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            item.ResetVelocity();
             
             containItem = item;
+        }
+
+        private IEnumerator Cooldown()
+        {
+            yield return new WaitForSeconds(containCoolDown);
+            co_Cooldown = null;
         }
     }
 }

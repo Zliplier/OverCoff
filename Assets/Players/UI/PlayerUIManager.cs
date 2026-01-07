@@ -10,6 +10,8 @@ namespace Players.UI
         
         public List<UISection> uiSections;
         
+        
+        
         public UISection GetUISection(string sectionName) => uiSections
             .Find(s => string.Equals(s.sectionName, sectionName, StringComparison.InvariantCultureIgnoreCase));
         public Panel GetPanel(string sectionName, string panelName) => GetUISection(sectionName).GetPanel(panelName);
@@ -35,9 +37,9 @@ namespace Players.UI
             }
             
             if (string.IsNullOrWhiteSpace(layerName))
-                return SpawnUIElement(element, screenPosition, spawnPanel.panelRoot.transform.root);
+                return SpawnUIElement(element, screenPosition, spawnPanel.panelRoot.transform);
             else
-                return SpawnUIElement(element, screenPosition, spawnPanel.GetLayer(layerName).transform.root);
+                return SpawnUIElement(element, screenPosition, spawnPanel.GetLayer(layerName).transform);
         }
 
         public GameObject SpawnUIElement(GameObject element, Vector2 screenPosition, Transform parent)
@@ -57,7 +59,7 @@ namespace Players.UI
         public string sectionName;
         public GameObject sectionRoot;
         public List<Panel> panels;
-
+        
         public Panel GetPanel(string panelName) => 
             panels.Find(p => string.Equals(p.panelName, panelName, StringComparison.InvariantCultureIgnoreCase));
     }

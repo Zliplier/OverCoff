@@ -18,9 +18,9 @@ namespace Items.Script.Ingredients
             
             foreach (var cutResult in cutResults)
             {
-                GameObject result = Instantiate(cutResult.itemPrefab, Environment.Instance.transform);
+                Item result = Instantiate(cutResult.itemPrefab, Environment.Instance.transform).GetComponent<Item>();
                 
-                result.name = cutResult.nameID;
+                result.Initialize();
             }
             
             DestroyItem();

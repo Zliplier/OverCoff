@@ -138,6 +138,9 @@ MonoBehaviour:
   onUnHover:
     m_PersistentCalls:
       m_Calls: []
+  onHovering:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1510745870523171858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,8 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Items.Script.ItemGrab
   item: {fileID: 0}
-  grabPositionOverride: 0
-  overridePosition: {x: 0, y: 0, z: 0}
+  grabPositionOverride: 1
+  overridePosition: {x: 0, y: -0.5, z: 0}
   grabRotationOverride: 1
   overrideRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   grabForceOverride: 0

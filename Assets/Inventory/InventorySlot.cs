@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Items.Data;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Inventory
     public class InventorySlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public InventoryManager manager { get; private set; }
+        public InventoryItem pointerItem => manager.pointerItem;
         public InventoryItem slotItem => (transform.childCount != 0)? transform.GetChild(0).GetComponent<InventoryItem>() : null;
 
         public Image image;
@@ -22,11 +24,13 @@ namespace Inventory
         public bool isEmpty => transform.childCount == 0;
 
         public UnityEvent<InventoryItem> onItemChange;
-
+        
+        private Tween slotAnimation = null;
+        public bool isTweening => slotAnimation != null;
+        
         [Header("Configs")]
         public Color deSelectedColor;
         public Color selectedColor;
-
 
         private void Awake()
         {
@@ -50,6 +54,7 @@ namespace Inventory
         private void OnDisable()
         {
             image.color = deSelectedColor;
+            transform.localScale = Vector3.one;
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -64,12 +69,14 @@ namespace Inventory
             {
                 RightClick();
             }
+            
+            PlaySlotBounceAnimation(false);
         }
 
         private void LeftClick()
         {
             //Check if cursor hold something.
-            if (manager.pointerItem != null)
+            if (pointerItem != null)
             {
                 //Check if this slot is empty to put item down.
                 if (isEmpty)
@@ -79,7 +86,7 @@ namespace Inventory
                 }
                 
                 //If slot not empty check if we can stack the item.
-                if (InventoryItem.TryStackItem(manager.pointerItem.data, slotItem.data))
+                if (InventoryItem.TryStackItem(pointerItem.data, slotItem.data))
                 {
                     StackItemToStack(manager.pointerItem, slotItem);
                 }
@@ -99,21 +106,22 @@ namespace Inventory
         private void RightClick()
         {
             //Check if cursor hold something.
-            if (manager.pointerItem != null)
+            if (pointerItem != null)
             {
                 //Check if this slot is empty to put 1 stack down.
                 if (isEmpty)
                 {
-                    //TODO: Add 1 stack.
+                    //Put 1 stack down.
+                    AddItem(pointerItem.data, 1);
+                    pointerItem.RemoveStack(1);
                     return;
                 }
                 
                 //If slot not empty check if we can stack the item by 1 stack.
-                if (InventoryItem.TryStackItem(manager.pointerItem.data, slotItem.data))
+                if (InventoryItem.TryStackItem(pointerItem.data, slotItem.data))
                 {
-                    //TODO: Stack Items by 1.
-                    
-                    
+                    //Stack Items by 1.
+                    StackItemToStack(manager.pointerItem, slotItem, 1);
                 }
                 //If Item cannot be stacked, we swap it.
                 else
@@ -183,14 +191,20 @@ namespace Inventory
         public void OnPointerEnter(PointerEventData eventData)
         {
             image.color = selectedColor;
+            if (isTweening)
+                slotAnimation?.Kill();
+            slotAnimation = transform.DOScale(1.1f, 0.3f);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             image.color = deSelectedColor;
+            if (isTweening)
+                slotAnimation?.Kill();
+            slotAnimation = transform.DOScale(1f, 0.3f);
         }
 
-        public void AddItem(int amount, bool callItemChanged = true)
+        public void IncrementItem(int amount, bool callItemChanged = true)
         {
             if (isEmpty)
                 return;
@@ -214,6 +228,25 @@ namespace Inventory
                 Resources.Load(InventoryManager.INVENTORY_ITEM_PREFAB_PATH), transform).GetComponent<InventoryItem>();
             newItem.name = "Item";
             newItem.Initialize(item, this);
+            
+            if (callItemChanged)
+                onItemChange?.Invoke(newItem);
+        }
+
+        public void AddItem(ItemData item, int totalAmount, bool isOverride = false, bool callItemChanged = true)
+        {
+            if (!isOverride && !isEmpty)
+                return;
+            
+            if (isOverride && !isEmpty)
+                RemoveItem(-1, false);
+            
+            InventoryItem newItem = Instantiate(
+                //Get prefab by loading from Resources.
+                Resources.Load(InventoryManager.INVENTORY_ITEM_PREFAB_PATH), transform).GetComponent<InventoryItem>();
+            newItem.name = "Item";
+            newItem.Initialize(item, this);
+            newItem.stack = totalAmount;
             
             if (callItemChanged)
                 onItemChange?.Invoke(newItem);
@@ -259,6 +292,17 @@ namespace Inventory
                 else
                     slot.RemoveItem(-1, false);
             }
+        }
+
+        public void PlaySlotBounceAnimation(bool scaleOutward = true, float duration = 0.3f)
+        {
+            if (isTweening)
+                slotAnimation?.Kill();
+            
+            slotAnimation = transform.DOScale(scaleOutward ? 1.1f : 0.9f, duration / 2);
+            
+            slotAnimation.onComplete += () => 
+                slotAnimation = transform.DOScale(1f, duration / 2);
         }
     }
 }

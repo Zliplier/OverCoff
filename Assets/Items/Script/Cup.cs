@@ -30,10 +30,15 @@ namespace Items.Script
             if (!Item.CheckFilterTags(inputFilter, item))
                 return;
             
-            containIngredients.Add(item.item);
-            OnCombineIngredients();
+            AddIngredient(item.item);
             
-           item.DestroyItem();
+            item.DestroyItem();
+        }
+
+        public void AddIngredient(SO_Item addedItem)
+        {
+            containIngredients.Add(addedItem);
+            OnCombineIngredients();
         }
 
         private void OnCombineIngredients()
@@ -65,13 +70,13 @@ namespace Items.Script
             newCup.transform.SetParent(Environment.Instance.root);
             
             //Transfer contain item to that.
-            newCup.itemData.containItems = containIngredients;
+            newCup.itemData.containItems = new List<SO_Item>(containIngredients);
             
             //New Cup Animation.
             newCup.PlaySpawnAnimation();
             
             //Destroy this old cup.
-            DestroyItem();
+            Destroy(gameObject);
         }
 
         private SO_Item FindBaseCup()
@@ -82,6 +87,8 @@ namespace Items.Script
                 baseCupName = "CoffeeCup";
             else if (containIngredients.Any(x => string.Equals(x.nameID, "Milk", StringComparison.InvariantCultureIgnoreCase)))
                 baseCupName = "MilkCup";
+            else if (containIngredients.Any(x => string.Equals(x.nameID, "Soda", StringComparison.InvariantCultureIgnoreCase)))
+                baseCupName = "SodaCup";
             
             SO_Item baseCup = itemManager.GetItemData(baseCupName, ItemManager.BASE_CUPS_LIST_ID);
             if (baseCup == null)

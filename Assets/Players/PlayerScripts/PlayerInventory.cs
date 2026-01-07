@@ -15,7 +15,6 @@ namespace Players.PlayerScripts
         public GrabInteractor grabInteractor;
         
         public InventorySlot[] handSlot;
-        public InventoryManager playerInventory;
         
         private void OnEnable()
         {
@@ -55,12 +54,14 @@ namespace Players.PlayerScripts
                 {
                     //Put it in corresponding hand slot.
                     slot.AddItem(grabInteractor.itemGrab.data);
+                    slot.PlaySlotBounceAnimation();
                     grabInteractor.itemGrab.DestroyItem();
                 }
                 //Slot is not empty so we check if we can stack it.
                 else if (InventoryItem.TryStackItem(grabInteractor.itemGrab.data, slot.slotItem.data))
                 {
-                    slot.AddItem(1);
+                    slot.IncrementItem(1);
+                    slot.PlaySlotBounceAnimation();
                     grabInteractor.itemGrab.DestroyItem();
                 }
                 //Try put it in slot but the slot is full so we try to swap it if its unstackable or have 1 stack.
@@ -70,6 +71,7 @@ namespace Players.PlayerScripts
                     //Bug when swapping item to hand.
                     //Fixed by using Coroutine to separate destroy command.
                     StartCoroutine(SwappingItem(slot));
+                    slot.PlaySlotBounceAnimation();
                 }
                 //If we are here, it means: 
                 //We hold something, and we can't put it in the slot nor swap it.
@@ -85,16 +87,20 @@ namespace Players.PlayerScripts
                 //Slot not empty so we spawn things.
                 SpawnItem(slot.slotItem.data);
                 slot.RemoveItem(1);
+                slot.PlaySlotBounceAnimation(false);
             }
         }
 
         private IEnumerator SwappingItem(InventorySlot slot)
         {
+            ItemData tempData = new ItemData(grabInteractor.itemGrab.data);
+            
+            Destroy(grabInteractor.grabObject);
             SpawnItem(slot.slotItem.data);
             slot.RemoveItem(-1);
+            
             yield return null;
-            slot.AddItem(grabInteractor.itemGrab.data);
-            grabInteractor.itemGrab.DestroyItem();
+            slot.AddItem(tempData);
         }
     }
 }

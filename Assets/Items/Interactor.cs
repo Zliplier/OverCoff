@@ -1,5 +1,6 @@
 ﻿using System;
 using Items.Data;
+using Players;
 using Players.PlayerScripts;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,8 +12,8 @@ namespace Items
         public bool showInteractPrompt;
         
         [Header("Events")]
-        public UnityEvent<GameObject> onInteract;
-        public UnityEvent<GameObject> onHover, onUnHover;
+        public UnityEvent<Player> onInteract;
+        public UnityEvent<Player> onHover, onUnHover, onHovering;
         
         protected virtual void Start()
         {
@@ -20,14 +21,14 @@ namespace Items
             onUnHover.AddListener(HideOutline);
         }
         
-        public virtual void Interact(GameObject user) => onInteract.Invoke(user);
+        public virtual void Interact(Player user) => onInteract.Invoke(user);
         
-        protected virtual void ShowOutline(GameObject user)
+        protected virtual void ShowOutline(Player user)
         {
             
         }
 
-        protected virtual void HideOutline(GameObject user)
+        protected virtual void HideOutline(Player user)
         {
             
         }

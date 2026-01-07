@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bd015cd7944478aa5fbf434b561392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Items.Item
-  item: {fileID: 11400000, guid: 490ea20445c16134fa256c70d8199134, type: 2}
+  item: {fileID: 11400000, guid: aea06851f8506cd41bf331e245c22275, type: 2}
   itemData:
     nameId: 
     serializedId: 
@@ -177,6 +177,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onUnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  onHovering:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6671146380206052220
@@ -388,6 +391,7 @@ MonoBehaviour:
   inputFilterTag: 04000000
   holdArea: {fileID: 8435331227209422580}
   containItem: {fileID: 0}
+  containCoolDown: 1
   onContain:
     m_PersistentCalls:
       m_Calls: []

@@ -1,4 +1,5 @@
 using System;
+using Inventory;
 using Items;
 using Items.Data;
 using Players.Data;
@@ -26,6 +27,7 @@ namespace Players
         
         public PlayerUIManager playerUIManager;
         public PlayerBook playerBook;
+        public InventoryManager playerInventory;
 
         public SO_InputReader inputReader => player.inputReader;
         public PlayerInputMap playerInputMap => inputReader.playerInputMap;
@@ -34,13 +36,16 @@ namespace Players
         [Header("Stat Events")]
         #region Health
         public UnityEvent<float, float> onHealthChanged;
+        public UnityEvent<float> onHealthFull;
         public float health 
         {
             get { return playerData.health; }
             set
             {
                 playerData.health = Mathf.Clamp(value, 0f, playerData.maxHealth);
-                onHealthChanged?.Invoke(playerData.health, maxHealth);
+                onHealthChanged?.Invoke(health, maxHealth);
+                if (health >= maxHealth)
+                    onHealthFull?.Invoke(maxHealth);
             }
         }
         public float maxHealth
@@ -49,13 +54,16 @@ namespace Players
         
         #region Stamina
         public UnityEvent<float, float> onStaminaChanged;
+        public UnityEvent<float> onStaminaFull;
         public float stamina
         {
             get { return playerData.stamina; }
             set
             {
                 playerData.stamina = Mathf.Clamp(value, 0f, maxStamina);
-                onStaminaChanged?.Invoke(playerData.stamina, maxStamina);
+                onStaminaChanged?.Invoke(stamina, maxStamina);
+                if (stamina >= maxStamina)
+                    onStaminaFull?.Invoke(maxStamina);
             }
         }
         public float maxStamina

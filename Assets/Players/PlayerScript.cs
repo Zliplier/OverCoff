@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Inventory;
 using Items.Data;
 using Players.Data;
 using Players.UI;
@@ -21,6 +22,7 @@ namespace Players
         
         protected CinemachineCamera cam => player.cam;
         protected PlayerUIManager playerUIManager => player.playerUIManager;
+        protected InventoryManager playerInventory => player.playerInventory;
 
         protected float defaultSpawningDistance => data.defaultSpawningDistance;
         

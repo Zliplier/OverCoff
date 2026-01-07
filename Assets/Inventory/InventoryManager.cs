@@ -18,13 +18,13 @@ namespace Inventory
         
         public InventorySlot[] inventorySlots;
         [HideInInspector] public InventoryItem pointerItem;
-
-        private void OnEnable()
+        
+        public void OnOpenInventory()
         {
             
         }
-
-        private void OnDisable()
+        
+        public void OnCloseInventory()
         {
             if (pointerItem == null)
                 return;

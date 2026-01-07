@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Items.Data;
+using Items.Script;
 using Players;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace Items
         public ItemData data => item.itemData;
         
         public Rigidbody rb => item.rb;
+        
+        public ItemInteractor itemInteractor => item.itemInteractor;
         
         protected virtual void Awake()
         {

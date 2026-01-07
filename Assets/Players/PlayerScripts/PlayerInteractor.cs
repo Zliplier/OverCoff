@@ -27,7 +27,7 @@ namespace Players.PlayerScripts
         public float maxDistance = 3.5f;
         
         [Header("Event")]
-        public UnityEvent onHover, onUnHover;
+        public UnityEvent onHover, onUnHover, onHovering;
         
         private void OnEnable()
         {
@@ -45,19 +45,17 @@ namespace Players.PlayerScripts
                 return;
             
             if (TrySelect())
-            {
                 Hover();
-            }
             else
-            {
                 UnHover();
-            }
+            
+            Hovering();
         }
         
         public void Interact()
         {
             if (interactor != null)
-                interactor.Interact(gameObject);
+                interactor.Interact(player);
         }
 
         private bool TrySelect()
@@ -84,7 +82,7 @@ namespace Players.PlayerScripts
             CrosshairAnimation();
             
             selectedObject = hit.collider.gameObject;
-            interactor?.onHover?.Invoke(gameObject);
+            interactor?.onHover?.Invoke(player);
             onHover?.Invoke();
         }
 
@@ -96,11 +94,20 @@ namespace Players.PlayerScripts
             isHovering = false;
             CrosshairAnimation(true);
             
-            interactor?.onUnHover?.Invoke(gameObject);
+            interactor?.onUnHover?.Invoke(player);
             onUnHover?.Invoke();
             selectedObject = null;
         }
 
+        public void Hovering()
+        {
+            if (!isHovering)
+                return;
+            
+            interactor?.onHovering?.Invoke(player);
+            onHovering?.Invoke();
+        }
+        
         public void ResetInteractor()
         {
             allowChangeTarget = true;

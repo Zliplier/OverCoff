@@ -155,7 +155,6 @@ namespace Zlipacket.CoreZlipacket.Tools
             ResetEvents();
             onStop?.Invoke();
             elapsedTime = 0f;
-            duration = 0f;
             co_Timing = null;
         }
         

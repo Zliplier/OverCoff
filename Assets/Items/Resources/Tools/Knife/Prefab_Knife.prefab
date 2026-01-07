@@ -108,6 +108,7 @@ MonoBehaviour:
     stack: 0
     maxStack: 0
     ignoreInRecipeCheck: 0
+    containItems: []
     icon: {fileID: 0}
     scriptableObject: {fileID: 0}
     displayData:
@@ -130,14 +131,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Items.Script.ItemGrab
   item: {fileID: 0}
   grabPositionOverride: 1
-  overridePosition: {x: 0.5, y: -0.4, z: -0.3}
+  overridePosition: {x: 0.8, y: -0.4, z: 0}
   grabRotationOverride: 1
   overrideRotation: {x: 0.2459842, y: 0.5938583, z: -0.29315254, w: -0.70773274}
   grabForceOverride: 1
   overrideGrabForce: 15
   scrollDisable: 0
-  minScrollOverride: 1
-  overrideMinScroll: -0.3
+  minScrollOverride: 0
+  overrideMinScroll: 0
   maxScrollOverride: 0
   overrideMaxScroll: 0
   blockInteractor: 0
@@ -169,6 +170,9 @@ MonoBehaviour:
   onUnHover:
     m_PersistentCalls:
       m_Calls: []
+  onHovering:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4759992837879261306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Items.Script.Tools.Knife
   item: {fileID: 0}
+  onCut:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &6110383857344280798
 PrefabInstance:
   m_ObjectHideFlags: 0

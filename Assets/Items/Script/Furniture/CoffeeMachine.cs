@@ -5,6 +5,7 @@ using System.Linq;
 using Items.Data;
 using Players;
 using Players.UI;
+using Players.UI.ObjectDependent;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,8 @@ namespace Items.Script.Furniture
         [SerializeField] private SO_Item coffeeResult;
         public GameObject powderDisplay;
 
+        public CircleTimerDisplay circleTimer;
+
         [Header("Configs")]
         public List<ItemTag> inputFilterTag;
 
@@ -34,24 +37,19 @@ namespace Items.Script.Furniture
 
         public bool isMakingCoffee => coffeeTimer.isRunning;
         
-        private ItemInteractor itemInteractor;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            itemInteractor = GetComponent<ItemInteractor>();
-        }
-        
         private void Start()
         {
+            circleTimer = new CircleTimerDisplay(coffeeTimer, coffeeResult.icon);
+            
             coffeeTimer.SetDuration(duration);
             coffeeTimer.onFinished.AddListener(OnCoffeeFinish);
             
             cupHolder.onContain.AddListener(StartMakingCoffee);
             cupHolder.onUnContain.AddListener(StopMakingCoffee);
             
-            itemInteractor.onHover.AddListener(ShowUI);
-            itemInteractor.onUnHover.AddListener(HideUI);
+            itemInteractor.onHover.AddListener(circleTimer.ShowUI);
+            itemInteractor.onUnHover.AddListener(circleTimer.HideUI);
+            itemInteractor.onHovering.AddListener(circleTimer.ShowUI);
         }
 
         private void OnCollisionEnter(Collision other)
@@ -79,7 +77,8 @@ namespace Items.Script.Furniture
             
             if (isMakingCoffee)
                 StopMakingCoffee();
-            Debug.Log("Coffee started");
+            
+            //Debug.Log("Coffee started");
             
             coffeeTimer.StartTimer();
         }
@@ -87,56 +86,22 @@ namespace Items.Script.Furniture
         private void StopMakingCoffee()
         {
             coffeeTimer.StopTimer();
-            Debug.Log("Coffee stopped");
+            circleTimer.HideUI();
+            
+            //Debug.Log("Coffee stopped");
         }
         
         private void OnCoffeeFinish()
         {
-            Debug.Log("Coffee finished");
-            Instantiate(coffeeResult.itemPrefab, cup.transform.position, cup.transform.rotation).transform.SetParent(Environment.Instance.root);
+            //Debug.Log("Coffee finished");
+            
+            cup.GetComponent<Cup>().AddIngredient(coffeeResult);
             
             powderDisplay.SetActive(false);
             data.containItems.RemoveAt(0);
             
             coffeeTimer.StopTimer();
-        }
-
-        private FillCircleUI callbackUI = null;
-        public bool isUIShown => callbackUI != null;
-        
-        private void ShowUI(GameObject player)
-        {
-            if (!isMakingCoffee)
-                return;
-            if (isUIShown)
-                return;
-            
-            PlayerUIManager playerUI = player.GetComponent<Player>().playerUIManager;
-            if (playerUI == null)
-                return;
-
-            callbackUI = playerUI.SpawnUIElement("Main", "First Person", 
-                Resources.Load<GameObject>(PlayerUIManager.CIRCLE_TIMER_UI_PATH), Vector3.zero, 
-                "TimerUI").GetComponent<FillCircleUI>();
-            
-            UpdateTimerUI(1 - coffeeTimer.GetPercentage());
-            coffeeTimer.onTimerUpdate.AddListener(UpdateTimerUI);
-        }
-
-        private void UpdateTimerUI(float percentage)
-        {
-            callbackUI.fillAmount = 1 - percentage;
-        }
-
-        private void HideUI(GameObject player)
-        {
-            if (!isUIShown)
-                return;
-            
-            coffeeTimer.onTimerUpdate.RemoveListener(UpdateTimerUI);
-            
-            Destroy(callbackUI.gameObject);
-            callbackUI = null;
+            circleTimer.HideUI();
         }
     }
 }

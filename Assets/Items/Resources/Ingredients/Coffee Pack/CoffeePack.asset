@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
   m_Name: CoffeePack
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 4736740511298130612, guid: 3896864589ed9bd43b92a5bb1c097e95, type: 3}
   itemData:
     nameId: CoffeePack
     serializedId: 
     itemTag: 000000000100000008000000
-    cost: 0
-    stack: 0
-    maxStack: 0
+    cost: 10
+    stack: 1
+    maxStack: 5
     ignoreInRecipeCheck: 0
     containItems: []
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: c57431fa02a4e8a42aa9bb792ac41947, type: 3}
     scriptableObject: {fileID: 11400000}
     displayData:
       displayName: Coffee Pack
-      textFont: {fileID: 0}
+      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 

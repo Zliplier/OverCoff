@@ -174,6 +174,10 @@ namespace Players.PlayerScripts
         {
             if (playerInteractor != null)
                 playerInteractor.ResetInteractor();
+            
+            rbGrab.useGravity = true;
+            rbGrab.freezeRotation = false;
+            
             NullGrabObject();
         }
 
@@ -202,6 +206,7 @@ namespace Players.PlayerScripts
         
         private void UpdateRotation()
         {
+            //Have no idea how rotation work, but whatever.
             grabObject.transform.rotation = Quaternion.RotateTowards(grabObject.transform.rotation, holdArea.transform.rotation, 
                 rotationForce * (1 + Time.deltaTime));
         }
@@ -233,24 +238,16 @@ namespace Players.PlayerScripts
             if (scrollValue > 0) //Scroll Forward
             {
                 if (remap < 1f)
-                {
                     holdArea.transform.position += holdAreaDirection * scrollSpeed;
-                }
                 else
-                {
                     holdArea.transform.position = farPosition;
-                }
             }
             else if (scrollValue < 0) //Scroll Backward
             {
                 if (remap > 0f)
-                {
                     holdArea.transform.position += holdAreaDirection * -scrollSpeed;
-                }
                 else
-                {
                     holdArea.transform.position = nearPosition;
-                }
             }
         }
     }

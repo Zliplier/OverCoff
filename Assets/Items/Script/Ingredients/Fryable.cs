@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
 using Items.Data;
+using Players;
+using Players.UI;
+using UI;
 using UnityEngine;
+using Zlipacket.CoreZlipacket.Misc;
 using Zlipacket.CoreZlipacket.Tools;
 
 namespace Items.Script.Ingredients
 {
     public class Fryable : ItemScript
     {
-        public List<SO_Item> fryResult;
+        public List<SO_Item> fryResults;
         [SerializeField] private Timer fryTimer;
+        public bool isFrying => fryTimer.isRunning;
         
         [Header("Config")]
         [SerializeField] private float cookDuration;
@@ -37,7 +42,12 @@ namespace Items.Script.Ingredients
 
         private void FryDone()
         {
-            //TODO: Spawn fry result
+            foreach (var fryResult in fryResults)
+            {
+                Item result = Instantiate(fryResult.itemPrefab, Environment.Instance.transform).GetComponent<Item>();
+                
+                result.Initialize();
+            }
         }
     }
 }
