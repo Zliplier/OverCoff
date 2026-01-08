@@ -4,10 +4,9 @@ namespace Zlipacket.CoreZlipacket.Tools
 {
     public static class ColorExtension
     {
-        public static Color SetAlpha(this Color original, float alpha)
-        {
-            return new Color(original.r, original.g, original.b, alpha);
-        }
+        public static Color Copy(this Color original) => new Color(original.r, original.g, original.b, original.a);
+        
+        public static Color SetAlpha(this Color original, float alpha) => new Color(original.r, original.g, original.b, alpha);
 
         public static Color GetColorFromName(string name)
         {

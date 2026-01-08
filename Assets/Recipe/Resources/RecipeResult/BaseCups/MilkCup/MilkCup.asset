@@ -23,7 +23,7 @@ MonoBehaviour:
     ignoreInRecipeCheck: 0
     containItems:
     - {fileID: 11400000, guid: 6bc87129aa3b1aa459b7cb60f95b7825, type: 2}
-    icon: {fileID: 0}
+    icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     scriptableObject: {fileID: 11400000}
     displayData:
       displayName: Milk Cup

@@ -7,10 +7,9 @@ namespace Players.UI
     public class PlayerUIManager : MonoBehaviour
     {
         public const string CIRCLE_TIMER_UI_PATH = "UI/CircleTimerUI";
+        public const string ICON_UI_PATH = "UI/IconUI";
         
         public List<UISection> uiSections;
-        
-        
         
         public UISection GetUISection(string sectionName) => uiSections
             .Find(s => string.Equals(s.sectionName, sectionName, StringComparison.InvariantCultureIgnoreCase));

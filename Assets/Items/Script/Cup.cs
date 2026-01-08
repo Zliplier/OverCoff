@@ -7,6 +7,8 @@ using Items.Data;
 using Players;
 using Recipe;
 using Recipe.Data;
+using UI;
+using UI.Display;
 using UnityEngine;
 using UnityEngine.Events;
 using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
@@ -19,10 +21,25 @@ namespace Items.Script
         private ItemManager itemManager => ItemManager.Instance;
         public List<SO_Item> containIngredients => data.containItems;
 
+        public CupIngredientDisplay ingredientDisplay;
+        public CupIngredientUI ingredientUI;
+
         public List<ItemTag> inputFilter;
         
-        public UnityEvent onCombine;
-        
+        public UnityEvent<SO_Item> onCombine;
+
+        private void Start()
+        {
+            if (ingredientUI == null)
+                return;
+            
+            ingredientDisplay = new CupIngredientDisplay(ingredientUI, containIngredients);
+            
+            itemInteractor.onHover.AddListener(ingredientDisplay.ShowUI);
+            itemInteractor.onUnHover.AddListener(ingredientDisplay.HideUI);
+            onCombine.AddListener(ingredientDisplay.OnAddItem);
+        }
+
         private void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.TryGetComponent(out Item item))
@@ -38,10 +55,10 @@ namespace Items.Script
         public void AddIngredient(SO_Item addedItem)
         {
             containIngredients.Add(addedItem);
-            OnCombineIngredients();
+            OnCombineIngredients(addedItem);
         }
 
-        private void OnCombineIngredients()
+        private void OnCombineIngredients(SO_Item addedItem)
         {
             SO_Recipe resultRecipe = recipeManager.CheckRecipe(containIngredients);
             
@@ -52,7 +69,7 @@ namespace Items.Script
             else
                 ChangeCupToBase();
             
-            onCombine?.Invoke();
+            onCombine?.Invoke(addedItem);
         }
 
         private void ChangeCup(ItemData recipe)

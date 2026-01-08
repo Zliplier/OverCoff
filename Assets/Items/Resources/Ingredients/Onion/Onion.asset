@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
+  m_Name: Onion
+  m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
+  itemPrefab: {fileID: 511872137247677527, guid: 93883c70761a1fa46a5f0547c2af878a, type: 3}
+  itemData:
+    nameId: Onion
+    serializedId: 
+    itemTag: 000000000100000009000000
+    cost: 7
+    stack: 1
+    maxStack: 5
+    ignoreInRecipeCheck: 0
+    containItems: []
+    icon: {fileID: 21300000, guid: 73f675df3e1b70e4f8e13cd0fc2817cf, type: 3}
+    scriptableObject: {fileID: 11400000}
+    displayData:
+      displayName: Onion
+      textFont: {fileID: 0}
+      textColor: {r: 0, g: 0, b: 0, a: 0}
+    description: 

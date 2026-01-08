@@ -1,9 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Zlipacket.CoreZlipacket.UI
 {
     public class Billboard : MonoBehaviour
     {
+        //private Vector3 positionOffset;
+        public Camera targetCam;
+        
+        private void Start()
+        {
+            //positionOffset = transform.localPosition;
+            
+            if (targetCam == null)
+                targetCam = Camera.main;
+        }
+
         public void Show()
         {
             gameObject.SetActive(true);
@@ -16,7 +28,12 @@ namespace Zlipacket.CoreZlipacket.UI
         
         private void LateUpdate()
         {
-            transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+            //Ignore parent rotation. :)
+            //transform.position = transform.parent.position + positionOffset;
+            //Or just make the canvas center of the object.
+            
+            //Look At Player.
+            transform.LookAt(transform.position + targetCam.transform.rotation * Vector3.forward, targetCam.transform.rotation * Vector3.up);
         }
     }
 }

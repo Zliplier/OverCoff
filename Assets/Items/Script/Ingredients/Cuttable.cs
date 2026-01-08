@@ -18,12 +18,14 @@ namespace Items.Script.Ingredients
             
             foreach (var cutResult in cutResults)
             {
-                Item result = Instantiate(cutResult.itemPrefab, Environment.Instance.transform).GetComponent<Item>();
+                Item result = Instantiate(cutResult.itemPrefab
+                    , transform.position + (Vector3.up * 0.1f), transform.rotation).GetComponent<Item>();
                 
+                result.transform.SetParent(Environment.Instance.root);
                 result.Initialize();
             }
             
-            DestroyItem();
+            Destroy(gameObject);
         }
     }
 }

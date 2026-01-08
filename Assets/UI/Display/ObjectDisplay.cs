@@ -1,21 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using Players;
+using Players.UI;
 using UnityEngine;
 
-namespace Players.UI
+namespace UI.Display
 {
     public abstract class ObjectDisplay<T> where T : MonoBehaviour
     {
         //public List<Player> players { get; protected set; } = new();
         
         public T display = null;
-        public bool isUIShown => display != null;
+        public bool isUIShown => display != null && display.gameObject.activeInHierarchy;
+        
+        protected bool useShowHide = false;
 
         public virtual void ShowUI(Player player)
         {
             if (isUIShown)
                 return;
             
-            SpawnDisplay(player.GetComponent<PlayerUIManager>());
+            Debug.Log("Showing UI");
+            
+            if (!useShowHide)
+                display = SpawnDisplay(player.playerUIManager);
+            else
+                display.gameObject.SetActive(true);
             
             /*if (!players.Contains(player))
                 players.Add(player);*/
@@ -30,9 +38,16 @@ namespace Players.UI
         {
             if (!isUIShown)
                 return;
+
+            Debug.Log("Hiding UI");
             
-            GameObject.Destroy(display.gameObject);
-            display = null;
+            if (!useShowHide)
+            {
+                GameObject.Destroy(display.gameObject);
+                display = null;
+            }
+            else
+                display.gameObject.SetActive(false);
         }
 
         protected abstract T SpawnDisplay(PlayerUIManager playerUI);
