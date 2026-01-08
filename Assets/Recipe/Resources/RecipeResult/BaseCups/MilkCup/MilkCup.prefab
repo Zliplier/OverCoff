@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2830384782831799736}
   - component: {fileID: 7279856254577917996}
   - component: {fileID: 7856227327210118324}
-  - component: {fileID: 1530398766289495994}
   - component: {fileID: 1681026638612081776}
   - component: {fileID: 4160495885641392140}
+  - component: {fileID: 4166696017116047834}
   m_Layer: 8
   m_Name: MilkCup
   m_TagString: Item
@@ -119,31 +119,6 @@ MonoBehaviour:
     description: 
   rb: {fileID: 7279856254577917996}
   itemInteractor: {fileID: 0}
---- !u!114 &1530398766289495994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4011424653711952030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a4fd976388d4895ac0bedebf2e3e3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Items.Interactor
-  showInteractPrompt: 0
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  onHover:
-    m_PersistentCalls:
-      m_Calls: []
-  onUnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  onHovering:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1681026638612081776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +166,31 @@ MonoBehaviour:
   ingredientUI: {fileID: 2936788616177797861}
   inputFilter: 05000000
   onCombine:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4166696017116047834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4011424653711952030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0160b138ebc840828acdb86d666c927e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Items.Script.ItemInteractor
+  showInteractPrompt: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  onHover:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  onHovering:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &6183921214698471554
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a19d96daaf0f4d0788099634e90f8f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.CupIngredientUI
+  canvasUI: {fileID: 5004393419026045161}
 --- !u!114 &6839722295756362910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +335,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7730088244662719712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18e77fee67a743e282422159a869bb9e, type: 3}
   m_Name: 

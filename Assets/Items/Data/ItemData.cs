@@ -60,6 +60,7 @@ namespace Items.Data
         Furniture, 
         Fryable, 
         Cuttable, 
+        Grindable, 
         Condiment, 
         CoffeeMachineInput
     }

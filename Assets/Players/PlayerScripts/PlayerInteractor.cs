@@ -65,7 +65,17 @@ namespace Players.PlayerScripts
             {
                 if (hit.collider.gameObject.TryGetComponent<Interactor>(out var _))
                 {
-                    selectedObject = hit.collider.gameObject;
+                    //Change the target.
+                    /*if (isHovering)
+                        UnHover(); //Just in case we already hovering something.*/
+                    if (selectedObject == null)
+                        selectedObject = hit.collider.gameObject;
+                    else if (selectedObject != hit.collider.gameObject)
+                    {
+                        UnHover();
+                        selectedObject = hit.collider.gameObject;
+                    }
+                    
                     return true;
                 }
             }
@@ -77,6 +87,8 @@ namespace Players.PlayerScripts
         {
             if (isHovering)
                 return;
+            
+            //Debug.Log("Hover");
             
             isHovering = true;
             CrosshairAnimation();
@@ -90,6 +102,8 @@ namespace Players.PlayerScripts
         {
             if (!isHovering)
                 return;
+            
+            //Debug.Log("UnHover");
 
             isHovering = false;
             CrosshairAnimation(true);

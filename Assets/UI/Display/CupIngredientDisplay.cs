@@ -32,8 +32,6 @@ namespace UI.Display
 
         public override void ShowUI(Player player)
         {
-            Debug.Log("Showing cup ingredients");
-            
             base.ShowUI(player);
 
             display.OnShow();
@@ -41,8 +39,6 @@ namespace UI.Display
 
         public override void HideUI(Player player)
         {
-            Debug.Log("Hiding cup ingredients");
-            
             display.OnHide().onComplete += () =>
                 base.HideUI(player);
         }

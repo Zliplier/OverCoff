@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
-  m_Name: CoffeePowder
+  m_Name: Roasted Coffee
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
-  itemPrefab: {fileID: 6112706188714299246, guid: f3a448fd7d112774689d9322aae1bec3, type: 3}
+  itemPrefab: {fileID: 0}
   itemData:
-    nameId: CoffeePowder
+    nameId: RoastedCoffee
     serializedId: 
-    itemTag: 00000000010000000c000000
-    cost: 15
+    itemTag: 00000000010000000a00000008000000
+    cost: 0
     stack: 1
     maxStack: 5
     ignoreInRecipeCheck: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     scriptableObject: {fileID: 11400000}
     displayData:
-      displayName: Coffee Powder
-      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      displayName: Roasted Coffee
+      textFont: {fileID: 0}
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 

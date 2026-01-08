@@ -9,6 +9,7 @@ namespace UI
     {
         public Image icon;
         
+        /*
         private Tween iconAnimation = null;
         public bool isTweening => iconAnimation != null;
         
@@ -25,6 +26,6 @@ namespace UI
         {
             if (isTweening)
                 iconAnimation.Kill();
-        }
+        }*/
     }
 }

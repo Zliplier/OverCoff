@@ -18,12 +18,12 @@ namespace Zlipacket.CoreZlipacket.UI
 
         public void Show()
         {
-            gameObject.SetActive(true);
+            enabled = true;
         }
 
         public void Hide()
         {
-            gameObject.SetActive(false);
+            enabled = false;
         }
         
         private void LateUpdate()

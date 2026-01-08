@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
   m_Name: EmptyCup
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 677562754839396799, guid: 30c69748a8974f1418ed15a3f3fe4305, type: 3}
   itemData:
     nameId: EmptyCup
     serializedId: 

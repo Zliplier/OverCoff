@@ -157,6 +157,7 @@ MonoBehaviour:
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 
   rb: {fileID: 0}
+  itemInteractor: {fileID: 0}
 --- !u!114 &3433094908325274182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +200,7 @@ MonoBehaviour:
   coffeeTimer: {fileID: 3033456293642446878}
   coffeeResult: {fileID: 11400000, guid: bd343e24d217cd84ebeae7e3c8545274, type: 2}
   powderDisplay: {fileID: 7877852408410499555}
-  inputFilterTag: 0b000000
+  inputFilterTag: 0c000000
   duration: 10
 --- !u!1 &7129567759909714924
 GameObject:

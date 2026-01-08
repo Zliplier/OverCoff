@@ -18,7 +18,7 @@ namespace UI.Display
             if (isUIShown)
                 return;
             
-            Debug.Log("Showing UI");
+            //Debug.Log("Showing UI");
             
             if (!useShowHide)
                 display = SpawnDisplay(player.playerUIManager);
@@ -39,7 +39,7 @@ namespace UI.Display
             if (!isUIShown)
                 return;
 
-            Debug.Log("Hiding UI");
+            //Debug.Log("Hiding UI");
             
             if (!useShowHide)
             {

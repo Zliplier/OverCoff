@@ -184,6 +184,7 @@ MonoBehaviour:
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 
   rb: {fileID: 102950005772009257}
+  itemInteractor: {fileID: 0}
 --- !u!114 &7295896158798938640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,9 +254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Items.Script.Ingredients.Fryable
   item: {fileID: 0}
-  fryResult: []
+  fryResults:
+  - {fileID: 11400000, guid: 667ea34b307dbd146bde22da3548abb5, type: 2}
   fryTimer: {fileID: 7378998871636792477}
   cookDuration: 10
+  timerFillColor: {r: 1, g: 0.8661064, b: 0.4858491, a: 1}
 --- !u!1001 &103544104113682179
 PrefabInstance:
   m_ObjectHideFlags: 0

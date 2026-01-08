@@ -88,4 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1888f338fbc34016a6a153ce00f00152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.IconUI
-  icon: {fileID: 0}
+  icon: {fileID: 2806986101399527733}
