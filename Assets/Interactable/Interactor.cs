@@ -1,11 +1,8 @@
-﻿using System;
-using Items.Data;
-using Players;
-using Players.PlayerScripts;
+﻿using Players;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Items
+namespace Interactable
 {
     public class Interactor : MonoBehaviour
     {

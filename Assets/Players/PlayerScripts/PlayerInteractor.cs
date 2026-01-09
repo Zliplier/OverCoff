@@ -3,6 +3,7 @@ using Items.Script;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
+using Interactable;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 

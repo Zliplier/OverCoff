@@ -7,7 +7,6 @@ using Items.Script.Ingredients;
 using Players;
 using UI.Display;
 using UnityEngine;
-using Zlipacket.CoreZlipacket.Tools;
 using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
 
 namespace Items.Script.Furniture

@@ -1,3 +1,4 @@
+using Interactable;
 using Players.PlayerScripts;
 using UnityEngine;
 using UnityEngine.Events;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zlipacket.CoreZlipacket.Scene.Transition;
 using Zlipacket.CoreZlipacket.Tools;
 
 namespace Zlipacket.CoreZlipacket.Scene
@@ -8,11 +9,11 @@ namespace Zlipacket.CoreZlipacket.Scene
     public class SceneController : Singleton<SceneController>
     {
         [SerializeField] private string loadingSceneName;
-        [SerializeField] private Animator transition;
-        [SerializeField] private float transitionTime = 0.5f;
-        [SerializeField] private float fakeLoadingTime = 0.5f;
+        [SerializeField] private Transform sceneCanvas;
+        public SO_SceneTransition transition;
+        public float fakeLoadingTime = 0.5f;
         
-        public void LoadScene(string sceneName)
+        public void LoadScene(string sceneName = "")
         {
             if (string.IsNullOrEmpty(sceneName))
             {
@@ -40,9 +41,9 @@ namespace Zlipacket.CoreZlipacket.Scene
         
         private IEnumerator TransitionToScene(string sceneName)
         {
-            transition.gameObject.SetActive(true);
-            transition.SetTrigger("Start");
-            yield return new WaitForSeconds(transitionTime);
+            SceneTransition sceneTransition = transition.InitializeTransition(sceneCanvas);
+            
+            yield return sceneTransition.StartTransition();
             
             //Loading Screen
             SceneManager.LoadScene(loadingSceneName);
@@ -51,13 +52,9 @@ namespace Zlipacket.CoreZlipacket.Scene
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
             while (!asyncOperation.isDone)
-            {
                 yield return null;
-            }
             
-            transition.SetTrigger("End");
-            yield return new WaitForSeconds(transitionTime);
-            transition.gameObject.SetActive(false);
+            yield return sceneTransition.EndTransition();
         }
     }
 }
