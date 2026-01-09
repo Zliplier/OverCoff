@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 7295896158798938640}
   - component: {fileID: 3992234613640026449}
   - component: {fileID: 5943575564158047137}
+  - component: {fileID: 8621991630629464895}
   m_Layer: 8
   m_Name: CoffeePack
   m_TagString: Item
@@ -184,7 +185,7 @@ MonoBehaviour:
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 
   rb: {fileID: 102950005772009257}
-  itemInteractor: {fileID: 0}
+  itemInteractor: {fileID: 7295896158798938640}
 --- !u!114 &7295896158798938640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +260,22 @@ MonoBehaviour:
   fryTimer: {fileID: 7378998871636792477}
   cookDuration: 10
   timerFillColor: {r: 1, g: 0.8661064, b: 0.4858491, a: 1}
+--- !u!114 &8621991630629464895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4736740511298130612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5762fddea247483bbf1d7e56310ea396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Items.Script.Ingredients.Grindable
+  item: {fileID: 0}
+  grindNum: 5
+  grindResults:
+  - {fileID: 11400000, guid: 490ea20445c16134fa256c70d8199134, type: 2}
 --- !u!1001 &103544104113682179
 PrefabInstance:
   m_ObjectHideFlags: 0

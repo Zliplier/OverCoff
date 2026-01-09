@@ -52,16 +52,20 @@ namespace Items.Script.Ingredients
         public void StopFry()
         {
             fryTimer.Pause();
+            circleTimer.HideUI();
         }
 
         private void FryDone()
         {
             foreach (var fryResult in fryResults)
             {
-                Item result = Instantiate(fryResult.itemPrefab, Environment.Instance.transform).GetComponent<Item>();
+                Item result = Instantiate(fryResult.itemPrefab, transform.position, transform.rotation).GetComponent<Item>();
                 
+                result.transform.SetParent(Environment.Instance.root);
                 result.Initialize();
             }
+            circleTimer.HideUI();
+            Destroy(gameObject);
         }
     }
 }

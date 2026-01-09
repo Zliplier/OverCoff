@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
   m_Name: Burnt Coffee
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 7771016966547233450, guid: 637f1a59e83a64d409f23680a23fbf66, type: 3}
   itemData:
     nameId: BurntCoffee
     serializedId: 

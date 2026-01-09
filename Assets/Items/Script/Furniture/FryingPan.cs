@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Items.Script.Furniture
 {
-    public class FryingPan : ItemScript
+    public class FryingPan : MonoBehaviour
     {
         private void OnTriggerEnter(Collider other)
         {

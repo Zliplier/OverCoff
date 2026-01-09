@@ -12,20 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
   m_Name: CoffeeOriginale
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 3939566681974386669, guid: 90bcafa5af5479b4daf3dd451ab98a6d, type: 3}
   itemData:
-    nameId: 
+    nameId: CoffeeOriginale
     serializedId: 
-    itemTag: 
-    cost: 0
-    stack: 0
-    maxStack: 0
+    itemTag: 000000000400000003000000
+    cost: 30
+    stack: 1
+    maxStack: 1
     ignoreInRecipeCheck: 0
-    containItems: []
-    icon: {fileID: 0}
-    scriptableObject: {fileID: 0}
+    containItems:
+    - {fileID: 11400000, guid: bd343e24d217cd84ebeae7e3c8545274, type: 2}
+    - {fileID: 11400000, guid: 6bc87129aa3b1aa459b7cb60f95b7825, type: 2}
+    - {fileID: 11400000, guid: 0ef034adb3ee4224c91b9fac0b0caf3b, type: 2}
+    icon: {fileID: 21300000, guid: a731a03d3ce499f48b9c41db59ba57aa, type: 3}
+    scriptableObject: {fileID: 11400000}
     displayData:
-      displayName: 
-      textFont: {fileID: 0}
+      displayName: CoffeeOriginale
+      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 

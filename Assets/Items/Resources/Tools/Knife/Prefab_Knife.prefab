@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7875662204166722463}
   - component: {fileID: 251341242301428158}
   - component: {fileID: 790711803487902169}
-  - component: {fileID: 4759992837879261306}
   m_Layer: 8
   m_Name: Prefab_Knife
   m_TagString: Item
@@ -117,6 +116,7 @@ MonoBehaviour:
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 
   rb: {fileID: 9100080397084235657}
+  itemInteractor: {fileID: 0}
 --- !u!114 &251341242301428158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,22 +171,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onHovering:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4759992837879261306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6811191757878927487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a945991983a64b94857deedec3d2d1d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Items.Script.Tools.Knife
-  item: {fileID: 0}
-  onCut:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &6110383857344280798

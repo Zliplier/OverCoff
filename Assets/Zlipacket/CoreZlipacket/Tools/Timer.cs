@@ -17,7 +17,7 @@ namespace Zlipacket.CoreZlipacket.Tools
         public UnityEvent onFinished, onStart, onStop, onReset, onPaused, onUnPaused;
         public UnityEvent<float> onTimerUpdate;
         
-        public bool isRunning => co_Timing != null;
+        public bool isRunning => co_Timing != null && !isPause;
         public bool isPause = false;
         
         public static Timer CreateTimer(GameObject owner, float duration = 1f, string timerName = "Timer")

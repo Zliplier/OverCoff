@@ -99,6 +99,8 @@ namespace Items
 
         public void DestroyItem(float timeToDestroy = 0.1f)
         {
+            if (isTweening)
+                itemAnimation.Kill();
             PlayDestroyAnimation(timeToDestroy).onComplete += () => Destroy(gameObject);
         }
     }

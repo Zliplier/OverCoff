@@ -25,6 +25,11 @@ namespace UI.Display
             this.icon = icon;
         }
         
+        public CircleTimerDisplay(Timer timer)
+        {
+            this.timer = timer;
+        }
+        
         public override void ShowUI(Player player)
         {
             if (!isRunning)
@@ -37,6 +42,8 @@ namespace UI.Display
 
         private void UpdateTimerUI(float percentage)
         {
+            if (!isUIShown)
+                return;
             display.fillAmount = 1 - percentage;
         }
 

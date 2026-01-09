@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
+  m_Name: Kettle
+  m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
+  itemPrefab: {fileID: 1323535726731459539, guid: 73c96ab570d49c344a4dd608d42c567e, type: 3}
+  itemData:
+    nameId: Kettle
+    serializedId: 
+    itemTag: 0000000006000000
+    cost: 20
+    stack: 1
+    maxStack: 1
+    ignoreInRecipeCheck: 0
+    containItems: []
+    icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    scriptableObject: {fileID: 11400000}
+    displayData:
+      displayName: Kettle
+      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      textColor: {r: 0, g: 0, b: 0, a: 0}
+    description: 

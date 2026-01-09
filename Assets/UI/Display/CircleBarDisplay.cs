@@ -14,14 +14,21 @@ namespace UI.Display
         public Sprite icon;
         public Color fillColor = defaultFillColor.Copy();
         public Color BgColor = defaultBgColor.Copy();
+
+        public CircleBarDisplay()
+        {
+            
+        }
         
         public CircleBarDisplay(Sprite icon)
         {
             this.icon = icon;
         }
 
-        private void UpdateUI(float percentage)
+        public void UpdateUI(float percentage)
         {
+            if (!isUIShown)
+                return;
             display.fillAmount = percentage;
         }
 
@@ -36,7 +43,6 @@ namespace UI.Display
             
             fillCircleUI.icon.sprite = icon;
             fillCircleUI.fill.color = fillColor;
-            UpdateUI(1f);
             
             return fillCircleUI;
         }

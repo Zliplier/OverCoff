@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
   m_Name: Sugar
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 5053199841962261783, guid: 3d94718733fac454f89267911fb863c9, type: 3}
   itemData:
     nameId: Sugar
     serializedId: 
-    itemTag: 
+    itemTag: 000000000100000005000000
     cost: 6
     stack: 1
     maxStack: 5
@@ -25,7 +25,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: fba049f35cd64d4448a8b704d376b2f5, type: 3}
     scriptableObject: {fileID: 11400000}
     displayData:
-      displayName: 
+      displayName: Sugar Pack
       textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 

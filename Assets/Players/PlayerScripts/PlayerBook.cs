@@ -1,15 +1,21 @@
-﻿using Players.UI;
+﻿using DG.Tweening;
+using Players.UI;
 using UnityEngine;
 
 namespace Players.PlayerScripts
 {
     public class PlayerBook : PlayerScript
     {
+        [SerializeField] private GameObject pageRoot;
+        
         public UISection bookSection => playerUIManager.GetUISection("Book");
         
         public bool isBookOpen => bookSection.sectionRoot.activeInHierarchy;
         
         public BookPage currentPage;
+        
+        private Tween bookAnimation = null;
+        public bool isTweening => bookAnimation != null;
         
         private void OnEnable()
         {
@@ -27,9 +33,6 @@ namespace Players.PlayerScripts
         {
             player.SetCursorLockState(false);
             
-            playerInputMap.SetMapEnable(false);
-            uiInputMap.SetMapEnable(true);
-            
             bookSection.sectionRoot.SetActive(true);
             
             //TODO: Make more pages.
@@ -45,17 +48,18 @@ namespace Players.PlayerScripts
                     
                     break;
             }
+
+            PlayPopUpAnimation(true).onComplete += () =>
+            {
+                playerInputMap.SetMapEnable(false);
+                uiInputMap.SetMapEnable(true);
+            };
         }
 
         public void CloseBook(bool isHolding)
         {
             if (!isBookOpen)
                 return;
-            
-            player.SetCursorLockState(true);
-            
-            playerInputMap.SetMapEnable(true);
-            uiInputMap.SetMapEnable(false);
             
             switch (currentPage)
             {
@@ -69,13 +73,41 @@ namespace Players.PlayerScripts
                     
                     break;
             }
-            
-            bookSection.sectionRoot.SetActive(false);
 
-            
+            PlayPopUpAnimation(false).onComplete += () =>
+            {
+                player.SetCursorLockState(true);
+
+                playerInputMap.SetMapEnable(true);
+                uiInputMap.SetMapEnable(false);
+
+                bookSection.sectionRoot.SetActive(false);
+            };
         }
 
-        private void OpenInventory() => playerInventory.OnOpenInventory();
+        private Tween PlayPopUpAnimation(bool isOpen)
+        {
+            if (isTweening)
+                bookAnimation.Kill();
+
+            if (isOpen)
+            {
+                pageRoot.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                bookAnimation = pageRoot.transform.DOScale(1f, 0.2f);
+            }
+            else
+            {
+                bookAnimation = pageRoot.transform.DOScale(0.8f, 0.1f);
+            }
+            
+            return bookAnimation;
+        }
+        
+        private void OpenInventory()
+        {
+            playerInventory.OnOpenInventory();
+        }
+
         private void CloseInventory() => playerInventory.OnCloseInventory();
     }
 

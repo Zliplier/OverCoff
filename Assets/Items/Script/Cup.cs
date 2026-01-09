@@ -28,6 +28,9 @@ namespace Items.Script
         
         public UnityEvent<SO_Item> onCombine;
 
+        private bool allowCombine = false;
+        private void ResetAllowCombine() => allowCombine = true;
+
         private void Start()
         {
             if (ingredientUI == null)
@@ -38,22 +41,31 @@ namespace Items.Script
             itemInteractor.onHover.AddListener(ingredientDisplay.ShowUI);
             itemInteractor.onUnHover.AddListener(ingredientDisplay.HideUI);
             onCombine.AddListener(ingredientDisplay.OnAddItem);
+            
+            Invoke(nameof(ResetAllowCombine), 0.3f);
         }
 
         private void OnCollisionEnter(Collision other)
         {
+            if (!allowCombine)
+                return;
+            
             if (!other.gameObject.TryGetComponent(out Item item))
                 return;
             if (!Item.CheckFilterTags(inputFilter, item))
                 return;
             
+            allowCombine = false;
             AddIngredient(item.item);
             
             item.DestroyItem();
+            //Put Delay on this pls.
+            Invoke(nameof(ResetAllowCombine), 0.3f);
         }
 
         public void AddIngredient(SO_Item addedItem)
         {
+            Debug.Log("Adding Ingredient: " + addedItem.nameID + " From Cup: " + name);
             containIngredients.Add(addedItem);
             OnCombineIngredients(addedItem);
         }
@@ -64,10 +76,15 @@ namespace Items.Script
             
             //If we found any matching Recipe.
             if (resultRecipe != null)
+            {
                 ChangeCup(resultRecipe.recipeData.recipeResult.itemData);
+            }
             //No matching Recipe so we revert the cup to the base appearance if needed.
             else
+            {
                 ChangeCupToBase();
+            }
+                
             
             onCombine?.Invoke(addedItem);
         }
@@ -120,8 +137,12 @@ namespace Items.Script
             SO_Item baseCup = FindBaseCup();
             
             //Check if the cup is already the target base cup.
+            //So nothing really changes.
             if (string.Equals(baseCup.itemData.nameId, data.nameId, StringComparison.InvariantCultureIgnoreCase))
+            {
+                //item.PlaySpawnAnimation();
                 return;
+            }
             
             ChangeCup(baseCup.itemData);
         }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
   m_Name: Roasted Coffee
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 5067896156378521352, guid: 9cc4e9de31f99f04bb702c6e17bc8b8d, type: 3}
   itemData:
     nameId: RoastedCoffee
     serializedId: 
@@ -22,10 +22,10 @@ MonoBehaviour:
     maxStack: 5
     ignoreInRecipeCheck: 0
     containItems: []
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 7f64ee5763f40de488511f2bdac4ef70, type: 3}
     scriptableObject: {fileID: 11400000}
     displayData:
       displayName: Roasted Coffee
-      textFont: {fileID: 0}
+      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 
