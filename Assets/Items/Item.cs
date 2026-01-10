@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace Items
 {
-    [RequireComponent(typeof(Collider))]
     public class Item : MonoBehaviour
     {
         public SO_Item item;
@@ -26,8 +25,11 @@ namespace Items
             if (string.IsNullOrWhiteSpace(itemData.nameId))
                 itemData = new ItemData(item.itemData);
             
-            rb = GetComponent<Rigidbody>();
-            itemInteractor = GetComponent<ItemInteractor>();
+            if (rb == null)
+                rb = GetComponent<Rigidbody>();
+            
+            if (itemInteractor == null)
+                itemInteractor = GetComponent<ItemInteractor>();
         }
 
         /*private void Start()

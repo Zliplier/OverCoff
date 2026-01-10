@@ -26,6 +26,9 @@ namespace Items.Script
         [DrawIf("minScrollOverride")] public float overrideMinScroll;
         public bool maxScrollOverride;
         [DrawIf("maxScrollOverride")] public float overrideMaxScroll;
+        
+        public bool disableRaycastOnGrab = false;
+        public bool useGravityAfterDrop = true;
 
         public bool blockInteractor = true;
         
@@ -44,6 +47,9 @@ namespace Items.Script
             
             this.holder = holder;
             
+            if (disableRaycastOnGrab)
+                gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            
             onGrab?.Invoke();
         }
         
@@ -56,6 +62,8 @@ namespace Items.Script
         
         public void Reset()
         {
+            if (disableRaycastOnGrab)
+                gameObject.layer = LayerMask.NameToLayer("Interactable");
             holder?.ResetGrab();
             holder = null;
         }

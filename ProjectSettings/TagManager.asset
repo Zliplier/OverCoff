@@ -17,6 +17,8 @@ TagManager:
   - Interactable
   - 
   - 
+  - 1 - Collider
+  - 1 - NoCollide
   - 
   - 
   - 
@@ -29,9 +31,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - UnRenderedToCam
   - 
   - 
   - 

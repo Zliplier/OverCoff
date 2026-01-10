@@ -27,6 +27,7 @@ namespace Players.PlayerScripts
         
         [Header("Config")]
         public LayerMask interactionLayer;
+        public float maxGrabHoldDistance = 3f;
         public float minDistance = 0.1f;
         public float maxDistance = 3.5f;
         public float minScrollDistance = 1f;
@@ -163,7 +164,8 @@ namespace Players.PlayerScripts
             if (playerInteractor != null)
                 playerInteractor.allowChangeTarget = true;
             
-            rbGrab.useGravity = true;
+            if (itemGrab.useGravityAfterDrop)
+                rbGrab.useGravity = true;
             rbGrab.freezeRotation = false;
             itemGrab.Drop();
             
@@ -175,7 +177,8 @@ namespace Players.PlayerScripts
             if (playerInteractor != null)
                 playerInteractor.ResetInteractor();
             
-            rbGrab.useGravity = true;
+            if (itemGrab.useGravityAfterDrop)
+                rbGrab.useGravity = true;
             rbGrab.freezeRotation = false;
             
             NullGrabObject();
@@ -191,6 +194,12 @@ namespace Players.PlayerScripts
         {
             if (isGrabbing)
             {
+                if (Vector3.Distance(grabObject.transform.position, cam.transform.position) > maxGrabHoldDistance)
+                {
+                    Drop();
+                    return;
+                }
+                
                 UpdatePosition();
                 UpdateRotation();
             }
