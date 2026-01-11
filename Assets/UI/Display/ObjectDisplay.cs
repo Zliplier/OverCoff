@@ -1,5 +1,4 @@
 ﻿using Players;
-using Players.UI;
 using UnityEngine;
 
 namespace UI.Display
@@ -21,7 +20,7 @@ namespace UI.Display
             //Debug.Log("Showing UI");
             
             if (!useShowHide)
-                display = SpawnDisplay(player.playerUIManager);
+                display = SpawnDisplay(player.uiManager);
             else
                 display.gameObject.SetActive(true);
             
@@ -50,6 +49,6 @@ namespace UI.Display
                 display.gameObject.SetActive(false);
         }
 
-        protected abstract T SpawnDisplay(PlayerUIManager playerUI);
+        protected abstract T SpawnDisplay(UIManager ui);
     }
 }

@@ -4,7 +4,7 @@ using Items;
 using Items.Data;
 using Players.Data;
 using Players.PlayerScripts;
-using Players.UI;
+using UI;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,7 +25,7 @@ namespace Players
         public CinemachineCamera cam;
         public CinemachineInputAxisController camInputAxis => cam.GetComponent<CinemachineInputAxisController>();
         
-        public PlayerUIManager playerUIManager;
+        public UIManager uiManager;
         public PlayerBook playerBook;
         public InventoryManager playerInventory;
 

@@ -16,6 +16,8 @@ namespace Interactable.Object
             float impactMagnitude = (other.impulse / Time.fixedDeltaTime).magnitude;
             if (impactMagnitude > ImpactThreshold)
                 onImpact.Invoke(impactMagnitude);
+            
+            //Debug.Log("Impact magnitude: " + impactMagnitude);
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Items.Data;
-using Players.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Zlipacket.CoreZlipacket.UI;
@@ -41,7 +40,7 @@ namespace UI
 
         public void AddItemUI(SO_Item ingredient)
         {
-            IconUI newIcon = Instantiate(Resources.Load<GameObject>(PlayerUIManager.ICON_UI_PATH)).GetComponent<IconUI>();
+            IconUI newIcon = Instantiate(Resources.Load<GameObject>(UIManager.ICON_UI_PATH)).GetComponent<IconUI>();
 
             newIcon.transform.SetParent(transform);
             newIcon.transform.localPosition = Vector3.zero;

@@ -109,7 +109,6 @@ namespace Players.PlayerScripts
             
             rbGrab.useGravity = false;
             rbGrab.freezeRotation = true;
-            rbGrab.linearVelocity = Vector3.zero;
             
             if (playerInteractor != null && itemGrab.blockInteractor)
                 playerInteractor.allowChangeTarget = false;

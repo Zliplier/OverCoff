@@ -3,7 +3,6 @@ using System.Collections;
 using Inventory;
 using Items;
 using Items.Data;
-using Players.UI;
 using UnityEngine;
 using Zlipacket.CoreZlipacket.Misc;
 using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
@@ -49,6 +48,10 @@ namespace Players.PlayerScripts
             //Check if we hold anything.
             if (grabInteractor.grabObject != null)
             {
+                //Check if the item is allow to store in inventory.
+                if (!grabInteractor.itemGrab.allowInventoryStoring)
+                    return;
+                
                 //Check if slot is empty.
                 if (slot.isEmpty)
                 {

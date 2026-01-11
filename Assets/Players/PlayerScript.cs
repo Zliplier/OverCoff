@@ -2,7 +2,7 @@
 using Inventory;
 using Items.Data;
 using Players.Data;
-using Players.UI;
+using UI;
 using Unity.Cinemachine;
 using UnityEngine;
 using Zlipacket.CoreZlipacket.Player.Input;
@@ -21,7 +21,7 @@ namespace Players
         protected UIInputMap uiInputMap => player.uiInputMap;
         
         protected CinemachineCamera cam => player.cam;
-        protected PlayerUIManager playerUIManager => player.playerUIManager;
+        protected UIManager UIManager => player.uiManager;
         protected InventoryManager playerInventory => player.playerInventory;
 
         protected float defaultSpawningDistance => data.defaultSpawningDistance;

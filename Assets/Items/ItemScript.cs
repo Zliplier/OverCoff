@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Items.Data;
 using Items.Script;
 using Players;
@@ -16,6 +17,14 @@ namespace Items
         public Rigidbody rb => item.rb;
         
         public ItemInteractor itemInteractor => item.itemInteractor;
+
+        public Tween itemAnimation
+        {
+            get => item.itemAnimation;
+            set => item.itemAnimation = value;
+        }
+        
+        public bool isTweening => item.isTweening;
         
         protected virtual void Awake()
         {

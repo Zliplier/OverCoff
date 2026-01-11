@@ -1,5 +1,4 @@
 ﻿using Players;
-using Players.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using Zlipacket.CoreZlipacket.Tools;
@@ -56,13 +55,13 @@ namespace UI.Display
             timer.onTimerUpdate.RemoveListener(UpdateTimerUI);
         }
 
-        protected override FillCircleUI SpawnDisplay(PlayerUIManager playerUI)
+        protected override FillCircleUI SpawnDisplay(UIManager ui)
         {
-            if (playerUI == null)
+            if (ui == null)
                 return null;
             
-            FillCircleUI fillCircleUI = playerUI.SpawnUIElement("Main", "First Person", 
-                Resources.Load<GameObject>(PlayerUIManager.CIRCLE_TIMER_UI_PATH), Vector3.zero, 
+            FillCircleUI fillCircleUI = ui.SpawnUIElement("Main", "First Person", 
+                Resources.Load<GameObject>(UIManager.CIRCLE_TIMER_UI_PATH), Vector3.zero, 
                 "TimerUI").GetComponent<FillCircleUI>();
             
             fillCircleUI.icon.sprite = icon;

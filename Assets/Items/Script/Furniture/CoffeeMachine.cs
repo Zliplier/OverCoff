@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Items.Data;
 using Players;
-using Players.UI;
 using UI;
 using UI.Display;
 using UnityEngine;

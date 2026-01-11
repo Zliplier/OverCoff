@@ -12,31 +12,39 @@ namespace Zlipacket.CoreZlipacket.Scene
         [SerializeField] private Transform sceneCanvas;
         public SO_SceneTransition transition;
         public float fakeLoadingTime = 0.5f;
+
+        private Coroutine co_Loading = null;
+        public bool isLoading => co_Loading != null;
         
         public void LoadScene(string sceneName = "")
         {
-            if (string.IsNullOrEmpty(sceneName))
+            if (isLoading)
             {
-                SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-            }
-            else
-            {
-                StartCoroutine(TransitionToScene(sceneName));
+                Debug.Log("Another Scene is already loading.");
+                return;
             }
             
-            Debug.Log("Scene " + sceneName + " loaded");
+            if (string.IsNullOrEmpty(sceneName))
+            {
+                Debug.LogError($"Scene name cannot be null or empty.");
+                return;
+            }
+            
+            co_Loading = StartCoroutine(TransitionToScene(sceneName));
+            
+            Debug.Log("Scene " + sceneName + " loaded.");
         }
 
         public void LoadSceneAsync(string sceneName)
         {
             SceneManager.LoadSceneAsync(sceneName);
-            Debug.Log("Scene" + sceneName + " loaded async");
+            Debug.Log("Scene" + sceneName + " loaded async.");
         }
 
         public void UnloadSceneAsync(string sceneName)
         {
             SceneManager.UnloadSceneAsync(sceneName);
-            Debug.Log("Scene" + sceneName + " unloaded async");
+            Debug.Log("Scene" + sceneName + " unloaded async.");
         }
         
         private IEnumerator TransitionToScene(string sceneName)
@@ -55,6 +63,7 @@ namespace Zlipacket.CoreZlipacket.Scene
                 yield return null;
             
             yield return sceneTransition.EndTransition();
+            co_Loading = null;
         }
     }
 }

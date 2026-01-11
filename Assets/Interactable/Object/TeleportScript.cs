@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using Players;
-using Players.UI;
+using UI;
 using UI.Display;
 using UnityEditor;
 using UnityEngine;
@@ -39,8 +39,8 @@ namespace Interactable.Object
         private IEnumerator Warping(Player player, Transform targetWaypoint)
         {
             //Debug.Log("Start Warping");
-            PlayerUIManager playerUIManager = player.playerUIManager;
-            Transform canvas = playerUIManager.GetPanel("Scene", "Transition").panelRoot.transform;
+            UIManager uiManager = player.uiManager;
+            Transform canvas = uiManager.GetPanel("Scene", "Transition").panelRoot.transform;
             SceneTransition sceneTransition = transition.InitializeTransition(canvas);
             
             yield return sceneTransition.StartTransition();

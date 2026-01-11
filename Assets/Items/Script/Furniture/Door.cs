@@ -13,7 +13,7 @@ namespace Items.Script.Furniture
         [SerializeField] private Interactor interactor;
 
         [Header("Configs")]
-        public bool oneSidedOpen = false;
+        public bool onlyFrontOpen = false;
         [Range(0, 180)] public float openAngle = 100f;
         [SerializeField] private DoorState doorState = DoorState.Closed;
         
@@ -34,7 +34,7 @@ namespace Items.Script.Furniture
                     OpenFront();
                     break;
                 case DoorState.BackOpen:
-                    door.transform.localRotation = Quaternion.Euler(0f, oneSidedOpen? -openAngle : openAngle, 0f);
+                    door.transform.localRotation = Quaternion.Euler(0f, onlyFrontOpen? -openAngle : openAngle, 0f);
                     OpenBack();
                     break;
             }
@@ -93,7 +93,7 @@ namespace Items.Script.Furniture
             doorState = DoorState.BackOpen;
             
             JointSpring spring = door.spring;
-            spring.targetPosition = oneSidedOpen? -openAngle : openAngle;
+            spring.targetPosition = onlyFrontOpen? -openAngle : openAngle;
             door.spring = spring;
         }
 

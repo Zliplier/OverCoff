@@ -2,7 +2,6 @@
 using DG.Tweening;
 using Items.Data;
 using Players;
-using Players.UI;
 using UnityEngine;
 using Zlipacket.CoreZlipacket.UI;
 
@@ -43,7 +42,7 @@ namespace UI.Display
                 base.HideUI(player);
         }
 
-        protected override CupIngredientUI SpawnDisplay(PlayerUIManager playerUI)
+        protected override CupIngredientUI SpawnDisplay(UIManager ui)
         {
             return null;
         }

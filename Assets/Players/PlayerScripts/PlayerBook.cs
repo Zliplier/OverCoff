@@ -1,5 +1,5 @@
 ﻿using DG.Tweening;
-using Players.UI;
+using UI;
 using UnityEngine;
 
 namespace Players.PlayerScripts
@@ -8,7 +8,7 @@ namespace Players.PlayerScripts
     {
         [SerializeField] private GameObject pageRoot;
         
-        public UISection bookSection => playerUIManager.GetUISection("Book");
+        public UISection bookSection => UIManager.GetUISection("Book");
         
         public bool isBookOpen => bookSection.sectionRoot.activeInHierarchy;
         
