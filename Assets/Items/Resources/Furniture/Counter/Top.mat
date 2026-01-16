@@ -491,18 +491,22 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - _ZWriteMode: 1
+    - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 0
+    - _utsVersionX: 0
+    - _utsVersionY: 11
+    - _utsVersionZ: 0
     m_Colors:
-    - _1st_ShadeColor: {r: 0.6698113, g: 0.38583913, b: 0.37597898, a: 1}
+    - _1st_ShadeColor: {r: 0.5882353, g: 0.41960788, b: 0.23137257, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}
     - _AngelRingMaskColor: {r: 0, g: 1, b: 0, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 0.9063396, g: 0.34269702, b: 0.32078132, a: 1}
+    - _BaseColor: {r: 0.8113208, g: 0.69689393, b: 0.54725885, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColorMaskColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.9063396, g: 0.342697, b: 0.3207813, a: 1}
+    - _Color: {r: 0.8113207, g: 0.69689393, b: 0.54725885, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}

@@ -34,8 +34,8 @@ namespace Zlipacket.CoreZlipacket.Tools
     {
         public override void Awake()
         {
-            base.Awake();
             DontDestroyOnLoad(gameObject);
+            base.Awake();
         }
     }
 }

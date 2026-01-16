@@ -393,7 +393,7 @@ Material:
     - _OpaqueCullMode: 2
     - _OutlineOverridden: 0
     - _OutlineVisible: 1
-    - _Outline_Width: 0
+    - _Outline_Width: 5
     - _PPDLodThreshold: 5
     - _PPDMaxSamples: 15
     - _PPDMinSamples: 5
@@ -491,8 +491,12 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - _ZWriteMode: 1
+    - _isUnityToonshader: 1
     - _simpleUI: 0
     - _utsTechnique: 0
+    - _utsVersionX: 0
+    - _utsVersionY: 11
+    - _utsVersionZ: 0
     m_Colors:
     - _1st_ShadeColor: {r: 0.764151, g: 0.73930305, b: 0.6668299, a: 1}
     - _2nd_ShadeColor: {r: 1, g: 1, b: 1, a: 1}

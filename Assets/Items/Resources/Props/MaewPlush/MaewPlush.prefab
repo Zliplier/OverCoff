@@ -116,6 +116,7 @@ MonoBehaviour:
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 
   rb: {fileID: 176095306516497846}
+  itemInteractor: {fileID: 0}
 --- !u!114 &8679394290980022162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Items.Script.ItemGrab
   item: {fileID: 0}
-  grabPositionOverride: 1
+  grabPositionOverride: 0
   overridePosition: {x: 0, y: -0.5, z: 0}
   grabRotationOverride: 1
   overrideRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
@@ -165,6 +166,9 @@ MonoBehaviour:
   overrideMinScroll: 0
   maxScrollOverride: 0
   overrideMaxScroll: 0
+  allowInventoryStoring: 1
+  disableRaycastOnGrab: 0
+  useGravityAfterDrop: 1
   blockInteractor: 1
   onGrab:
     m_PersistentCalls:

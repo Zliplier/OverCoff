@@ -257,7 +257,7 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: 5c7587c8ffb35864dbdff760c627cd8c, type: 2}
   rb: {fileID: 3554303837973667464}
   cam: {fileID: 570090057269747701}
-  playerUIManager: {fileID: 8358742355374205579}
+  uiManager: {fileID: 8358742355374205579}
   playerBook: {fileID: 1214089732753124089}
   playerInventory: {fileID: 1162197618511367365}
   onHealthChanged:
