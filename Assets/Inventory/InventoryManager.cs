@@ -5,6 +5,7 @@ using Inventory.Data;
 using Items;
 using Items.Data;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Inventory
 {
@@ -16,25 +17,30 @@ namespace Inventory
         
         [HideInInspector] public InventoryData data;
         
-        public InventorySlot[] inventorySlots;
-        [HideInInspector] public InventoryItem pointerItem;
+        public InventorySection[] inventorySections;
+        [HideInInspector] public DisplayItem pointerDisplayItem;
+        
+        public UnityEvent onOpenInventory;
+        public UnityEvent onCloseInventory;
         
         public void OnOpenInventory()
         {
-            
+            onOpenInventory?.Invoke();
         }
         
         public void OnCloseInventory()
         {
-            if (pointerItem == null)
+            if (pointerDisplayItem == null)
                 return;
             
-            if (pointerItem.parentAfterDrag.childCount == 0)
-                pointerItem.EndDrag();
+            if (pointerDisplayItem.parentAfterDrag.childCount == 0)
+                pointerDisplayItem.EndDrag();
             else
-                Destroy(pointerItem.gameObject);
+                Destroy(pointerDisplayItem.gameObject);
             
-            pointerItem = null;
+            pointerDisplayItem = null;
+            
+            onCloseInventory?.Invoke();
         }
 
         private void Start()
@@ -44,34 +50,15 @@ namespace Inventory
 
         public void Initialize()
         {
-            foreach (InventorySlot slot in inventorySlots)
+            foreach (InventorySection section in inventorySections)
             {
-                slot.Initialize(this);
+                section.Initialize(this);
             }
         }
 
-        public void AddItem(ItemData item)
-        {
-            InventorySlot emptySlot = inventorySlots.FirstOrDefault(x => x.isEmpty);
-            if (emptySlot == null)
-                return;
-            
-            emptySlot.AddItem(item);
-        }
-
-        public void AddItem(ItemData item, InventorySlot slot)
-        {
-            if (!slot.isEmpty)
-                return;
-            
-            slot.AddItem(item);
-        }
-
-        public void SyncInventory(InventoryManager manager)
-        {
-            
-            
-            
-        }
+        public InventorySection GetSection(string sectionName) =>
+            inventorySections.FirstOrDefault(s
+                => string.Equals(sectionName, s.sectionName, StringComparison.InvariantCultureIgnoreCase));
+        
     }
 }

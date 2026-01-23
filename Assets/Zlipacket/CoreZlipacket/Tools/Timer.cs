@@ -19,19 +19,6 @@ namespace Zlipacket.CoreZlipacket.Tools
         
         public bool isRunning => co_Timing != null && !isPause;
         public bool isPause = false;
-        
-        public static Timer CreateTimer(GameObject owner, float duration = 1f, string timerName = "Timer")
-        {
-            GameObject timerObject = new GameObject(timerName);
-            Timer timer =  timerObject.AddComponent<Timer>();
-            
-            timerObject.transform.SetParent(owner.transform);
-            timerObject.transform.localPosition = Vector3.zero;
-            
-            timer.SetDuration(duration);
-            
-            return timer;
-        }
 
         public void SetDuration(float duration)
         {

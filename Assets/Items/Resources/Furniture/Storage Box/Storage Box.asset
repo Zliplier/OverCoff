@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
-  m_Name: Soda
+  m_Name: Storage Box
   m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
-  itemPrefab: {fileID: 5453957242008712784, guid: 61fa00b2907ab0249bc24e402a83e252, type: 3}
+  itemPrefab: {fileID: 0}
   itemData:
-    nameId: Soda
+    nameId: StorageBox
     serializedId: 
-    itemTag: 000000000100000005000000
-    cost: 10
+    itemTag: 07000000
+    cost: 0
     stack: 1
-    maxStack: 5
+    maxStack: 1
     ignoreInRecipeCheck: 0
     containItems: []
-    icon: {fileID: 21300000, guid: f3a20dcdf39839d4196a494aa79b47fb, type: 3}
+    icon: {fileID: 0}
     scriptableObject: {fileID: 11400000}
     displayData:
-      displayName: Soda
-      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      displayName: Storage Box
+      textFont: {fileID: 0}
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 

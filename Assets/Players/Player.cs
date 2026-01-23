@@ -19,7 +19,7 @@ namespace Players
     public class Player : MonoBehaviour
     {
         public SO_Player player;
-        public PlayerData playerData => player.playerData; //TODO: Change later when Save/Load.
+        public PlayerData playerData;//TODO: Change later when Save/Load.
         
         public Rigidbody rb;
         public CinemachineCamera cam;
@@ -71,7 +71,7 @@ namespace Players
         #endregion
         
         #region Money
-        public UnityEvent<float> onMoneyChanged;
+        public UnityEvent<int> onMoneyChanged;
         public int money
         {
             get { return playerData.money; }
@@ -85,6 +85,7 @@ namespace Players
 
         private void Awake()
         {
+            playerData = new PlayerData(player.playerData);
             rb = GetComponent<Rigidbody>();
         }
         
