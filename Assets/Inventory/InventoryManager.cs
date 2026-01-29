@@ -30,13 +30,13 @@ namespace Inventory
         
         public void OnCloseInventory()
         {
-            if (pointerDisplayItem == null)
-                return;
+            if (pointerDisplayItem != null)
+                Destroy(pointerDisplayItem.gameObject);
             
-            if (pointerDisplayItem.parentAfterDrag.childCount == 0)
+            /*if (pointerDisplayItem.parentAfterDrag.childCount == 0)
                 pointerDisplayItem.EndDrag();
             else
-                Destroy(pointerDisplayItem.gameObject);
+                Destroy(pointerDisplayItem.gameObject);*/
             
             pointerDisplayItem = null;
             

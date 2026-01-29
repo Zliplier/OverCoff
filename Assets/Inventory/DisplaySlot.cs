@@ -51,7 +51,7 @@ namespace Inventory
             else
             {
                 ClearSlot(false);
-                CreateItemDisplay(slotItem);
+                DisplayItem.CreateItemDisplay(slotItem, this);
             }
         }
 
@@ -63,6 +63,9 @@ namespace Inventory
         private void OnDisable()
         {
             image.color = deSelectedColor;
+            if (isTweening)
+                slotAnimation.Kill();
+            
             transform.localScale = Vector3.one;
         }
 
@@ -75,7 +78,7 @@ namespace Inventory
             else
             {
                 if (isEmpty)
-                    CreateItemDisplay(slotItem);
+                    DisplayItem.CreateItemDisplay(slotItem, this);
                 else
                     SlotDisplayItem.SyncItem();
             }
@@ -198,17 +201,6 @@ namespace Inventory
             manager.pointerDisplayItem = null;
             
             onSlotChange?.Invoke(this);
-        }
-
-        private DisplayItem CreateItemDisplay(InventoryItem item)
-        {
-            DisplayItem newDisplayItem = Instantiate(
-                //Get prefab by loading from Resources.
-                Resources.Load(InventoryManager.INVENTORY_ITEM_PREFAB_PATH), transform).GetComponent<DisplayItem>();
-            newDisplayItem.name = "Item";
-            newDisplayItem.Initialize(ref item, this);
-            
-            return newDisplayItem;
         }
         
         private void SwapItem()

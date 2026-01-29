@@ -1,5 +1,6 @@
 using DG.Tweening;
 using TMPro;
+using UI.Display;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ namespace Players.PlayerScripts
         //For Group Control and Fade In/Out
         public CanvasGroup root;
         
-        public TextMeshProUGUI moneyText;
+        public ValueDisplay moneyDisplay;
         public Slider healthSlider;
         public Slider staminaSlider;
 
@@ -22,7 +23,6 @@ namespace Players.PlayerScripts
             
             player.onHealthFull.AddListener(arg0 => PlayBounceAnimation(healthSlider.transform));
             player.onStaminaFull.AddListener(arg0 => PlayBounceAnimation(staminaSlider.transform));
-            player.onStaminaFull.AddListener(arg0 => PlayBounceAnimation(moneyText.transform));
             
             UpdateHealthBar(player.health, player.maxHealth);
             UpdateStaminaBar(player.stamina, player.maxStamina);
@@ -32,7 +32,7 @@ namespace Players.PlayerScripts
         private void UpdateHealthBar(float health, float maxHealth) => healthSlider.value = health / maxHealth;
         private void UpdateStaminaBar(float stamina, float maxStamina) => staminaSlider.value = stamina / maxStamina;
 
-        private void UpdateMoneyText(int value) => moneyText.SetText(value.ToString("N0"));
+        private void UpdateMoneyText(int value) => moneyDisplay.UpdateValue(value.ToString("N0"));
         
         private void PlayBounceAnimation(Transform target, float duration = 0.3f)
         {

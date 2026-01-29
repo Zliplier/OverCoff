@@ -77,7 +77,7 @@ namespace Players
             get { return playerData.money; }
             set
             {
-                money = Math.Clamp(value, 0, Int32.MaxValue);
+                playerData.money = Math.Clamp(value, 0, 9999);
                 onMoneyChanged?.Invoke(playerData.money);
             }
         }

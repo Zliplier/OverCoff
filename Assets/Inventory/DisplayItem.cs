@@ -2,6 +2,7 @@
 using System.Collections;
 using Items.Data;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -126,6 +127,28 @@ namespace Inventory
             InventoryItem.RemoveStack(amount);
             SyncItem();
             DisplaySlot?.onSlotChange?.Invoke(DisplaySlot);
+        }
+        
+        public static DisplayItem CreateItemDisplay(InventoryItem item, DisplaySlot displaySlot)
+        {
+            DisplayItem newDisplayItem = Instantiate(
+                //Get prefab by loading from Resources.
+                Resources.Load(InventoryManager.INVENTORY_ITEM_PREFAB_PATH), displaySlot.transform).GetComponent<DisplayItem>();
+            newDisplayItem.name = "Item";
+            newDisplayItem.Initialize(ref item, displaySlot);
+            
+            return newDisplayItem;
+        }
+        
+        public static DisplayItem CreateItemDisplay(InventoryItem item, Transform parent)
+        {
+            DisplayItem newDisplayItem = Instantiate(
+                //Get prefab by loading from Resources.
+                Resources.Load(InventoryManager.INVENTORY_ITEM_PREFAB_PATH), parent).GetComponent<DisplayItem>();
+            newDisplayItem.name = "Item";
+            newDisplayItem.Initialize(ref item, null);
+            
+            return newDisplayItem;
         }
 
         /*public static void StackItemToStack(DisplayItem fromStack, DisplayItem toStack)
