@@ -274,7 +274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 149.59186, y: 127.0992}
+  m_AnchoredPosition: {x: 165.5102, y: 127.0992}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4598498285829674601
@@ -736,6 +736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2788666378440536812}
   - component: {fileID: 2843162532313039020}
+  - component: {fileID: 3094812596600493075}
   m_Layer: 0
   m_Name: Money
   m_TagString: Untagged
@@ -776,6 +777,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3094812596600493075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729358519899082743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf7c2b234504f3384413bd7be2049c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.Display.ValueDisplay
+  textDisplay: {fileID: 3476863310590417829}
 --- !u!1 &766394495710370471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,7 +1461,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 3
@@ -2359,8 +2373,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5238217304947727495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3542,7 +3556,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -4552,6 +4566,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Players.Player
   player: {fileID: 11400000, guid: 5c7587c8ffb35864dbdff760c627cd8c, type: 2}
+  playerData:
+    playerID: 
+    playerTransform: {fileID: 0}
+    cameraTransform: {fileID: 0}
+    health: 0
+    maxHealth: 0
+    stamina: 0
+    maxStamina: 0
+    money: 0
+    defaultSpawningDistance: 0
   rb: {fileID: 5251759023388804157}
   cam: {fileID: 3062382733206010587}
   uiManager: {fileID: 3110061553518033986}
@@ -4672,7 +4696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Players.PlayerScripts.PlayerStatusDisplay
   player: {fileID: 0}
   root: {fileID: 7158074922635150034}
-  moneyText: {fileID: 3476863310590417829}
+  moneyDisplay: {fileID: 3094812596600493075}
   healthSlider: {fileID: 8874257144903486262}
   staminaSlider: {fileID: 86660626313237734}
 --- !u!114 &4319980547146288003
