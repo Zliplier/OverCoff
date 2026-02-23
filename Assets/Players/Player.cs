@@ -26,7 +26,6 @@ namespace Players
         public CinemachineInputAxisController camInputAxis => cam.GetComponent<CinemachineInputAxisController>();
         
         public UIManager uiManager;
-        public PlayerBook playerBook;
         public InventoryManager playerInventory;
 
         public SO_InputReader inputReader => player.inputReader;

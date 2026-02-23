@@ -18,7 +18,6 @@ namespace Items.Script.Furniture
         public InventoryManager storageManager;
         public GameObject storageUIPrefab;
         
-        public StorageDisplayWrapper storageDisplayWrapper { get; private set; }
         private Player player;
 
         private Tween storageAnimation = null;
@@ -48,35 +47,34 @@ namespace Items.Script.Furniture
             player.uiInputMap.cancelEvent += Close;
             player.uiInputMap.inventoryEvent += Close;
 
-            storageDisplayWrapper = Instantiate(storageUIPrefab, interactionUI.GetPanel("Storage").panelRoot.transform).GetComponent<StorageDisplayWrapper>();
+            /*storageDisplayWrapper = Instantiate(storageUIPrefab, interactionUI.GetPanel("Storage").panelRoot.transform).GetComponent<StorageDisplayWrapper>();
             storageDisplayWrapper.name = "Storage UI";
             //storageUIWrapper.transform.SetParent(interactionUI.GetPanel("Storage").panelRoot.transform);
             //storageUIWrapper.GetComponent<RectTransform>().rect.Set(0, 0, 0, 0);
             
             player.playerInventory.GetSection("Inventory").AddDisplay(storageDisplayWrapper.playerInventoryDisplayWrapper.inventoryDisplay, storageManager);
-            player.playerInventory.GetSection("Hand").AddDisplay(storageDisplayWrapper.playerInventoryDisplayWrapper.handSlotDisplay, storageManager);
-            storageManager.GetSection("Storage").AddDisplay(storageDisplayWrapper.storageDisplay, storageManager);
+            storageManager.GetSection("Storage").AddDisplay(storageDisplayWrapper.storageDisplay, storageManager);*/
             
-            PlayPopUpAnimation(true).onComplete += () =>
+            /*PlayPopUpAnimation(true).onComplete += () =>
             {
                 player.SetCursorLockState(false);
 
                 player.playerInputMap.SetMapEnable(false);
                 player.uiInputMap.SetMapEnable(true);
                 storageAnimation = null;
-            };
+            };*/
         }
 
         public void Close(bool isHold)
         {
-            player.playerInventory.GetSection("Inventory").RemoveDisplay(storageDisplayWrapper.playerInventoryDisplayWrapper.inventoryDisplay);
+            /*player.playerInventory.GetSection("Inventory").RemoveDisplay(storageDisplayWrapper.playerInventoryDisplayWrapper.inventoryDisplay);
             player.playerInventory.GetSection("Hand").RemoveDisplay(storageDisplayWrapper.playerInventoryDisplayWrapper.handSlotDisplay);
-            storageManager.GetSection("Storage").RemoveDisplay(storageDisplayWrapper.storageDisplay);
+            storageManager.GetSection("Storage").RemoveDisplay(storageDisplayWrapper.storageDisplay);*/
             
             player.uiInputMap.cancelEvent -= Close;
             player.uiInputMap.inventoryEvent -= Close;
             
-            PlayPopUpAnimation(false).onComplete += () =>
+            /*PlayPopUpAnimation(false).onComplete += () =>
             {
                 player.SetCursorLockState(true);
 
@@ -92,10 +90,10 @@ namespace Items.Script.Furniture
                 
                 Destroy(storageDisplayWrapper.gameObject);
                 player = null;
-            };
+            };*/
         }
         
-        private Tween PlayPopUpAnimation(bool isOpen)
+        /*private Tween PlayPopUpAnimation(bool isOpen)
         {
             if (isTweening)
                 storageAnimation.Kill();
@@ -111,6 +109,6 @@ namespace Items.Script.Furniture
             }
             
             return storageAnimation;
-        }
+        }*/
     }
 }

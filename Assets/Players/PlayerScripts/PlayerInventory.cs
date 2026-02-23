@@ -21,7 +21,6 @@ namespace Players.PlayerScripts
             playerInputMap.slot1 += Slot1;
             playerInputMap.slot2 += Slot2;
             playerInputMap.slot3 += Slot3;
-            playerInputMap.inventoryEvent += OpenInventory;
         }
 
         private void OnDisable()
@@ -29,12 +28,6 @@ namespace Players.PlayerScripts
             playerInputMap.slot1 -= Slot1;
             playerInputMap.slot2 -= Slot2;
             playerInputMap.slot3 -= Slot3;
-            playerInputMap.inventoryEvent -= OpenInventory;
-        }
-
-        private void OpenInventory(bool isHolding)
-        {
-            player.playerBook.OpenBook(BookPage.Inventory);
         }
 
         private void Slot1(bool isHolding) => HandSlotHandle(0);
