@@ -9,7 +9,9 @@ namespace Zlipacket.CoreZlipacket.Player.Input.InputMap
     public class UIInputMap : InputMappingContext, InputSystem_Actions.IUIActions
     {
         public Vector2 mousePosition;
-
+        
+        public event UnityAction<bool> clickEvent;
+        
         public event UnityAction<bool> submitEvent;
         public event UnityAction<bool> cancelEvent;
         public event UnityAction<bool> inventoryEvent;
@@ -22,19 +24,25 @@ namespace Zlipacket.CoreZlipacket.Player.Input.InputMap
         public override void OnEnable()
         {
             SetMapEnable(true);
-            
+
+            inputSystem.UI.Point.performed += OnPoint;
             inputSystem.UI.Submit.started += OnSubmit;
             inputSystem.UI.Cancel.started += OnCancel;
             inputSystem.UI.Inventory.started += OnInventory;
+            inputSystem.UI.Click.started += OnClick;
+            inputSystem.UI.Click.canceled += OnClick;
         }
 
         public override void OnDisable()
         {
             SetMapEnable(false);
             
+            inputSystem.UI.Point.performed -= OnPoint;
             inputSystem.UI.Submit.started -= OnSubmit;
             inputSystem.UI.Cancel.started -= OnCancel;
             inputSystem.UI.Inventory.started -= OnInventory;
+            inputSystem.UI.Click.started -= OnClick;
+            inputSystem.UI.Click.canceled -= OnClick;
         }
         
         public override void SetMapEnable(bool enable)
@@ -69,7 +77,10 @@ namespace Zlipacket.CoreZlipacket.Player.Input.InputMap
 
         public void OnClick(InputAction.CallbackContext context)
         {
-            
+            if (context.phase == InputActionPhase.Started)
+                clickEvent?.Invoke(true);
+            if (context.phase == InputActionPhase.Canceled)
+                clickEvent?.Invoke(false);
         }
 
         public void OnRightClick(InputAction.CallbackContext context)

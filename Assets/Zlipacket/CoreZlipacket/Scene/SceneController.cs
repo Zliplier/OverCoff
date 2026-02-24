@@ -55,12 +55,17 @@ namespace Zlipacket.CoreZlipacket.Scene
             
             //Loading Screen
             SceneManager.LoadScene(loadingSceneName);
+            yield return null;
+            sceneTransition.gameObject.SetActive(false);
             yield return new WaitForSeconds(fakeLoadingTime);
             
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
             while (!asyncOperation.isDone)
                 yield return null;
+            
+            sceneTransition.gameObject.SetActive(true);
+            yield return null;
             
             yield return sceneTransition.EndTransition();
             co_Loading = null;

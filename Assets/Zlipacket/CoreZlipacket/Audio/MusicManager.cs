@@ -16,6 +16,7 @@ namespace Zlipacket.CoreZlipacket.Audio
             
             music.clip = clip;
             music.volume = volume;
+            music.loop = true;
             music.Play();
         }
         
@@ -44,11 +45,12 @@ namespace Zlipacket.CoreZlipacket.Audio
 
         public void StopAllMusic()
         {
-            foreach (var music in musicPlaylist.Values)
-            {
-                music.Stop();
-            }
             musicPlaylist.Clear();
+
+            foreach (var music in ZlipUtilities.AllChilds(Instance.gameObject))
+            {
+                Destroy(music.gameObject);
+            }
         }
 
         public bool CheckIsSongPlaying(string callbackName)

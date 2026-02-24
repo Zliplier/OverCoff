@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Zlipacket.CoreZlipacket.Player.Input;
 
 namespace Zlipacket.CoreZlipacket.Tools
@@ -76,6 +77,31 @@ namespace Zlipacket.CoreZlipacket.Tools
 
             // Ensure the result is normalized (should be by quaternion math, but good practice)
             return result.normalized;
+        }
+        
+        public static List<GameObject> AllChilds(GameObject root)
+        {
+            List<GameObject> result = new List<GameObject>();
+            if (root.transform.childCount > 0)
+            {
+                foreach (Transform VARIABLE in root.transform)
+                {
+                    Searcher(result,VARIABLE.gameObject);
+                }
+            }
+            return result;
+        }
+
+        public static void Searcher(List<GameObject> list,GameObject root)
+        {
+            list.Add(root);
+            if (root.transform.childCount > 0)
+            {
+                foreach (Transform VARIABLE in root.transform)
+                {
+                    Searcher(list,VARIABLE.gameObject);
+                }
+            }
         }
     }
 }
