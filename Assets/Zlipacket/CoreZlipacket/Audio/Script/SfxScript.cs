@@ -9,7 +9,8 @@ namespace Zlipacket.CoreZlipacket.Audio.Script
 
         public void PlayClip()
         {
-            SoundFXManager.Instance.PlaySoundFX(audioClip, transform, volume);
+            if (audioClip != null)
+                SoundFXManager.Instance.PlaySoundFX(audioClip, SoundFXManager.Instance.transform, volume);
         }
     }
 }

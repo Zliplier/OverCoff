@@ -4,6 +4,7 @@ using Items;
 using Items.Script;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using Zlipacket.CoreZlipacket.Player.Input;
 using Zlipacket.CoreZlipacket.Tools;
 using Random = System.Random;
@@ -48,6 +49,8 @@ namespace Players.PlayerScripts
             playerInputMap.rightMouseDownEvent += Grab;
             playerInputMap.rightMouseUpEvent += Drop;
             playerInputMap.mouseScrollEvent += MouseScroll;
+            playerInputMap.leftMouseDownEvent += StartHoldingThrow;
+            playerInputMap.leftMouseUpEvent += Throw;
         }
 
         private void OnDisable()
@@ -55,6 +58,8 @@ namespace Players.PlayerScripts
             playerInputMap.rightMouseDownEvent -= Grab;
             playerInputMap.rightMouseUpEvent -= Drop;
             playerInputMap.mouseScrollEvent -= MouseScroll;
+            playerInputMap.leftMouseDownEvent -= StartHoldingThrow;
+            playerInputMap.leftMouseUpEvent -= Throw;
 
             itemGrab?.Reset();
         }
@@ -257,6 +262,78 @@ namespace Players.PlayerScripts
                 else
                     holdArea.transform.position = nearPosition;
             }
+        }
+
+        [Header("Throw")]
+        public Slider throwSlider;
+        
+        public Coroutine co_Throwing = null;
+        public bool isHoldingThrow => co_Throwing != null;
+        
+        [Range(0, 1)] private float throwPower = 0f; //Percentage for throwForce.
+        public float throwForce = 10f;
+        public float timeToCharge = 3f;
+        
+        public void StartHoldingThrow()
+        {
+            if (!isGrabbing)
+                return;
+            
+            if (isHoldingThrow)
+            {
+                StopCoroutine(co_Throwing);
+                co_Throwing = null;
+            }
+
+            co_Throwing = StartCoroutine(HoldingThrow());
+            
+            //Debug.Log("Starting holding throw");
+        }
+        
+        private IEnumerator HoldingThrow()
+        {
+            throwSlider.gameObject.SetActive(true);
+            playerInteractor.allowChangeTarget = false;
+            
+            while (true)
+            {
+                if (throwPower < 1)
+                    throwPower += Time.deltaTime / timeToCharge;
+                else
+                {
+                    throwPower = 1f;
+                }
+                throwSlider.value = throwPower;
+
+                //Debug.Log("Holding throw, Throw Power: " + throwPower);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        
+        private void Throw()
+        {
+            if (!isHoldingThrow)
+                return;
+            
+            throwSlider.gameObject.SetActive(false);
+            throwSlider.value = 0f;
+            playerInteractor.allowChangeTarget = true;
+            
+            StopCoroutine(co_Throwing);
+            co_Throwing = null;
+            
+            //Debug.Log("Throwing throw");
+            //Apply Force
+            if (rbGrab == null)
+                return;
+
+            Rigidbody rbThrow = rbGrab;
+            
+            EndGrab();
+            
+            rbThrow.AddForce(cam.transform.forward * throwForce * throwPower, ForceMode.Impulse);
+
+            throwPower = 0f;
         }
     }
 }

@@ -2,22 +2,20 @@
 using DG.Tweening;
 using Inventory;
 using Items.Data;
-using Items.Script.Furniture;
 using Players;
 using UI;
 using UnityEngine;
 
 namespace Interactable.Shop
 {
-    [RequireComponent(typeof(Interactor), typeof(InventoryManager))]
+    [RequireComponent(typeof(Interactor))]
     public class ShopManager : MonoBehaviour
     {
-        public InventoryManager shopInventory;
         private Interactor interactor;
         
         public GameObject shopUIPrefab;
         
-        public PlayerInventoryDisplayWrapper playerInventoryDisplayWrapper { get; private set; }
+        public ShopPanelManager shopPanelManager { get; private set; }
         private Player player;
         
         private Tween storageAnimation = null;
@@ -45,16 +43,11 @@ namespace Interactable.Shop
             interactionUI.sectionRoot.SetActive(true);
             player.uiManager.GetUISection("Main").sectionRoot.SetActive(false);
             
-            shopInventory.root = interactionUI.sectionRoot.transform;
-            
             player.uiInputMap.cancelEvent += Close;
             player.uiInputMap.inventoryEvent += Close;
             
-            playerInventoryDisplayWrapper = Instantiate(shopUIPrefab, interactionUI.GetPanel("Shop").panelRoot.transform).GetComponent<PlayerInventoryDisplayWrapper>();
-            playerInventoryDisplayWrapper.name = "Shop UI";
-            
-            player.playerInventory.GetSection("Inventory").AddDisplay(playerInventoryDisplayWrapper.inventoryDisplay, shopInventory);
-            player.playerInventory.GetSection("Hand").AddDisplay(playerInventoryDisplayWrapper.handSlotDisplay, shopInventory);
+            shopPanelManager = Instantiate(shopUIPrefab, interactionUI.GetPanel("Shop").panelRoot.transform).GetComponent<ShopPanelManager>();
+            shopPanelManager.name = "Shop UI";
             
             PlayPopUpAnimation(true).onComplete += () =>
             {
@@ -65,17 +58,13 @@ namespace Interactable.Shop
                 storageAnimation = null;
             };
             
-            ShopPanelManager panelManager = playerInventoryDisplayWrapper.GetComponent<ShopPanelManager>();
-            panelManager.Initialize(this, player);
-            panelManager.AddShopPanel(soldItems);
+            shopPanelManager.Initialize(this, player);
+            shopPanelManager.AddShopPanel(soldItems);
         }
 
         public void Close(bool isHold)
         {
             player.uiManager.GetUISection("Main").sectionRoot.SetActive(true);
-            
-            player.playerInventory.GetSection("Inventory").RemoveDisplay(playerInventoryDisplayWrapper.inventoryDisplay);
-            player.playerInventory.GetSection("Hand").RemoveDisplay(playerInventoryDisplayWrapper.handSlotDisplay);
             
             player.uiInputMap.cancelEvent -= Close;
             player.uiInputMap.inventoryEvent -= Close;
@@ -94,7 +83,7 @@ namespace Interactable.Shop
                 if (isTweening)
                     storageAnimation.Kill();
                 
-                Destroy(playerInventoryDisplayWrapper.gameObject);
+                Destroy(shopPanelManager.gameObject);
                 player = null;
             };
         }
@@ -106,12 +95,12 @@ namespace Interactable.Shop
 
             if (isOpen)
             {
-                playerInventoryDisplayWrapper.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-                storageAnimation = playerInventoryDisplayWrapper.transform.DOScale(1f, 0.2f);
+                shopPanelManager.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                storageAnimation = shopPanelManager.transform.DOScale(1f, 0.2f);
             }
             else
             {
-                storageAnimation = playerInventoryDisplayWrapper.transform.DOScale(0.8f, 0.1f);
+                storageAnimation = shopPanelManager.transform.DOScale(0.8f, 0.1f);
             }
             
             return storageAnimation;

@@ -6,46 +6,55 @@ namespace Players.PlayerScripts
 {
     public class PlayerBook : PlayerScript
     {
+        public const string BOOK_SECTION = "Book";
+        
         [SerializeField] private GameObject pageRoot;
         
-        public UISection bookSection => UIManager.GetUISection("Book");
+        public UISection bookSection => UIManager.GetUISection(BOOK_SECTION);
         
         public bool isBookOpen => bookSection.sectionRoot.activeInHierarchy;
         
-        public BookPage currentPage;
+        public BookType currentBook;
         
         private Tween bookAnimation = null;
         public bool isTweening => bookAnimation != null;
         
+        public RecipeBook recipeBook;
+        public TutorialBook tutorialBook;
+        
         private void OnEnable()
         {
+            playerInputMap.recipeEvent += OpenRecipe;
+            playerInputMap.tutorialEvent += OpenTutorial;
+            
             uiInputMap.cancelEvent += CloseBook;
-            uiInputMap.inventoryEvent += CloseBook;
         }
 
         private void OnDisable()
         {
+            playerInputMap.recipeEvent -= OpenRecipe;
+            playerInputMap.tutorialEvent -= OpenTutorial;
+            
             uiInputMap.cancelEvent -= CloseBook;
-            uiInputMap.inventoryEvent -= CloseBook;
         }
         
-        public void OpenBook(BookPage page)
+        public void OpenRecipe(bool _) => OpenBook(BookType.RecipeBook);
+        public void OpenTutorial(bool _) => OpenBook(BookType.TutorialBook);
+        
+        public void OpenBook(BookType page)
         {
             player.SetCursorLockState(false);
             
             bookSection.sectionRoot.SetActive(true);
+            currentBook = page;
             
-            //TODO: Make more pages.
             switch (page)
             {
-                case BookPage.Inventory:
-                    OpenInventory();
-                    break;
-                case BookPage.Quest:
+                case BookType.RecipeBook:
                     
                     break;
-                case BookPage.Recipe:
-                    
+                case BookType.TutorialBook:
+                    tutorialBook.Open();
                     break;
             }
 
@@ -61,16 +70,13 @@ namespace Players.PlayerScripts
             if (!isBookOpen)
                 return;
             
-            switch (currentPage)
+            switch (currentBook)
             {
-                case BookPage.Inventory:
-                    CloseInventory();
-                    break;
-                case BookPage.Quest:
+                case BookType.RecipeBook:
                     
                     break;
-                case BookPage.Recipe:
-                    
+                case BookType.TutorialBook:
+                    tutorialBook.Close();
                     break;
             }
 
@@ -102,19 +108,12 @@ namespace Players.PlayerScripts
             
             return bookAnimation;
         }
-        
-        private void OpenInventory()
-        {
-            playerInventory.OnOpenInventory();
-        }
-
-        private void CloseInventory() => playerInventory.OnCloseInventory();
     }
 
-    public enum BookPage
+    public enum BookType
     {
-        Inventory, 
-        Quest, 
-        Recipe
+        None, 
+        RecipeBook, 
+        TutorialBook
     }
 }

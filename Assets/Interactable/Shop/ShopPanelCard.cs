@@ -1,18 +1,19 @@
 ﻿using System;
 using DG.Tweening;
 using Inventory;
+using Items;
 using Items.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
 
 namespace Interactable.Shop
 {
     public class ShopPanelCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         private ShopPanelManager shopPanelManager;
-        public InventoryManager shopInventory => shopPanelManager.shopInventory;
         public Image panelBg;
         public SO_Item soldItem;
         public Image itemIcon;
@@ -66,28 +67,11 @@ namespace Interactable.Shop
             if (shopPanelManager.player.money < soldItem.cost)
                 return;
             
-            //If the pointer is not empty.
-            if (shopInventory.pointerDisplayItem != null)
-            {
-                //Check if the sold Item is the same as the pointer item.
-                if (string.Equals(shopInventory.pointerDisplayItem.InventoryItem.data.nameId, soldItem.nameID,
-                        StringComparison.InvariantCultureIgnoreCase))
-                {
-                    //Add 1 Item to the stack
-                    shopInventory.pointerDisplayItem.AddStack(1);
-                }
-                
-            }
-            //Its empty.
-            else
-            {
-                //Add 1 Item to hand.
-                InventoryItem item = new InventoryItem(soldItem, 1);
-                item.Initialize();
-                
-                shopPanelManager.shopInventory.pointerDisplayItem = DisplayItem.CreateItemDisplay(item, shopInventory.root);
-                shopPanelManager.shopInventory.pointerDisplayItem.StartDrag();
-            }
+            //Buying and Spawning Item
+            Item newItem = Instantiate(soldItem.itemPrefab, ShopTrapdoor.Instance.spawnPoint.position, Quaternion.identity).GetComponent<Item>();
+            newItem.transform.SetParent(Environment.Instance.root);
+            newItem.Initialize(soldItem.itemData);
+            newItem.itemData.stack = 1;
             
             shopPanelManager.player.money -= soldItem.cost;
         }

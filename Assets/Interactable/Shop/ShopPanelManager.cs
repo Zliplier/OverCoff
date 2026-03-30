@@ -14,7 +14,6 @@ namespace Interactable.Shop
         
         public Transform panelRoot;
         private ShopManager shopManager;
-        public InventoryManager shopInventory => shopManager.shopInventory;
 
         public ValueDisplay moneyDisplay;
         public List<ShopPanelCard> panelCards;

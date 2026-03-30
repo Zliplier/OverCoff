@@ -11,12 +11,13 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Zlipacket.CoreZlipacket.Player.Input;
 using Zlipacket.CoreZlipacket.Player.Input.InputMap;
+using Zlipacket.CoreZlipacket.Tools;
 using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
 
 namespace Players
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-    public class Player : MonoBehaviour
+    public class Player : Singleton<Player>
     {
         public SO_Player player;
         public PlayerData playerData;//TODO: Change later when Save/Load.
@@ -82,8 +83,10 @@ namespace Players
         }
         #endregion
 
-        private void Awake()
+        public override void Awake()
         {
+            base.Awake();
+            
             playerData = new PlayerData(player.playerData);
             rb = GetComponent<Rigidbody>();
         }

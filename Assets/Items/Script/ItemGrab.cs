@@ -8,7 +8,7 @@ using Zlipacket.CoreZlipacket.Tools;
 
 namespace Items.Script
 {
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody), typeof(ItemInteractor))]
     public class ItemGrab : ItemScript
     {
         public GrabInteractor holder { get; private set; } = null;

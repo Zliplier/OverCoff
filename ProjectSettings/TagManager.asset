@@ -15,7 +15,7 @@ TagManager:
   - 
   - Ground
   - Interactable
-  - 
+  - Player
   - 
   - 1 - Collider
   - 1 - NoCollide

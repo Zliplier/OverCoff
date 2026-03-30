@@ -10,6 +10,8 @@ namespace Zlipacket.CoreZlipacket.Audio
 
         private Dictionary<string, AudioSource> musicPlaylist = new();
 
+        public bool CheckMusicAlreadyPlayed(string musicName) => musicPlaylist.ContainsKey(musicName);
+        
         public void PlayMusic(AudioClip clip, float volume = 1f)
         {
             AudioSource music = Instantiate(musicObject, Instance.transform);
@@ -20,9 +22,15 @@ namespace Zlipacket.CoreZlipacket.Audio
             music.Play();
         }
         
-        public void PlayMusicWithCallback(AudioClip clip, string callbackName, Transform spawnTransform, float volume = 1f)
+        public void PlayMusicWithCallback(AudioClip clip, string callbackName, float volume = 1f)
         {
-            AudioSource music = Instantiate(musicObject, Instance.transform, spawnTransform);
+            if (CheckMusicAlreadyPlayed(callbackName))
+            {
+                Debug.Log($"Music \"{callbackName}\" already played");
+                return;
+            }
+            
+            AudioSource music = Instantiate(musicObject, Instance.transform);
             
             music.clip = clip;
             music.volume = volume;
@@ -49,7 +57,8 @@ namespace Zlipacket.CoreZlipacket.Audio
 
             foreach (var music in ZlipUtilities.AllChilds(Instance.gameObject))
             {
-                Destroy(music.gameObject);
+                if (music != null)
+                    Destroy(music.gameObject);
             }
         }
 

@@ -10,7 +10,7 @@ namespace Zlipacket.CoreZlipacket.Tools
     public class Timer : MonoBehaviour
     {
         private Coroutine co_Timing = null;
-        public float duration { get; private set; } = 0f;
+        public float duration = 0f;
         public float elapsedTime { get; private set; } = 0f;
 
         private List<TimeEvent> events = new();

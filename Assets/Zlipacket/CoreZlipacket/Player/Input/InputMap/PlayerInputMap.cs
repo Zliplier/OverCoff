@@ -30,6 +30,8 @@ namespace Zlipacket.CoreZlipacket.Player.Input.InputMap
         public event UnityAction<bool> slot3;
         
         public event UnityAction<bool> inventoryEvent;
+        public event UnityAction<bool> recipeEvent;
+        public event UnityAction<bool> tutorialEvent;
         public event UnityAction<bool> escapeEvent;
         
         public PlayerInputMap(InputSystem_Actions inputSystem) : base(inputSystem)
@@ -62,6 +64,8 @@ namespace Zlipacket.CoreZlipacket.Player.Input.InputMap
             inputSystem.Player.Slot3.started += OnSlot3;
             
             inputSystem.Player.Inventory.started += OnInventory;
+            inputSystem.Player.Recipe.started += OnRecipe;
+            inputSystem.Player.Tutorial.started += OnTutorial;
         }
 
         public override void OnDisable()
@@ -85,6 +89,8 @@ namespace Zlipacket.CoreZlipacket.Player.Input.InputMap
             inputSystem.Player.Slot3.started -= OnSlot3;
             
             inputSystem.Player.Inventory.started -= OnInventory;
+            inputSystem.Player.Recipe.started -= OnRecipe;
+            inputSystem.Player.Tutorial.started -= OnTutorial;
         }
         
         public override void SetMapEnable(bool enable)
@@ -203,6 +209,18 @@ namespace Zlipacket.CoreZlipacket.Player.Input.InputMap
         {
             if (context.phase == InputActionPhase.Started)
                 inventoryEvent?.Invoke(context.ReadValueAsButton());
+        }
+
+        public void OnRecipe(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+                recipeEvent?.Invoke(context.ReadValueAsButton());
+        }
+
+        public void OnTutorial(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Started)
+                tutorialEvent?.Invoke(context.ReadValueAsButton());
         }
     }
 }

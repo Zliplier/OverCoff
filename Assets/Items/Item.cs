@@ -20,6 +20,10 @@ namespace Items
         public Tween itemAnimation = null;
         public bool isTweening => itemAnimation != null;
 
+        private Coroutine co_Respawn;
+        public bool isRespawning => co_Respawn != null;
+        public float respawnTime = 5f;
+
         private void Awake()
         {
             if (string.IsNullOrWhiteSpace(itemData.nameId))
@@ -104,6 +108,28 @@ namespace Items
             if (isTweening)
                 itemAnimation.Kill();
             PlayDestroyAnimation(timeToDestroy).onComplete += () => Destroy(gameObject);
+        }
+
+        public void StartRespawn()
+        {
+            if (isRespawning)
+                return;
+            
+            co_Respawn = StartCoroutine(Respawning());
+        }
+
+        public void CancelRespawn()
+        {
+            if (isRespawning)
+                StopCoroutine(co_Respawn);
+        }
+
+        public IEnumerator Respawning()
+        {
+            yield return new WaitForSeconds(respawnTime);
+
+            transform.position = ShopTrapdoor.Instance.spawnPoint.position;
+            co_Respawn = null;
         }
     }
 }

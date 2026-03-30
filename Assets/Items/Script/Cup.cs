@@ -11,12 +11,15 @@ using UI;
 using UI.Display;
 using UnityEngine;
 using UnityEngine.Events;
+using Zlipacket.CoreZlipacket.Audio;
 using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
 
 namespace Items.Script
 {
     public class Cup : ItemScript
     {
+        public const string MIX_SOUND_ID = "1_Click";
+        
         private RecipeManager recipeManager => RecipeManager.Instance;
         private ItemManager itemManager => ItemManager.Instance;
         public List<SO_Item> containIngredients => data.containItems;
@@ -30,6 +33,8 @@ namespace Items.Script
 
         private bool allowCombine = false;
         private void ResetAllowCombine() => allowCombine = true;
+        
+        private AudioClip mixSound => Resources.Load<AudioClip>(MIX_SOUND_ID);
 
         private void Start()
         {
@@ -68,6 +73,8 @@ namespace Items.Script
             Debug.Log("Adding Ingredient: " + addedItem.nameID + " From Cup: " + name);
             containIngredients.Add(addedItem);
             OnCombineIngredients(addedItem);
+            
+            SoundFXManager.Instance.PlaySoundFXPosition(mixSound, transform.position);
         }
 
         private void OnCombineIngredients(SO_Item addedItem)

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6516386832795094127}
   - component: {fileID: 176095306516497846}
   - component: {fileID: 2530912702103130121}
-  - component: {fileID: 8679394290980022162}
   - component: {fileID: 1510745870523171858}
+  - component: {fileID: 6212887815407461852}
   m_Layer: 8
   m_Name: MaewPlush
   m_TagString: Item
@@ -117,31 +117,7 @@ MonoBehaviour:
     description: 
   rb: {fileID: 176095306516497846}
   itemInteractor: {fileID: 0}
---- !u!114 &8679394290980022162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494437149843102493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a4fd976388d4895ac0bedebf2e3e3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Items.Interactor
-  showInteractPrompt: 0
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  onHover:
-    m_PersistentCalls:
-      m_Calls: []
-  onUnHover:
-    m_PersistentCalls:
-      m_Calls: []
-  onHovering:
-    m_PersistentCalls:
-      m_Calls: []
+  respawnTime: 5
 --- !u!114 &1510745870523171858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +150,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onDrop:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6212887815407461852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494437149843102493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0160b138ebc840828acdb86d666c927e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Items.Script.ItemInteractor
+  showInteractPrompt: 0
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  onHover:
+    m_PersistentCalls:
+      m_Calls: []
+  onUnHover:
+    m_PersistentCalls:
+      m_Calls: []
+  onHovering:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &3876558426153405224
