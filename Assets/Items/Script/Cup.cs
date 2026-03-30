@@ -128,8 +128,8 @@ namespace Items.Script
                 baseCupName = "CoffeeCup";
             else if (containIngredients.Any(x => string.Equals(x.nameID, "Milk", StringComparison.InvariantCultureIgnoreCase)))
                 baseCupName = "MilkCup";
-            else if (containIngredients.Any(x => string.Equals(x.nameID, "Soda", StringComparison.InvariantCultureIgnoreCase)))
-                baseCupName = "SodaCup";
+            /*else if (containIngredients.Any(x => string.Equals(x.nameID, "Soda", StringComparison.InvariantCultureIgnoreCase)))
+                baseCupName = "SodaCup";*/
             
             SO_Item baseCup = itemManager.GetItemData(baseCupName, ItemManager.BASE_CUPS_LIST_ID);
             if (baseCup == null)

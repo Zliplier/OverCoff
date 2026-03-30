@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0.6916303, b: 0.23113209, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b9d02c2dc822cf4cb74189c09ae93b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab0754cab2d16dd4ebf02b4b6bea1900, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2924217221261429942}
-  - component: {fileID: 1803824317627732544}
+  - component: {fileID: 3829212390738935120}
   m_Layer: 8
   m_Name: Timer
   m_TagString: Untagged
@@ -182,7 +182,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3568924095176408954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1803824317627732544
+--- !u!114 &3829212390738935120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,15 +191,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3705527465910788129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebf0bfc26bbf40e2a015542c062a3410, type: 3}
+  m_Script: {fileID: 11500000, guid: 7306a02becd640fe9816af46777f4db1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 10
+  m_EditorClassIdentifier: Assembly-CSharp::Characters.Customer.ObjectTimer
+  duration: 0
   timerBar: {fileID: 671599843608539902}
   onTimerStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8833850798297057583}
+      - m_Target: {fileID: 8764567285485177135}
         m_TargetAssemblyTypeName: UI.WorldSpaceUI.CanvasWorldSpace, Assembly-CSharp
         m_MethodName: Show
         m_Mode: 1
@@ -214,7 +214,7 @@ MonoBehaviour:
   onTimerFinished:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8833850798297057583}
+      - m_Target: {fileID: 8764567285485177135}
         m_TargetAssemblyTypeName: UI.WorldSpaceUI.CanvasWorldSpace, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
@@ -241,7 +241,7 @@ MonoBehaviour:
   onTimerPaused:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8833850798297057583}
+      - m_Target: {fileID: 8764567285485177135}
         m_TargetAssemblyTypeName: UI.WorldSpaceUI.CanvasWorldSpace, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3877612555836231442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0a16daaddbc08b43bd396aed55908f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c56420df7403c640bc4f69f5f227c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1033396443342838864}
@@ -337,7 +337,7 @@ MonoBehaviour:
   spawnpoint: {x: 0, y: 0, z: 0}
   unsitPoint: {x: 0, y: 0, z: 0}
   orderDelivered: 0
-  customerOrdering: {fileID: 1908435416006649957}
+  customerOrdering: {fileID: 0}
 --- !u!114 &1908435416006649957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,17 +347,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3877612555836231442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80ad4e3b1c664e098a7f8dd8734f7345, type: 3}
+  m_Script: {fileID: 11500000, guid: 169af2ad0353e664e9c6683478b504e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputItems: {fileID: 11400000, guid: a425d6f8763fb9b49ab6ea8d7ce64c19, type: 2}
-  containedItems: []
   orderList:
-  - {fileID: 11400000, guid: f2f0aad49875b7d4e8c55bd940bffa1c, type: 2}
-  - {fileID: 11400000, guid: f2f0aad49875b7d4e8c55bd940bffa1c, type: 2}
-  - {fileID: 11400000, guid: 1c3e8154832abfc47b0adddd186ef34e, type: 2}
+  - {fileID: 11400000, guid: 281d01b5be3404440821a05f6cf164b9, type: 2}
+  - {fileID: 11400000, guid: da9e7d1a4c2e1d349b34e1a041e3efa3, type: 2}
+  - {fileID: 11400000, guid: bda0620b4343a6a4a951d0b0c5e813dc, type: 2}
   order: {fileID: 0}
-  timer: {fileID: 1803824317627732544}
+  timer: {fileID: 3829212390738935120}
   iconDisplay: {fileID: 6062863227187905304}
   orderTime: 120
   orderSuccessFX: {fileID: 8300000, guid: f1c1918d1e09311408258cfefb52daba, type: 3}
@@ -373,10 +371,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -393,10 +391,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3877612555836231442}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -425,7 +423,7 @@ GameObject:
   - component: {fileID: 5864252792553510932}
   - component: {fileID: 3811650208471438160}
   - component: {fileID: 3048488576287882064}
-  - component: {fileID: 8833850798297057583}
+  - component: {fileID: 8764567285485177135}
   m_Layer: 8
   m_Name: UI
   m_TagString: Untagged
@@ -517,7 +515,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8833850798297057583
+--- !u!114 &8764567285485177135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -526,9 +524,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7364013333646061776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6550eaf4ce3446d78944c659cc53ede3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ce786b0e7b564041a075005c35f9dd2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.WorldSpaceUI.CanvasWorldSpace
   icon: {fileID: 6062863227187905304}
 --- !u!1001 &131471113619683850
 PrefabInstance:

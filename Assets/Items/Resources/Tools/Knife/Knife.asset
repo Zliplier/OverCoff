@@ -17,7 +17,7 @@ MonoBehaviour:
     nameId: Knife
     serializedId: 
     itemTag: 0000000002000000
-    cost: 50
+    cost: 25
     stack: 1
     maxStack: 1
     ignoreInRecipeCheck: 0

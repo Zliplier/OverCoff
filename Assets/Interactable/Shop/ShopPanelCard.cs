@@ -5,6 +5,7 @@ using Items;
 using Items.Data;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
@@ -23,6 +24,9 @@ namespace Interactable.Shop
         [Header("Configs")]
         public Color deSelectedColor;
         public Color selectedColor;
+        
+        [Header("Events")]
+        public UnityEvent onClick;
         
         private Tween panelAnimation = null;
         public bool isTweening => panelAnimation != null;
@@ -64,6 +68,8 @@ namespace Interactable.Shop
         
         private void Buy()
         {
+            onClick?.Invoke();
+            
             if (shopPanelManager.player.money < soldItem.cost)
                 return;
             

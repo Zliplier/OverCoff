@@ -17,7 +17,7 @@ MonoBehaviour:
     nameId: Sugar
     serializedId: 
     itemTag: 000000000100000005000000
-    cost: 6
+    cost: 7
     stack: 1
     maxStack: 5
     ignoreInRecipeCheck: 0

@@ -29,6 +29,8 @@ namespace Players
         public UIManager uiManager;
         public InventoryManager playerInventory;
 
+        public GameObject interactPrompt;
+
         public SO_InputReader inputReader => player.inputReader;
         public PlayerInputMap playerInputMap => inputReader.playerInputMap;
         public UIInputMap uiInputMap => inputReader.uiInputMap;

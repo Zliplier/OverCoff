@@ -15,17 +15,17 @@ namespace Items.Script
         
         [Header("Config")]
         public bool grabPositionOverride;
-        [DrawIf("grabPositionOverride")] public Vector3 overridePosition;
+        /*[DrawIf("grabPositionOverride")]*/ public Vector3 overridePosition;
         public bool grabRotationOverride;
-        [DrawIf("grabRotationOverride")] public Quaternion overrideRotation;
+        /*[DrawIf("grabRotationOverride")]*/ public Quaternion overrideRotation;
         public bool grabForceOverride;
-        [DrawIf("grabForceOverride")] public float overrideGrabForce;
+        /*[DrawIf("grabForceOverride")]*/ public float overrideGrabForce;
         
         public bool scrollDisable;
         public bool minScrollOverride;
-        [DrawIf("minScrollOverride")] public float overrideMinScroll;
+        /*[DrawIf("minScrollOverride")]*/ public float overrideMinScroll;
         public bool maxScrollOverride;
-        [DrawIf("maxScrollOverride")] public float overrideMaxScroll;
+        /*[DrawIf("maxScrollOverride")]*/ public float overrideMaxScroll;
 
         public bool allowInventoryStoring = true;
         public bool disableRaycastOnGrab = false;

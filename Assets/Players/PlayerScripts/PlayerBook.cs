@@ -51,7 +51,7 @@ namespace Players.PlayerScripts
             switch (page)
             {
                 case BookType.RecipeBook:
-                    
+                    recipeBook.Open();
                     break;
                 case BookType.TutorialBook:
                     tutorialBook.Open();
@@ -70,15 +70,7 @@ namespace Players.PlayerScripts
             if (!isBookOpen)
                 return;
             
-            switch (currentBook)
-            {
-                case BookType.RecipeBook:
-                    
-                    break;
-                case BookType.TutorialBook:
-                    tutorialBook.Close();
-                    break;
-            }
+            
 
             PlayPopUpAnimation(false).onComplete += () =>
             {
@@ -87,6 +79,16 @@ namespace Players.PlayerScripts
                 playerInputMap.SetMapEnable(true);
                 uiInputMap.SetMapEnable(false);
 
+                switch (currentBook)
+                {
+                    case BookType.RecipeBook:
+                        recipeBook.Close();
+                        break;
+                    case BookType.TutorialBook:
+                        tutorialBook.Close();
+                        break;
+                }
+                
                 bookSection.sectionRoot.SetActive(false);
             };
         }

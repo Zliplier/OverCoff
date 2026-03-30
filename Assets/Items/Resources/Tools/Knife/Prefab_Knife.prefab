@@ -118,6 +118,7 @@ MonoBehaviour:
     description: 
   rb: {fileID: 9100080397084235657}
   itemInteractor: {fileID: 0}
+  respawnTime: 5
 --- !u!114 &251341242301428158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +143,9 @@ MonoBehaviour:
   overrideMinScroll: 0
   maxScrollOverride: 0
   overrideMaxScroll: 0
+  allowInventoryStoring: 1
+  disableRaycastOnGrab: 0
+  useGravityAfterDrop: 1
   blockInteractor: 0
   onGrab:
     m_PersistentCalls:
@@ -190,6 +194,7 @@ MonoBehaviour:
   onCut:
     m_PersistentCalls:
       m_Calls: []
+  cutSound: {fileID: 8300000, guid: 7484683c24a5baa4f940fa19d3d937f2, type: 3}
 --- !u!1001 &6110383857344280798
 PrefabInstance:
   m_ObjectHideFlags: 0

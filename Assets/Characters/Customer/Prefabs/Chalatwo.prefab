@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1583614432085473739}
   - component: {fileID: 2047520415373060297}
   - component: {fileID: 8075600558325270659}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: TimerCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0.6916303, b: 0.23113209, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 222687638358675718}
   - component: {fileID: 7826940480572574688}
   - component: {fileID: 6062863227187905304}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2924217221261429942}
   - component: {fileID: 503246772987318458}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 1908435416006649957}
   - component: {fileID: 1381931660085859751}
   - component: {fileID: 2139532560091540628}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Chalatwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderList:
-  - {fileID: 11400000, guid: bda0620b4343a6a4a951d0b0c5e813dc, type: 2}
+  - {fileID: 11400000, guid: 9d5237f90fda3464ebaa0f88da7017d0, type: 2}
+  - {fileID: 11400000, guid: 66e47508022e70645bb5f33a2558625a, type: 2}
+  - {fileID: 11400000, guid: 72f9a78c72babe849847c98f930a16fd, type: 2}
   order: {fileID: 0}
   timer: {fileID: 503246772987318458}
   iconDisplay: {fileID: 6062863227187905304}
@@ -369,10 +371,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -422,7 +424,7 @@ GameObject:
   - component: {fileID: 3811650208471438160}
   - component: {fileID: 3048488576287882064}
   - component: {fileID: 8833850798297057583}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}

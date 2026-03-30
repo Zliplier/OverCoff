@@ -4,25 +4,25 @@ using UnityEngine;
 
 namespace Players.PlayerScripts
 {
-    public class RecipeBook : PlayerBook
+    public class RecipeBook : PlayerScript
     {
         public const string RECIPE_PANEL = "Recipe";
         
-        public Panel tutorialPanel => UIManager.GetPanel(PlayerBook.BOOK_SECTION, RECIPE_PANEL);
+        public Panel recipePanel => UIManager.GetPanel(PlayerBook.BOOK_SECTION, RECIPE_PANEL);
         
         public List<GameObject> pages;
         private int currentPage;
         
         public void Open()
         {
-            tutorialPanel.panelRoot.SetActive(true);
+            recipePanel.panelRoot.SetActive(true);
             currentPage = 0;
             pages[currentPage].SetActive(true);
         }
 
         public void Close()
         {
-            tutorialPanel.panelRoot.SetActive(false);
+            recipePanel.panelRoot.SetActive(false);
             pages[currentPage].SetActive(false);
         }
 

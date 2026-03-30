@@ -22,12 +22,14 @@ namespace Interactable
         
         protected virtual void ShowOutline(Player user)
         {
-            
+            if (showInteractPrompt)
+                Player.Instance.interactPrompt.SetActive(true);
         }
 
         protected virtual void HideOutline(Player user)
         {
-            
+            if (showInteractPrompt)
+                Player.Instance.interactPrompt.SetActive(false);
         }
     }
 }

@@ -17,7 +17,7 @@ MonoBehaviour:
     nameId: CoffeeCup
     serializedId: 
     itemTag: 000000000400000003000000
-    cost: 0
+    cost: 10
     stack: 1
     maxStack: 1
     ignoreInRecipeCheck: 0

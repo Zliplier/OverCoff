@@ -9,14 +9,14 @@ namespace Zlipacket.CoreZlipacket.Audio.Script
         public Slider masterSlider;
         public Slider musicSlider;
         public Slider sfxSlider;
-        public Slider voiceSlider;
+        //public Slider voiceSlider;
 
         private void Start()
         {
             masterSlider.value = MixerManager.Instance.MasterVolume;
             musicSlider.value = MixerManager.Instance.MusicVolume;
             sfxSlider.value = MixerManager.Instance.SoundFXVolume;
-            voiceSlider.value = MixerManager.Instance.VoiceVolume;
+            //voiceSlider.value = MixerManager.Instance.VoiceVolume;
         }
 
         public void SetMasterVolume(float volume)

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af815bedc674f9da50201cf417e1fb6, type: 3}
+  m_Name: Cheese
+  m_EditorClassIdentifier: Assembly-CSharp::Items.Data.SO_Item
+  itemPrefab: {fileID: 8188686357476079677, guid: 259e9a6c37eda7445a05a67be51c099e, type: 3}
+  itemData:
+    nameId: Cheese
+    serializedId: 
+    itemTag: 000000000100000005000000
+    cost: 12
+    stack: 1
+    maxStack: 5
+    ignoreInRecipeCheck: 0
+    containItems: []
+    icon: {fileID: 21300000, guid: 863dbb35076ad12488033ac2ea5a65a7, type: 3}
+    scriptableObject: {fileID: 11400000}
+    displayData:
+      displayName: Cheese
+      textFont: {fileID: 0}
+      textColor: {r: 0, g: 0, b: 0, a: 0}
+    description: 

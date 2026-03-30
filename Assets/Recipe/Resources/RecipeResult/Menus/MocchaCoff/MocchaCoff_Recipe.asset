@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5776ce9271403b88876fdfb264bcaf, type: 3}
+  m_Name: MocchaCoff_Recipe
+  m_EditorClassIdentifier: Assembly-CSharp::Recipe.Data.SO_Recipe
+  recipeData:
+    recipeName: MocchaCoff
+    recipeIngredients:
+    - {fileID: 11400000, guid: bc2fca56720177c4d8ca0a433f3c28ad, type: 2}
+    - {fileID: 11400000, guid: bd343e24d217cd84ebeae7e3c8545274, type: 2}
+    recipeResult: {fileID: 11400000, guid: 281d01b5be3404440821a05f6cf164b9, type: 2}
+    recipeTags: 00000000
+    recipeDisplayData:
+      displayName: MocchaCoff
+      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      textColor: {r: 0, g: 0, b: 0, a: 0}
+    description: 

@@ -15,3 +15,8 @@ MonoBehaviour:
   listID: RecipeResult
   Items:
   - {fileID: 11400000, guid: bda0620b4343a6a4a951d0b0c5e813dc, type: 2}
+  - {fileID: 11400000, guid: da9e7d1a4c2e1d349b34e1a041e3efa3, type: 2}
+  - {fileID: 11400000, guid: 281d01b5be3404440821a05f6cf164b9, type: 2}
+  - {fileID: 11400000, guid: 72f9a78c72babe849847c98f930a16fd, type: 2}
+  - {fileID: 11400000, guid: 9d5237f90fda3464ebaa0f88da7017d0, type: 2}
+  - {fileID: 11400000, guid: 66e47508022e70645bb5f33a2558625a, type: 2}

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ad88035dc45958eece22d9448e3d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zlipacket.CoreZlipacket.Tools.Timer
+  duration: 0
   onFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -157,7 +158,8 @@ MonoBehaviour:
       textColor: {r: 0, g: 0, b: 0, a: 0}
     description: 
   rb: {fileID: 0}
-  itemInteractor: {fileID: 0}
+  itemInteractor: {fileID: 3433094908325274182}
+  respawnTime: 5
 --- !u!114 &3433094908325274182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +323,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8423071494724896414
 GameObject:

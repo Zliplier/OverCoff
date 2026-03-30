@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5776ce9271403b88876fdfb264bcaf, type: 3}
+  m_Name: SewerJuice_Recipe
+  m_EditorClassIdentifier: Assembly-CSharp::Recipe.Data.SO_Recipe
+  recipeData:
+    recipeName: SewerJuice
+    recipeIngredients:
+    - {fileID: 11400000, guid: da7b2f238d0850044b16730b910a2d4d, type: 2}
+    - {fileID: 11400000, guid: e663c1929ee049d4f922b287ee6f57a9, type: 2}
+    recipeResult: {fileID: 11400000, guid: 9d5237f90fda3464ebaa0f88da7017d0, type: 2}
+    recipeTags: 00000000
+    recipeDisplayData:
+      displayName: SewerJuice
+      textFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      textColor: {r: 0, g: 0, b: 0, a: 0}
+    description: 

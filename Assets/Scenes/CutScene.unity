@@ -157,7 +157,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -236.46979, y: 141.21289}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 160, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &479904961
 MonoBehaviour:
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d6eeec5e885413440a7db7f7bda9936f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -265,9 +265,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f44a88868a4343a82334c579bb4849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Zlipacket.CoreZlipacket.UI.ZlipButton
+  button: {fileID: 0}
+  buttonImage: {fileID: 0}
+  mouseDownSprite: {fileID: 0}
+  mouseUpSprite: {fileID: 0}
   curserSprite: {fileID: 0}
   hoverSprite: {fileID: 0}
-  clickSound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: 561602d828cfa104cbd27c1df1e46519, type: 3}
+  hoverSound: {fileID: 0}
+  animationEnabled: 1
+  scale: {x: 1.2, y: 1.2, z: 1.2}
+  duration: 0.2
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  delay: 0
 --- !u!1001 &514053186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -382,7 +394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 922429a6bdfb88d46aee3412966b14e9, type: 2}
+  m_Texture: {fileID: 8400000, guid: bbd772b1e67060847bae3ab2a1feca29, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -679,7 +691,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1573630795}
   - component: {fileID: 1573630794}
-  - component: {fileID: 1573630796}
   - component: {fileID: 1573630797}
   m_Layer: 0
   m_Name: Directional Light
@@ -768,29 +779,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &1573630796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573630793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 3
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
 --- !u!114 &1573630797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,8 +987,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4279971434
+  m_fontColor: {r: 0.41509432, g: 0.1821028, b: 0.107689574, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1023,7 +1011,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1095,11 +1083,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985172884}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 936e8afd5da122d47b53b0ff02469f0f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 9fd84a20675867d4bb020146c43b83b0, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 922429a6bdfb88d46aee3412966b14e9, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: bbd772b1e67060847bae3ab2a1feca29, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>

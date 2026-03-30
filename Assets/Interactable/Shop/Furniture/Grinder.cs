@@ -8,6 +8,7 @@ using Items.Script.Ingredients;
 using Players;
 using UI.Display;
 using UnityEngine;
+using Zlipacket.CoreZlipacket.Audio;
 using Environment = Zlipacket.CoreZlipacket.Misc.Environment;
 
 namespace Interactable.Shop.Furniture
@@ -30,6 +31,7 @@ namespace Interactable.Shop.Furniture
         
         [Header("Configs")]
         public List<ItemTag> inputFilterTag;
+        public AudioClip grindSound;
 
         private void Start()
         {
@@ -90,6 +92,9 @@ namespace Interactable.Shop.Furniture
             if (isEmpty)
                 return;
             grindNum = Math.Clamp(grindNum - 1, 0, maxGrindNum);
+            
+            if (grindSound != null)
+                SoundFXManager.Instance.PlaySoundFX(grindSound, transform);
         }
 
         private void GrindDone()

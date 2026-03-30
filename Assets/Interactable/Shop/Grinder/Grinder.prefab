@@ -91,6 +91,7 @@ MonoBehaviour:
     description: 
   rb: {fileID: 0}
   itemInteractor: {fileID: 4692436265910893948}
+  respawnTime: 5
 --- !u!114 &4692436265910893948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +133,7 @@ MonoBehaviour:
   grinderArm: {fileID: 6168121005112406056}
   spawnPos: {fileID: 4982214824919897524}
   inputFilterTag: 0a000000
+  grindSound: {fileID: 8300000, guid: 417930898831e354cad15c66b5bb84d6, type: 3}
 --- !u!1 &4982214824919897524
 GameObject:
   m_ObjectHideFlags: 0

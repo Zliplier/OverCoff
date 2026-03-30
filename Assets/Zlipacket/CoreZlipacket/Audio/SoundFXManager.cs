@@ -9,6 +9,7 @@ namespace Zlipacket.CoreZlipacket.Audio
         
         public void PlaySoundFX(AudioClip clip, Transform spawnTransform, float volume = 1f)
         {
+            //Debug.Log("Playing sound FX");
             AudioSource soundFX = Instantiate(soundFXObject, spawnTransform);
             
             soundFX.clip = clip;
@@ -21,6 +22,7 @@ namespace Zlipacket.CoreZlipacket.Audio
         
         public void PlaySoundFXPosition(AudioClip clip, Vector3 spawnPosition, float volume = 1f)
         {
+            //Debug.Log("Playing sound FX position");
             AudioSource soundFX = Instantiate(soundFXObject, spawnPosition, Quaternion.identity);
             
             soundFX.clip = clip;
